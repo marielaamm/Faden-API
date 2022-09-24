@@ -36,7 +36,7 @@ namespace Faden_Api.Controllers.CAT
                                          where _d.Codigo == (Codigo == string.Empty ? _d.Codigo : Codigo)
                                          select new
                                          {
-                                             IdDpto = _d.IdDepto,
+                                             IdDepto = _d.IdDepto,
                                              Codigo = _d.Codigo,
                                              Nombre = _d.Nombre
                                          }).ToList();
