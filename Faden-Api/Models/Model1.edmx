@@ -21,6 +21,27 @@
           <Property Name="Codigo" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Medicos">
+          <Key>
+            <PropertyRef Name="IdMedico" />
+          </Key>
+          <Property Name="IdMedico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoMedico" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="FechaIngreso" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="PNombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SNombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PApellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SApellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdDepto" Type="int" Nullable="false" />
+          <Property Name="IdCiudad" Type="int" Nullable="false" />
+          <Property Name="FechaNac" Type="date" Nullable="false" />
+          <Property Name="Identificacion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Especialidad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Celular" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Ciudad_Departamento">
           <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
           <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="*" />
@@ -36,6 +57,7 @@
         <EntityContainer Name="FADENModelStoreContainer">
           <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicos" EntityType="Self.Medicos" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Ciudad_Departamento" Association="Self.FK_Ciudad_Departamento">
             <End Role="Departamento" EntitySet="Departamento" />
             <End Role="Ciudad" EntitySet="Ciudad" />
@@ -52,6 +74,7 @@
             <End Role="Departamento" EntitySet="Departamento" />
             <End Role="Ciudad" EntitySet="Ciudad" />
           </AssociationSet>
+          <EntitySet Name="Medicos" EntityType="FADENModel.Medicos" />
         </EntityContainer>
         <EntityType Name="Departamento">
           <Key>
@@ -83,6 +106,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Medicos">
+          <Key>
+            <PropertyRef Name="IdMedico" />
+          </Key>
+          <Property Name="IdMedico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoMedico" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="PNombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SNombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PApellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SApellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdDepto" Type="Int32" Nullable="false" />
+          <Property Name="IdCiudad" Type="Int32" Nullable="false" />
+          <Property Name="FechaNac" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Especialidad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Celular" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -104,6 +148,28 @@
                 <ScalarProperty Name="IdDepto" ColumnName="IdDepto" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicos">
+            <EntityTypeMapping TypeName="FADENModel.Medicos">
+              <MappingFragment StoreEntitySet="Medicos">
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Especialidad" ColumnName="Especialidad" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="FechaNac" ColumnName="FechaNac" />
+                <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+                <ScalarProperty Name="IdDepto" ColumnName="IdDepto" />
+                <ScalarProperty Name="SApellido" ColumnName="SApellido" />
+                <ScalarProperty Name="PApellido" ColumnName="PApellido" />
+                <ScalarProperty Name="SNombre" ColumnName="SNombre" />
+                <ScalarProperty Name="PNombre" ColumnName="PNombre" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="NoMedico" ColumnName="NoMedico" />
+                <ScalarProperty Name="IdMedico" ColumnName="IdMedico" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
