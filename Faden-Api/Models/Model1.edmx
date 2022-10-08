@@ -23,7 +23,7 @@
         </EntityType>
         <EntityType Name="Medicos">
           <Key>
-            <PropertyRef Name="NoMedico" />
+            <PropertyRef Name="IdMedico" />
           </Key>
           <Property Name="IdMedico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NoMedico" Type="nvarchar" MaxLength="5" Nullable="false" />
@@ -130,7 +130,7 @@
         </Association>
         <EntityType Name="Medicos">
           <Key>
-            <PropertyRef Name="NoMedico" />
+            <PropertyRef Name="IdMedico" />
           </Key>
           <Property Name="IdMedico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NoMedico" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />

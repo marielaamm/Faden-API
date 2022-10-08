@@ -85,7 +85,7 @@ namespace Faden_Api.Controllers.CAT
                         }
                         else {
 
-                            Medicos fila = _conexion.Medicos.Find(d.NoMedico);
+                            Medicos fila = _conexion.Medicos.ToList().First( f => f.NoMedico == d.NoMedico);
 
                             fila.Celular = d.Celular;
 
