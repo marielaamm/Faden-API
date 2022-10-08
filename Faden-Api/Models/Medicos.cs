@@ -21,6 +21,7 @@ namespace Faden_Api.Models
         public string SNombre { get; set; }
         public string PApellido { get; set; }
         public string SApellido { get; set; }
+        public string NombreCompleto { get; set; }
         public int IdDepto { get; set; }
         public int IdCiudad { get; set; }
         public System.DateTime FechaNac { get; set; }
@@ -30,5 +31,7 @@ namespace Faden_Api.Models
         public string Correo { get; set; }
         public string Telefono { get; set; }
         public string Celular { get; set; }
+    
+        public virtual Ciudad Ciudad { get; set; }
     }
 }

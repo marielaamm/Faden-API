@@ -41,11 +41,11 @@ namespace Faden_Api.Controllers.CAT
                     using (FADENEntities _conexion = new FADENEntities())
                     {
 
-                        if (d.NoMedico=="00000")
+                        if (d.NoMedico == "00000")
                         {
 
                             int x = 0;
-                            string NoMedico=string.Empty;
+                            string NoMedico = string.Empty;
 
                             Medicos _d = new Medicos();
                             _d.FechaIngreso = DateTime.Now;
@@ -71,22 +71,26 @@ namespace Faden_Api.Controllers.CAT
 
                             NoMedico = _conexion.Medicos.Max(m => m.NoMedico);
 
-                            if (NoMedico != null) {
-                                
+                            if (NoMedico != null)
+                            {
+
                                 x = Convert.ToInt32(NoMedico);
                             }
 
                             x += 1;
 
-                            _d.NoMedico = x.ToString().PadLeft(5,'0');
+                            _d.NoMedico = x.ToString().PadLeft(5, '0');
                             _conexion.SaveChanges();
 
+                        }
+                        else {
+
+                            Medicos fila = _conexion.Medicos.Find(d.NoMedico);
+
+                            fila.Celular = d.Celular;
 
 
-
-
-
-
+                            _conexion.SaveChanges();
                         }
 
 
@@ -105,5 +109,61 @@ namespace Faden_Api.Controllers.CAT
             }
             return json;
         }
+
+
+        [Route("api/cat/Medico/Buscar")]
+        [HttpGet]
+        public string Medico(string NoMedico)
+        {
+            return _Medico(NoMedico);
+        }
+
+        private string _Medico(string NoMedico)
+        {
+            string json = string.Empty;
+
+            if(NoMedico==null) NoMedico = string.Empty;
+
+            try
+            {
+                using (FADENEntities _conexion = new FADENEntities())
+                {
+                    var qMedicos = (from _m in _conexion.Medicos
+                                    where _m.NoMedico==(NoMedico==string.Empty? _m.NoMedico : NoMedico)
+                                      select new {
+                                          IdMedico = _m.IdMedico,
+                                          NoMedico = _m.NoMedico,
+                                          FechaIngreso = _m.FechaIngreso,
+                                          PNombre  = _m.PNombre,
+                                          SNombre = _m.SNombre,
+                                          PApellido = _m.PApellido,
+                                          SApellido = _m.SApellido,
+                                          NombreCompleto = _m.NombreCompleto,
+                                          IdLugarNac = string.Concat(_m.IdDepto, "_", _m.IdCiudad),
+                                          FechaNac = _m.FechaNac,
+                                          Identificacion = _m.Identificacion,
+                                          Especialidad = _m.Especialidad,
+                                          Direccion = _m.Direccion,
+                                          Correo = _m.Correo,
+                                          Telefono = _m.Telefono,
+                                          Celular = _m.Celular,
+
+                                      }
+                                      ).ToList();
+
+                    json = Cls_Mensaje.Tojson(qMedicos, qMedicos.Count, string.Empty, string.Empty, 0);
+
+                    }
+
+            }
+            catch (Exception ex)
+            {
+                json = Cls_Mensaje.Tojson(null, 0, "1", ex.Message, 1);
+            }
+
+            return json;
+
+        }
+
     }
 }

@@ -23,7 +23,7 @@
         </EntityType>
         <EntityType Name="Medicos">
           <Key>
-            <PropertyRef Name="IdMedico" />
+            <PropertyRef Name="NoMedico" />
           </Key>
           <Property Name="IdMedico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NoMedico" Type="nvarchar" MaxLength="5" Nullable="false" />
@@ -32,6 +32,7 @@
           <Property Name="SNombre" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PApellido" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SApellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NombreCompleto" Type="nvarchar" MaxLength="203" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="IdDepto" Type="int" Nullable="false" />
           <Property Name="IdCiudad" Type="int" Nullable="false" />
           <Property Name="FechaNac" Type="date" Nullable="false" />
@@ -39,8 +40,8 @@
           <Property Name="Especialidad" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Direccion" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Telefono" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Celular" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="Celular" Type="nvarchar" MaxLength="8" Nullable="false" />
         </EntityType>
         <Association Name="FK_Ciudad_Departamento">
           <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
@@ -54,6 +55,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Medicos">
+          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
+          <End Role="Medicos" Type="Self.Medicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="IdCiudad" />
+            </Principal>
+            <Dependent Role="Medicos">
+              <PropertyRef Name="IdCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="FADENModelStoreContainer">
           <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
@@ -61,6 +74,10 @@
           <AssociationSet Name="FK_Ciudad_Departamento" Association="Self.FK_Ciudad_Departamento">
             <End Role="Departamento" EntitySet="Departamento" />
             <End Role="Ciudad" EntitySet="Ciudad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Medicos" Association="Self.FK_Medicos">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="Medicos" EntitySet="Medicos" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -75,6 +92,10 @@
             <End Role="Ciudad" EntitySet="Ciudad" />
           </AssociationSet>
           <EntitySet Name="Medicos" EntityType="FADENModel.Medicos" />
+          <AssociationSet Name="FK_Medicos" Association="FADENModel.FK_Medicos">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="Medicos" EntitySet="Medicos" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Departamento">
           <Key>
@@ -93,6 +114,7 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdDepto" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Departamento" Relationship="FADENModel.FK_Ciudad_Departamento" FromRole="Ciudad" ToRole="Departamento" />
+          <NavigationProperty Name="Medicos" Relationship="FADENModel.FK_Medicos" FromRole="Ciudad" ToRole="Medicos" />
         </EntityType>
         <Association Name="FK_Ciudad_Departamento">
           <End Type="FADENModel.Departamento" Role="Departamento" Multiplicity="1" />
@@ -108,7 +130,7 @@
         </Association>
         <EntityType Name="Medicos">
           <Key>
-            <PropertyRef Name="IdMedico" />
+            <PropertyRef Name="NoMedico" />
           </Key>
           <Property Name="IdMedico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NoMedico" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
@@ -117,6 +139,7 @@
           <Property Name="SNombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PApellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SApellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="203" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="IdDepto" Type="Int32" Nullable="false" />
           <Property Name="IdCiudad" Type="Int32" Nullable="false" />
           <Property Name="FechaNac" Type="DateTime" Nullable="false" Precision="0" />
@@ -124,9 +147,22 @@
           <Property Name="Especialidad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Direccion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Celular" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Celular" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ciudad" Relationship="FADENModel.FK_Medicos" FromRole="Medicos" ToRole="Ciudad" />
         </EntityType>
+        <Association Name="FK_Medicos">
+          <End Type="FADENModel.Ciudad" Role="Ciudad" Multiplicity="1" />
+          <End Type="FADENModel.Medicos" Role="Medicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="IdCiudad" />
+            </Principal>
+            <Dependent Role="Medicos">
+              <PropertyRef Name="IdCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -163,6 +199,7 @@
                 <ScalarProperty Name="FechaNac" ColumnName="FechaNac" />
                 <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
                 <ScalarProperty Name="IdDepto" ColumnName="IdDepto" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
                 <ScalarProperty Name="SApellido" ColumnName="SApellido" />
                 <ScalarProperty Name="PApellido" ColumnName="PApellido" />
                 <ScalarProperty Name="SNombre" ColumnName="SNombre" />

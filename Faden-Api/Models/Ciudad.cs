@@ -14,10 +14,18 @@ namespace Faden_Api.Models
     
     public partial class Ciudad
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Ciudad()
+        {
+            this.Medicos = new HashSet<Medicos>();
+        }
+    
         public int IdCiudad { get; set; }
         public string Nombre { get; set; }
         public int IdDepto { get; set; }
     
         public virtual Departamento Departamento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Medicos> Medicos { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace Faden_Api.Class.cat
         public string SNombre = string.Empty;
         public string PApellido = string.Empty;
         public string SApellido = string.Empty;
+        public string NombreCompleto = string.Empty;
         public int IdDepto = 0;
         public int IdCiudad = 0;
         public DateTime FechaNac = DateTime.Now;
