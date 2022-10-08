@@ -87,6 +87,20 @@ namespace Faden_Api.Controllers.CAT
 
                             Medicos fila = _conexion.Medicos.ToList().First( f => f.NoMedico == d.NoMedico);
 
+                            fila.FechaIngreso = d.FechaIngreso;
+                            fila.NoMedico = d.NoMedico;
+                            fila.PNombre = d.PNombre;
+                            fila.SNombre = d.SNombre;
+                            fila.PApellido = d.PApellido;
+                            fila.SApellido = d.SApellido;   
+                            fila.IdDepto = d.IdDepto;
+                            fila.IdCiudad = d.IdCiudad;
+                            fila.FechaNac = d.FechaNac;
+                            fila.Identificacion = d.Identificacion;
+                            fila.Especialidad = d.Especialidad;
+                            fila.Direccion = d.Direccion;
+                            fila.Correo = d.Correo;
+                            fila.Telefono = d.Telefono;
                             fila.Celular = d.Celular;
 
 
