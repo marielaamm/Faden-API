@@ -125,6 +125,58 @@ namespace Faden_Api.Controllers.CAT
         }
 
 
+        [Route("api/cat/Medicos/Eliminar")]
+        [System.Web.Http.HttpPost]
+
+        public IHttpActionResult Eliminar(string NoMedico)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok(_Eliminar(NoMedico));
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        private string _Eliminar(string NoMedico)
+        {
+            string json = string.Empty;
+            try
+            {
+                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.Serializable }))
+                {
+
+                    using (FADENEntities _conexion = new FADENEntities())
+                    {
+
+
+                        Medicos m = _conexion.Medicos.ToList().FirstOrDefault(f => f.NoMedico==NoMedico);
+
+                        _conexion.Medicos.Remove(m);
+
+
+                            
+                        _conexion.SaveChanges();
+                       
+                        scope.Complete();
+
+                        json = Cls_Mensaje.Tojson(null, 1, string.Empty, "Registro Eliminado", 0);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                json = Cls_Mensaje.Tojson(null, 0, "1", ex.Message, 1);
+            }
+            return json;
+        }
+
+
+
+
         [Route("api/cat/Medico/Buscar")]
         [HttpGet]
         public string Medico(string NoMedico)
