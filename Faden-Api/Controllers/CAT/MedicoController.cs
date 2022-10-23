@@ -156,7 +156,7 @@ namespace Faden_Api.Controllers.CAT
 
                         _conexion.Medicos.Remove(m);
 
-
+ 
                             
                         _conexion.SaveChanges();
                        
