@@ -78,14 +78,30 @@ namespace Faden_Api.Controllers.CAT
 
                     using (FADENEntities _conexion = new FADENEntities())
                     {
-                        Departamento _d = new Departamento();
-                        _d.Codigo = Departamento.Codigo;
-                        _d.Nombre = Departamento.Departamento;
-                        _conexion.Departamento.Add(_d);
+
+
+                        Departamento _d = _conexion.Departamento.Find(Departamento.IdDepartamento);
+
+                        if (_d == null)
+                        {
+                            _d = new Departamento();
+                            _d.Codigo = Departamento.Codigo;
+                            _d.Nombre = Departamento.Departamento;
+                            _conexion.Departamento.Add(_d);
+
+                        }
+                        else
+                        {
+                            _d.Codigo = Departamento.Codigo;
+                            _d.Nombre = Departamento.Departamento;
+                           
+                        }
+
+                       
                         _conexion.SaveChanges();
                         scope.Complete();
 
-                        json = Cls_Mensaje.Tojson(_d, 1, string.Empty, "Registro Guardado", 0);
+                        json = Cls_Mensaje.Tojson(Departamento, 1, string.Empty, "Registro Guardado", 0);
                     }
                 }
 
