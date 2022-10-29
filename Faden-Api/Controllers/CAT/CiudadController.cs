@@ -42,7 +42,9 @@ namespace Faden_Api.Controllers.CAT
                                       {
                                           IdCiudad = _m.IdCiudad,
                                           Nombre = _m.Nombre,
-                                          IdDepto = _m.IdDepto
+                                          IdDepto = _m.IdDepto,
+                                          CoDepto = _m.Departamento.Codigo,
+                                          Departamento= _m.Departamento.Nombre
                                       }).ToList();
 
                     json = Cls_Mensaje.Tojson(qMunicipio, qMunicipio.Count, string.Empty, string.Empty, 0);
@@ -86,14 +88,31 @@ namespace Faden_Api.Controllers.CAT
                 {
                     using (FADENEntities _conexion = new FADENEntities())
                     {
-                        Ciudad _C = new Ciudad();
-                        _C.Nombre = d.Nombre;
-                        _C.IdDepto = d.IdDepto;
-                        _conexion.Ciudad.Add(_C);
+
+                        
+                        Ciudad _C = _conexion.Ciudad.Find(d.IdCiudad);
+
+                        if (_C == null)
+                        {
+
+
+                            _C = new Ciudad();
+                            _C.Nombre = d.Nombre;
+                            _C.IdDepto = d.IdDepto;
+                            _conexion.Ciudad.Add(_C);
+
+                        }
+                        else
+                        {
+                            _C.Nombre = d.Nombre;
+                            _C.IdDepto = d.IdDepto;
+
+                        }
+                        
                         _conexion.SaveChanges();
                         scope.Complete();
 
-                        json = Cls_Mensaje.Tojson(_C,1,string.Empty, "Registro guardado.",0);
+                        json = Cls_Mensaje.Tojson(d,1,string.Empty, "Registro guardado.",0);
 
 
                     }
