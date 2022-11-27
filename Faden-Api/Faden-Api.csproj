@@ -218,11 +218,13 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Class\cat\Cls_Departamento.cs" />
     <Compile Include="Class\cat\Cls_Medico.cs" />
+    <Compile Include="Class\cat\Cls_Paciente.cs" />
     <Compile Include="Class\Cls_Mensaje.cs" />
     <Compile Include="Class\cat\Cls_Municipio.cs" />
     <Compile Include="Controllers\CAT\CiudadController.cs" />
     <Compile Include="Controllers\CAT\DepartamentoController.cs" />
     <Compile Include="Controllers\CAT\MedicoController.cs" />
+    <Compile Include="Controllers\CAT\PacienteController.cs" />
     <Compile Include="Controllers\FN\FuncionesGeneralesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -252,6 +254,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Paciente.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -329,6 +334,7 @@
     <Folder Include="Views\Departamento\" />
     <Folder Include="Views\FuncionesGenerales\" />
     <Folder Include="Views\Medico\" />
+    <Folder Include="Views\Paciente\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

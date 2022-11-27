@@ -10,6 +10,7 @@
         <AssociationConnector Association="FADENModel.FK_Ciudad_Departamento" />
         <EntityTypeShape EntityType="FADENModel.Medicos" Width="1.5" PointX="5.25" PointY="2.875" />
         <AssociationConnector Association="FADENModel.FK_Medicos" />
+        <EntityTypeShape EntityType="FADENModel.Paciente" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
