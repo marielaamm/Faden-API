@@ -31,7 +31,7 @@ namespace Faden_Api.Controllers.CAT
         }
 
         private string _Guardar(Cls_Medico d)
-        {
+        { 
             string json = string.Empty;
             try
             {

@@ -43,6 +43,42 @@
           <Property Name="Telefono" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="Celular" Type="nvarchar" MaxLength="8" Nullable="false" />
         </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="IdPaciente" />
+          </Key>
+          <Property Name="IdPaciente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoExpediente" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaIngreso" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="PNombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SNombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PApellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SApellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sexo" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="IdDepto" Type="int" Nullable="false" />
+          <Property Name="IdCiudad" Type="int" Nullable="false" />
+          <Property Name="FechaNacim" Type="date" Nullable="false" />
+          <Property Name="Ocupacion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Identificacion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdEscolaridad" Type="int" Nullable="false" />
+          <Property Name="ECivil" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Celular" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Religion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Convive" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Visita" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="RefVisita" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Referencia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Trabaja" Type="bit" Nullable="false" />
+          <Property Name="RefTrabajo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UltimoTrabajo" Type="bit" Nullable="false" />
+          <Property Name="RefUltTrabajo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Jubilado" Type="bit" Nullable="false" />
+          <Property Name="Pensionado" Type="bit" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Ciudad_Departamento">
           <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
           <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="*" />
@@ -71,6 +107,7 @@
           <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Medicos" EntityType="Self.Medicos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Ciudad_Departamento" Association="Self.FK_Ciudad_Departamento">
             <End Role="Departamento" EntitySet="Departamento" />
             <End Role="Ciudad" EntitySet="Ciudad" />
@@ -96,6 +133,7 @@
             <End Role="Ciudad" EntitySet="Ciudad" />
             <End Role="Medicos" EntitySet="Medicos" />
           </AssociationSet>
+          <EntitySet Name="Paciente" EntityType="FADENModel.Paciente" />
         </EntityContainer>
         <EntityType Name="Departamento">
           <Key>
@@ -163,6 +201,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="IdPaciente" />
+          </Key>
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoExpediente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="PNombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SNombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PApellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SApellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="IdDepto" Type="Int32" Nullable="false" />
+          <Property Name="IdCiudad" Type="Int32" Nullable="false" />
+          <Property Name="FechaNacim" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Ocupacion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdEscolaridad" Type="Int32" Nullable="false" />
+          <Property Name="ECivil" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Celular" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Religion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Convive" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Visita" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="RefVisita" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Referencia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Trabaja" Type="Boolean" Nullable="false" />
+          <Property Name="RefTrabajo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UltimoTrabajo" Type="Boolean" Nullable="false" />
+          <Property Name="RefUltTrabajo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Jubilado" Type="Boolean" Nullable="false" />
+          <Property Name="Pensionado" Type="Boolean" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -207,6 +281,43 @@
                 <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
                 <ScalarProperty Name="NoMedico" ColumnName="NoMedico" />
                 <ScalarProperty Name="IdMedico" ColumnName="IdMedico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paciente">
+            <EntityTypeMapping TypeName="FADENModel.Paciente">
+              <MappingFragment StoreEntitySet="Paciente">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Pensionado" ColumnName="Pensionado" />
+                <ScalarProperty Name="Jubilado" ColumnName="Jubilado" />
+                <ScalarProperty Name="RefUltTrabajo" ColumnName="RefUltTrabajo" />
+                <ScalarProperty Name="UltimoTrabajo" ColumnName="UltimoTrabajo" />
+                <ScalarProperty Name="RefTrabajo" ColumnName="RefTrabajo" />
+                <ScalarProperty Name="Trabaja" ColumnName="Trabaja" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="RefVisita" ColumnName="RefVisita" />
+                <ScalarProperty Name="Visita" ColumnName="Visita" />
+                <ScalarProperty Name="Convive" ColumnName="Convive" />
+                <ScalarProperty Name="Religion" ColumnName="Religion" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="ECivil" ColumnName="ECivil" />
+                <ScalarProperty Name="IdEscolaridad" ColumnName="IdEscolaridad" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="Ocupacion" ColumnName="Ocupacion" />
+                <ScalarProperty Name="FechaNacim" ColumnName="FechaNacim" />
+                <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+                <ScalarProperty Name="IdDepto" ColumnName="IdDepto" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="SApellido" ColumnName="SApellido" />
+                <ScalarProperty Name="PApellido" ColumnName="PApellido" />
+                <ScalarProperty Name="SNombre" ColumnName="SNombre" />
+                <ScalarProperty Name="PNombre" ColumnName="PNombre" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="NoExpediente" ColumnName="NoExpediente" />
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

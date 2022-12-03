@@ -28,5 +28,6 @@ namespace Faden_Api.Models
         public virtual DbSet<Departamento> Departamento { get; set; }
         public virtual DbSet<Ciudad> Ciudad { get; set; }
         public virtual DbSet<Medicos> Medicos { get; set; }
+        public virtual DbSet<Paciente> Paciente { get; set; }
     }
 }
