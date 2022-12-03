@@ -42,14 +42,15 @@ namespace Faden_Api.Controllers.CAT
                     using (FADENEntities _conexion = new FADENEntities())
                     {
 
-                        if (p.NoExpediente == "00000")
+                        if (p.NoExpediente == string.Empty)
                         {
 
                             int y = 0;
                             string NoExpediente = string.Empty;
 
                             Paciente _p = new Paciente();
-                            
+
+                            _p.NoExpediente = string.Empty;
                             _p.FechaIngreso = p.FechaIngreso;
                             _p.PNombre = p.PNombre;
                             _p.SNombre = p.SNombre;
@@ -72,12 +73,12 @@ namespace Faden_Api.Controllers.CAT
                             _p.Visita = p.Visita;
                             _p.RefVisita = p.RefVisita;
                             _p.Referencia = p.Referencia;
-                            //_p.Trabaja = p.Trabaja;
+                            _p.Trabaja = p.Trabaja;
                             _p.RefTrabajo = p.RefTrabajo;
                             _p.UltimoTrabajo = p.UltimoTrabajo;
                             _p.RefUltTrabajo = p.RefUltTrabajo;
-                           // _p.Jubilado = p.Jubilado;
-                            //_p.Pensionado = p.Pensionado;
+                            _p.Jubilado = p.Jubilado;
+                            _p.Pensionado = p.Pensionado;
                             _p.Estado = p.Estado;
                                                   
 
@@ -86,7 +87,7 @@ namespace Faden_Api.Controllers.CAT
 
                             NoExpediente = _conexion.Paciente.Max(m => m.NoExpediente);
 
-                            if (NoExpediente != null)
+                            if (NoExpediente != string.Empty)
                             {
 
                                 y = Convert.ToInt32(NoExpediente);
@@ -94,7 +95,7 @@ namespace Faden_Api.Controllers.CAT
 
                             y += 1;
                             
-                            _p.NoExpediente = y.ToString().PadLeft(5, '0');
+                            _p.NoExpediente = y.ToString().PadLeft(10, '0');
                             _conexion.SaveChanges();
 
                         }
@@ -125,12 +126,12 @@ namespace Faden_Api.Controllers.CAT
                             fila.Convive = p.Convive;
                             fila.Visita = p.Visita;
                             fila.Referencia = p.Referencia;
-                            //fila.Trabaja = p.Trabaja;
+                            fila.Trabaja = p.Trabaja;
                             fila.RefTrabajo = p.RefTrabajo;
                             fila.UltimoTrabajo = p.UltimoTrabajo;
                             fila.RefUltTrabajo = p.RefUltTrabajo;
-                            //fila.Jubilado = p.Jubilado;
-                            //fila.Pensionado = p.Pensionado;
+                            fila.Jubilado = p.Jubilado;
+                            fila.Pensionado = p.Pensionado;
                             
                             _conexion.SaveChanges();
                         }

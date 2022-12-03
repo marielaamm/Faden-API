@@ -40,7 +40,7 @@ namespace Faden_Api.Models
         public string Referencia { get; set; }
         public bool Trabaja { get; set; }
         public string RefTrabajo { get; set; }
-        public string UltimoTrabajo { get; set; }
+        public bool UltimoTrabajo { get; set; }
         public string RefUltTrabajo { get; set; }
         public bool Jubilado { get; set; }
         public bool Pensionado { get; set; }

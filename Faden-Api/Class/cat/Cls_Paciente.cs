@@ -31,12 +31,12 @@ namespace Faden_Api.Class.cat
         public string Visita = string.Empty;
         public string RefVisita = string.Empty;
         public string Referencia = string.Empty;
-        public string Trabaja = string.Empty;
+        public bool Trabaja = false;
         public string RefTrabajo = string.Empty;
-        public string UltimoTrabajo = string.Empty;
+        public bool UltimoTrabajo = false;
         public string RefUltTrabajo = string.Empty;
-        public string Jubilado = string.Empty;
-        public string Pensionado = string.Empty;
+        public bool Jubilado = false;
+        public bool Pensionado = false;
         public string Estado = string.Empty;
 
     }
