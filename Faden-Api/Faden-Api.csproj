@@ -222,6 +222,7 @@
     <Compile Include="Class\cat\Cls_Municipio.cs" />
     <Compile Include="Controllers\CAT\CiudadController.cs" />
     <Compile Include="Controllers\CAT\DepartamentoController.cs" />
+    <Compile Include="Controllers\CAT\EscolaridadController.cs" />
     <Compile Include="Controllers\CAT\MedicoController.cs" />
     <Compile Include="Controllers\FN\FuncionesGeneralesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -327,6 +328,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Ciudad\" />
     <Folder Include="Views\Departamento\" />
+    <Folder Include="Views\Escolaridad\" />
     <Folder Include="Views\FuncionesGenerales\" />
     <Folder Include="Views\Medico\" />
   </ItemGroup>
