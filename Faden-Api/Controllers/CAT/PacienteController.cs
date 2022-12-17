@@ -98,6 +98,30 @@ namespace Faden_Api.Controllers.CAT
                             _p.NoExpediente = y.ToString().PadLeft(10, '0');
                             _conexion.SaveChanges();
 
+                            foreach (Cls_TAcompanante a in p.TAcompanante) {
+
+                                Acompanante _a = new Acompanante();
+
+                                _a.NombreCompleto = a.NombreCompleto;
+                                _a.Telefono = a.Telefono;
+                                _a.Direccion = a.Direccion;
+                                _a.Correo = a.Correo;
+                                _a.EsAcpte = a.EsAcpte;
+                                _a.EsCuidador = a.EsCiudador;
+                                _a.EsPrimario = a.EsPrimario;
+                                _a.EsSecundario = a.EsSecundario;
+                                _a.IdPaciente = _p.IdPaciente;
+
+                                _conexion.Acompanante.Add(_a);
+                                _conexion.SaveChanges();
+
+                            }
+
+                           
+
+
+
+
                         }
                         else
                         {
@@ -134,6 +158,35 @@ namespace Faden_Api.Controllers.CAT
                             fila.Pensionado = p.Pensionado;
                             
                             _conexion.SaveChanges();
+
+                            foreach (Cls_TAcompanante a in p.TAcompanante) { 
+
+                                bool esnuevo = false;
+
+                                Acompanante _a = _conexion.Acompanante.Find(a.IdAcpte);
+
+                                if (a == null) {
+
+                                    esnuevo = true;
+                                    _a = new Acompanante();
+
+                                }
+                                _a.NombreCompleto = a.NombreCompleto;
+                                _a.Telefono = a.Telefono;
+                                _a.Direccion = a.Direccion;
+                                _a.Correo = a.Correo;
+                                _a.EsAcpte = a.EsAcpte;
+                                _a.EsCuidador = a.EsCiudador;
+                                _a.EsPrimario = a.EsPrimario;
+                                _a.EsSecundario = a.EsSecundario;
+                                _a.IdPaciente = fila.IdPaciente;
+
+                                if(esnuevo) _conexion.Acompanante.Add(_a);
+                                _conexion.SaveChanges();
+
+
+                            }
+
                         }
 
 

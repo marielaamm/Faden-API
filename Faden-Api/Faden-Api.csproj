@@ -221,6 +221,7 @@
     <Compile Include="Class\cat\Cls_Paciente.cs" />
     <Compile Include="Class\Cls_Mensaje.cs" />
     <Compile Include="Class\cat\Cls_Municipio.cs" />
+    <Compile Include="Class\Cls_TAcompanante.cs" />
     <Compile Include="Controllers\CAT\CiudadController.cs" />
     <Compile Include="Controllers\CAT\DepartamentoController.cs" />
     <Compile Include="Controllers\CAT\EscolaridadController.cs" />
