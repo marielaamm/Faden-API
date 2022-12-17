@@ -38,6 +38,7 @@ namespace Faden_Api.Class.cat
         public bool Jubilado = false;
         public bool Pensionado = false;
         public string Estado = string.Empty;
+        
 
     }
 }
