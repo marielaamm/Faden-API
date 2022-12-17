@@ -15,7 +15,8 @@ using System.Net;
 using System.Data;
 using System.Transactions;
 using IsolationLevel = System.Transactions.IsolationLevel;
-
+using Faden_Api.Models;
+using Faden_Api.Class;
 
 namespace Faden_Api.Controllers.CAT
 {
@@ -37,7 +38,7 @@ namespace Faden_Api.Controllers.CAT
             }
         }
 
-        private string _Guardar(Cls_Municipio d)
+        private string _Guardar(Escolaridad d)
         {
             string json = string.Empty;
             try
@@ -48,22 +49,22 @@ namespace Faden_Api.Controllers.CAT
                     {
 
 
-                        Ciudad _C = _conexion.Ciudad.Find(d.IdCiudad);
+                        Escolaridad _C = _conexion.Escolaridad.FirstOrDefault( f=> f.IdEscolaridad == d.IdEscolaridad);
 
                         if (_C == null)
                         {
 
 
-                            _C = new Ciudad();
+                            _C = new Escolaridad();
                             _C.Nombre = d.Nombre;
-                            _C.IdDepto = d.IdDepto;
-                            _conexion.Ciudad.Add(_C);
+                            _C.Activo = true;
+                            _conexion.Escolaridad.Add(_C);
 
                         }
                         else
                         {
                             _C.Nombre = d.Nombre;
-                            _C.IdDepto = d.IdDepto;
+                            _C.Activo = d.Activo; 
 
                         }
 
@@ -79,12 +80,58 @@ namespace Faden_Api.Controllers.CAT
             }
             catch (Exception ex)
             {
-                json = Cls_Mensaje.Tojson(null, 0, "1", ex.Message, 1);
+                json = Cls_Mensaje.Tojson(null, 0, "1", "Error al ingresar el registro.", 1);
 
             }
 
             return json;
 
         }
+
+
+        [Route("api/cat/Escolaridad/Buscar")]
+        [HttpGet]
+        public string Escolaridad()
+        {
+            return _Escolaridad();
+        }
+
+        private string _Escolaridad()
+        {
+            string json = string.Empty;
+
+            try
+            {
+                using (FADENEntities _conexion = new FADENEntities())
+                {
+                    var qEscolaridad = (from _m in _conexion.Escolaridad
+                                        where _m.Activo == true
+                                      select new
+                                      {
+                                          IdEscolaridad = _m.IdEscolaridad,
+                                          Nombre = _m.Nombre,
+                                          Activo = _m.Activo
+                                      }).ToList();
+
+                    json = Cls_Mensaje.Tojson(qEscolaridad, qEscolaridad.Count, string.Empty, string.Empty, 0);
+
+
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                json = Cls_Mensaje.Tojson(null, 0, "1", ex.Message, 1);
+            }
+
+            return json;
+
+        }
+
+
+
+
     }
 }

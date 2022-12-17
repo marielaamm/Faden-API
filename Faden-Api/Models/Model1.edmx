@@ -21,6 +21,14 @@
           <Property Name="Codigo" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Escolaridad">
+          <Key>
+            <PropertyRef Name="IdEscolaridad" />
+          </Key>
+          <Property Name="IdEscolaridad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Medicos">
           <Key>
             <PropertyRef Name="IdMedico" />
@@ -67,10 +75,10 @@
           <Property Name="Celular" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Religion" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Convive" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Visita" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="RefVisita" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Referencia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Convive" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="Visita" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="RefVisita" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Referencia" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Trabaja" Type="bit" Nullable="false" />
           <Property Name="RefTrabajo" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UltimoTrabajo" Type="bit" Nullable="false" />
@@ -103,9 +111,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Paciente_Escolaridad">
+          <End Role="Escolaridad" Type="Self.Escolaridad" Multiplicity="1" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Escolaridad">
+              <PropertyRef Name="IdEscolaridad" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="IdEscolaridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="FADENModelStoreContainer">
           <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Escolaridad" EntityType="Self.Escolaridad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Medicos" EntityType="Self.Medicos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Ciudad_Departamento" Association="Self.FK_Ciudad_Departamento">
@@ -115,6 +136,10 @@
           <AssociationSet Name="FK_Medicos" Association="Self.FK_Medicos">
             <End Role="Ciudad" EntitySet="Ciudad" />
             <End Role="Medicos" EntitySet="Medicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_Escolaridad" Association="Self.FK_Paciente_Escolaridad">
+            <End Role="Escolaridad" EntitySet="Escolaridad" />
+            <End Role="Paciente" EntitySet="Paciente" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -133,7 +158,12 @@
             <End Role="Ciudad" EntitySet="Ciudad" />
             <End Role="Medicos" EntitySet="Medicos" />
           </AssociationSet>
+          <EntitySet Name="Escolaridad" EntityType="FADENModel.Escolaridad" />
           <EntitySet Name="Paciente" EntityType="FADENModel.Paciente" />
+          <AssociationSet Name="FK_Paciente_Escolaridad" Association="FADENModel.FK_Paciente_Escolaridad">
+            <End Role="Escolaridad" EntitySet="Escolaridad" />
+            <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Departamento">
           <Key>
@@ -201,6 +231,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Escolaridad">
+          <Key>
+            <PropertyRef Name="IdEscolaridad" />
+          </Key>
+          <Property Name="IdEscolaridad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_Paciente_Escolaridad" FromRole="Escolaridad" ToRole="Paciente" />
+        </EntityType>
         <EntityType Name="Paciente">
           <Key>
             <PropertyRef Name="IdPaciente" />
@@ -225,10 +264,10 @@
           <Property Name="Celular" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Religion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Convive" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Visita" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="RefVisita" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Referencia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Convive" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="Visita" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="RefVisita" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Referencia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Trabaja" Type="Boolean" Nullable="false" />
           <Property Name="RefTrabajo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UltimoTrabajo" Type="Boolean" Nullable="false" />
@@ -236,7 +275,20 @@
           <Property Name="Jubilado" Type="Boolean" Nullable="false" />
           <Property Name="Pensionado" Type="Boolean" Nullable="false" />
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Escolaridad" Relationship="FADENModel.FK_Paciente_Escolaridad" FromRole="Paciente" ToRole="Escolaridad" />
         </EntityType>
+        <Association Name="FK_Paciente_Escolaridad">
+          <End Type="FADENModel.Escolaridad" Role="Escolaridad" Multiplicity="1" />
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Escolaridad">
+              <PropertyRef Name="IdEscolaridad" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="IdEscolaridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -281,6 +333,15 @@
                 <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
                 <ScalarProperty Name="NoMedico" ColumnName="NoMedico" />
                 <ScalarProperty Name="IdMedico" ColumnName="IdMedico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Escolaridad">
+            <EntityTypeMapping TypeName="FADENModel.Escolaridad">
+              <MappingFragment StoreEntitySet="Escolaridad">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdEscolaridad" ColumnName="IdEscolaridad" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
