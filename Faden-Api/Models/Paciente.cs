@@ -45,5 +45,7 @@ namespace Faden_Api.Models
         public bool Jubilado { get; set; }
         public bool Pensionado { get; set; }
         public string Estado { get; set; }
+    
+        public virtual Escolaridad Escolaridad { get; set; }
     }
 }
