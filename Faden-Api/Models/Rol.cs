@@ -12,18 +12,10 @@ namespace Faden_Api.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Acompanante
+    public partial class Rol
     {
-        public int IdAcpte { get; set; }
-        public string NombreCompleto { get; set; }
-        public string Telefono { get; set; }
-        public string Direccion { get; set; }
-        public string Correo { get; set; }
-        public bool EsAcpte { get; set; }
-        public bool EsCuidador { get; set; }
-        public int IdPaciente { get; set; }
+        public int IdRol { get; set; }
+        public string Rol1 { get; set; }
         public bool Activo { get; set; }
-    
-        public virtual Paciente Paciente { get; set; }
     }
 }
