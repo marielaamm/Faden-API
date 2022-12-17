@@ -14,6 +14,12 @@ namespace Faden_Api.Models
     
     public partial class Paciente
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Paciente()
+        {
+            this.Acompanante = new HashSet<Acompanante>();
+        }
+    
         public int IdPaciente { get; set; }
         public string NoExpediente { get; set; }
         public System.DateTime FechaIngreso { get; set; }
@@ -47,5 +53,7 @@ namespace Faden_Api.Models
         public string Estado { get; set; }
     
         public virtual Escolaridad Escolaridad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Acompanante> Acompanante { get; set; }
     }
 }

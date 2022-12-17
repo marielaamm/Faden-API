@@ -5,6 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="FADENModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Acompanante">
+          <Key>
+            <PropertyRef Name="IdAcpte" />
+          </Key>
+          <Property Name="IdAcpte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCompleto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EsAcpte" Type="bit" Nullable="false" />
+          <Property Name="EsCuidador" Type="bit" Nullable="false" />
+          <Property Name="EsPrimario" Type="bit" Nullable="false" />
+          <Property Name="EsSecundario" Type="bit" Nullable="false" />
+          <Property Name="IdPaciente" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Ciudad">
           <Key>
             <PropertyRef Name="IdCiudad" />
@@ -75,10 +90,10 @@
           <Property Name="Celular" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Religion" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Convive" Type="nvarchar" MaxLength="6" Nullable="false" />
-          <Property Name="Visita" Type="nvarchar" MaxLength="4" Nullable="false" />
-          <Property Name="RefVisita" Type="nvarchar" MaxLength="5" Nullable="false" />
-          <Property Name="Referencia" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Convive" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Visita" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="RefVisita" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Referencia" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Trabaja" Type="bit" Nullable="false" />
           <Property Name="RefTrabajo" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UltimoTrabajo" Type="bit" Nullable="false" />
@@ -87,6 +102,18 @@
           <Property Name="Pensionado" Type="bit" Nullable="false" />
           <Property Name="Estado" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Acompanante_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Acompanante" Type="Self.Acompanante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="Acompanante">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Ciudad_Departamento">
           <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
           <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="*" />
@@ -124,11 +151,16 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="FADENModelStoreContainer">
+          <EntitySet Name="Acompanante" EntityType="Self.Acompanante" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Escolaridad" EntityType="Self.Escolaridad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Medicos" EntityType="Self.Medicos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Acompanante_Paciente" Association="Self.FK_Acompanante_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Acompanante" EntitySet="Acompanante" />
+          </AssociationSet>
           <AssociationSet Name="FK_Ciudad_Departamento" Association="Self.FK_Ciudad_Departamento">
             <End Role="Departamento" EntitySet="Departamento" />
             <End Role="Ciudad" EntitySet="Ciudad" />
@@ -163,6 +195,11 @@
           <AssociationSet Name="FK_Paciente_Escolaridad" Association="FADENModel.FK_Paciente_Escolaridad">
             <End Role="Escolaridad" EntitySet="Escolaridad" />
             <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
+          <EntitySet Name="Acompanante" EntityType="FADENModel.Acompanante" />
+          <AssociationSet Name="FK_Acompanante_Paciente" Association="FADENModel.FK_Acompanante_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Acompanante" EntitySet="Acompanante" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Departamento">
@@ -264,10 +301,10 @@
           <Property Name="Celular" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Religion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Convive" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
-          <Property Name="Visita" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
-          <Property Name="RefVisita" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="Referencia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Convive" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Visita" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="RefVisita" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Referencia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Trabaja" Type="Boolean" Nullable="false" />
           <Property Name="RefTrabajo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UltimoTrabajo" Type="Boolean" Nullable="false" />
@@ -276,6 +313,7 @@
           <Property Name="Pensionado" Type="Boolean" Nullable="false" />
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Escolaridad" Relationship="FADENModel.FK_Paciente_Escolaridad" FromRole="Paciente" ToRole="Escolaridad" />
+          <NavigationProperty Name="Acompanante" Relationship="FADENModel.FK_Acompanante_Paciente" FromRole="Paciente" ToRole="Acompanante" />
         </EntityType>
         <Association Name="FK_Paciente_Escolaridad">
           <End Type="FADENModel.Escolaridad" Role="Escolaridad" Multiplicity="1" />
@@ -286,6 +324,34 @@
             </Principal>
             <Dependent Role="Paciente">
               <PropertyRef Name="IdEscolaridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Acompanante">
+          <Key>
+            <PropertyRef Name="IdAcpte" />
+          </Key>
+          <Property Name="IdAcpte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EsAcpte" Type="Boolean" Nullable="false" />
+          <Property Name="EsCuidador" Type="Boolean" Nullable="false" />
+          <Property Name="EsPrimario" Type="Boolean" Nullable="false" />
+          <Property Name="EsSecundario" Type="Boolean" Nullable="false" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_Acompanante_Paciente" FromRole="Acompanante" ToRole="Paciente" />
+        </EntityType>
+        <Association Name="FK_Acompanante_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.Acompanante" Role="Acompanante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="Acompanante">
+              <PropertyRef Name="IdPaciente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -379,6 +445,22 @@
                 <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
                 <ScalarProperty Name="NoExpediente" ColumnName="NoExpediente" />
                 <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Acompanante">
+            <EntityTypeMapping TypeName="FADENModel.Acompanante">
+              <MappingFragment StoreEntitySet="Acompanante">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="EsSecundario" ColumnName="EsSecundario" />
+                <ScalarProperty Name="EsPrimario" ColumnName="EsPrimario" />
+                <ScalarProperty Name="EsCuidador" ColumnName="EsCuidador" />
+                <ScalarProperty Name="EsAcpte" ColumnName="EsAcpte" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="IdAcpte" ColumnName="IdAcpte" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
