@@ -55,5 +55,46 @@ namespace Faden_Api.Controllers.FN
 
             return json;
         }
+
+
+
+        [Route("api/fn/BuscarFechaServidor")]
+        [HttpGet]
+        public string BuscarFechaServidor()
+        {
+            return _BuscarFechaServidor();
+        }
+
+        private string _BuscarFechaServidor()
+        {
+
+            string json = string.Empty;
+
+            try
+            {
+                using (FADENEntities _conexion = new FADENEntities())
+                {
+
+                    List<DateTime> list = new List<DateTime>();
+                    DateTime qFechaServer = _conexion.Database.SqlQuery<DateTime>("Select getdate();").FirstOrDefault();
+                    list.Add(qFechaServer);
+
+
+                    json = Cls_Mensaje.Tojson(list, list.Count, string.Empty, string.Empty, 0);
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                json = Cls_Mensaje.Tojson(null, 0, "1", ex.Message, 1);
+            }
+            return json;
+        }
+
     }
+
+
+
 }
