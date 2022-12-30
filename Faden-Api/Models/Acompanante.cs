@@ -21,8 +21,9 @@ namespace Faden_Api.Models
         public string Correo { get; set; }
         public bool EsAcpte { get; set; }
         public bool EsCuidador { get; set; }
+        public bool EsPrimario { get; set; }
+        public bool EsSecundario { get; set; }
         public int IdPaciente { get; set; }
-        public bool Activo { get; set; }
     
         public virtual Paciente Paciente { get; set; }
     }
