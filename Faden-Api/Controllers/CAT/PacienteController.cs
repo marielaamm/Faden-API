@@ -204,5 +204,44 @@ namespace Faden_Api.Controllers.CAT
             return json;
         }
 
+        [Route("api/cat/Paciente/Buscar")]
+        [HttpGet]
+        public string BuscarPaciente()
+        {
+            return _BuscarPaciente();
+        }
+
+        private string _BuscarPaciente()
+        {
+            string json = string.Empty;
+
+            
+
+            try
+            {
+                using (FADENEntities _conexion = new FADENEntities())
+                {
+                    var qPaciente = (from _m in _conexion.Paciente
+                                     select new
+                                     {
+                                         Seleccionar = false,
+                                         NoExpediente = _m.NoExpediente,
+                                         NombreCompleto = string.Concat(_m.PNombre, "_",_m.PApellido),
+                                         Identificacion = _m.Identificacion,
+                                         Celular = _m.Celular,
+                                     }).ToList();
+
+                    json = Cls_Mensaje.Tojson(qPaciente, qPaciente.Count, string.Empty, string.Empty, 0);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                json = Cls_Mensaje.Tojson(null, 0, "1", ex.Message, 1);
+            }
+            return json;
+        }
+
     }
 }
