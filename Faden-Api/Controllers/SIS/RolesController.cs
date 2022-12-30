@@ -22,7 +22,7 @@ namespace Faden_Api.Controllers.SIS
 {
     public class RolesController : ApiController
     {
-        [Route("api/sis/Roles/Guardar")]
+        [Route("api/SIS/Rol/Guardar")]
         [System.Web.Http.HttpPost]
         public IHttpActionResult Guardar(Rol d)
         {
