@@ -88,7 +88,7 @@ namespace Faden_Api.Controllers.SIS
         }
 
 
-        [Route("api/sis/Roles/Buscar")]
+        [Route("api/SIS/Rol/Buscar")]
         [HttpGet]
         public string Roles()
         {
@@ -103,7 +103,8 @@ namespace Faden_Api.Controllers.SIS
             {
                 using (FADENEntities _conexion = new FADENEntities())
                 {
-                    var qRoles = (from _m in _conexion.Rol                                       where _m.Activo == true
+                    var qRoles = (from _m in _conexion.Rol                                       
+                                  where _m.Activo == true
                                         select new
                                         {
                                             IdRol = _m.IdRol,
