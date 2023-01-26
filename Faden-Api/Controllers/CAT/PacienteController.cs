@@ -165,7 +165,7 @@ namespace Faden_Api.Controllers.CAT
 
                                 Acompanante _a = _conexion.Acompanante.Find(a.IdAcpte);
 
-                                if (a == null) {
+                                if (_a == null) {
 
                                     esnuevo = true;
                                     _a = new Acompanante();
