@@ -116,11 +116,7 @@ namespace Faden_Api.Controllers.CAT
                                 _conexion.SaveChanges();
 
                             }
-
-                           
-
-
-
+                                                
 
                         }
                         else
@@ -149,6 +145,7 @@ namespace Faden_Api.Controllers.CAT
                             fila.Religion = p.Religion;
                             fila.Convive = p.Convive;
                             fila.Visita = p.Visita;
+                            fila.RefVisita = p.RefVisita;
                             fila.Referencia = p.Referencia;
                             fila.Trabaja = p.Trabaja;
                             fila.RefTrabajo = p.RefTrabajo;
@@ -266,6 +263,7 @@ namespace Faden_Api.Controllers.CAT
                                          Religion = _m.Religion,
                                          Convive = _m.Convive,
                                          Visita = _m.Visita,
+                                         RefVisita = _m.RefVisita,
                                          Referencia = _m.Referencia,
                                          Trabaja = _m.Trabaja,
                                          RefTrabajo = _m.RefTrabajo,
