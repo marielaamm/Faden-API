@@ -155,11 +155,11 @@ namespace Faden_Api.Controllers.CAT
                             fila.Pensionado = p.Pensionado;
                             
                             _conexion.SaveChanges();
-
+                            // FIXME SE PODRIA DAR DE ALTA UN PACIENTE SIN NECESIDAD DE QUE LLEVE ACOMPANANTE, SE PUEDE DAR 
+                            // EL CASO QUE REGISTRES EL PACIENTE Y DESPUES SE AGREGUE EL ACOMPANANTE
                             foreach (Cls_TAcompanante a in p.TAcompanante) { 
 
                                 bool esnuevo = false;
-
                                 Acompanante _a = _conexion.Acompanante.Find(a.IdAcpte);
 
                                 if (_a == null) {
@@ -232,7 +232,8 @@ namespace Faden_Api.Controllers.CAT
                                               EsCuidador = _q.EsCuidador,
                                               EsPrimario = _q.EsPrimario,
                                               EsSecundario = _q.EsSecundario,
-                                              IdPaciente = _q.IdPaciente
+                                              IdPaciente = _q.IdPaciente,
+                                              IdAcpte= _q.IdAcpte
                                           }
                                           ).ToList();
 
