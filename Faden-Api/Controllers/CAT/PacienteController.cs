@@ -96,6 +96,7 @@ namespace Faden_Api.Controllers.CAT
                             y += 1;
                             
                             _p.NoExpediente = y.ToString().PadLeft(10, '0');
+                            p.NoExpediente = _p.NoExpediente;
                             _conexion.SaveChanges();
 
                             foreach (Cls_TAcompanante a in p.TAcompanante) {
@@ -107,7 +108,7 @@ namespace Faden_Api.Controllers.CAT
                                 _a.Direccion = a.Direccion;
                                 _a.Correo = a.Correo;
                                 _a.EsAcpte = a.EsAcpte;
-                                _a.EsCuidador = a.EsCiudador;
+                                _a.EsCuidador = a.EsCuidador;
                                 _a.EsPrimario = a.EsPrimario;
                                 _a.EsSecundario = a.EsSecundario;
                                 _a.IdPaciente = _p.IdPaciente;
@@ -173,7 +174,7 @@ namespace Faden_Api.Controllers.CAT
                                 _a.Direccion = a.Direccion;
                                 _a.Correo = a.Correo;
                                 _a.EsAcpte = a.EsAcpte;
-                                _a.EsCuidador = a.EsCiudador;
+                                _a.EsCuidador = a.EsCuidador;
                                 _a.EsPrimario = a.EsPrimario;
                                 _a.EsSecundario = a.EsSecundario;
                                 _a.IdPaciente = fila.IdPaciente;
@@ -189,7 +190,7 @@ namespace Faden_Api.Controllers.CAT
 
                         scope.Complete();
 
-                        json = Cls_Mensaje.Tojson(null, 1, string.Empty, "Registro Guardado", 0);
+                        json = Cls_Mensaje.Tojson(p, 1, string.Empty, "Registro Guardado", 0);
                     }
                 }
 

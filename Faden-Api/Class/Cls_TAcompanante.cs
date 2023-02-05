@@ -14,7 +14,7 @@ namespace Faden_Api.Class.cat
         public string Direccion = string.Empty;
         public string Correo = string.Empty;
         public bool EsAcpte = false;
-        public bool EsCiudador = false;
+        public bool EsCuidador = false;
         public bool EsPrimario = false;
         public bool EsSecundario = false;
         public int IdPaciente = 0;
