@@ -96,6 +96,7 @@ namespace Faden_Api.Controllers.CAT
                             y += 1;
                             
                             _p.NoExpediente = y.ToString().PadLeft(10, '0');
+                            p.NoExpediente = _p.NoExpediente;
                             _conexion.SaveChanges();
 
                             foreach (Cls_TAcompanante a in p.TAcompanante) {
@@ -107,7 +108,7 @@ namespace Faden_Api.Controllers.CAT
                                 _a.Direccion = a.Direccion;
                                 _a.Correo = a.Correo;
                                 _a.EsAcpte = a.EsAcpte;
-                                _a.EsCuidador = a.EsCiudador;
+                                _a.EsCuidador = a.EsCuidador;
                                 _a.EsPrimario = a.EsPrimario;
                                 _a.EsSecundario = a.EsSecundario;
                                 _a.IdPaciente = _p.IdPaciente;
@@ -116,11 +117,7 @@ namespace Faden_Api.Controllers.CAT
                                 _conexion.SaveChanges();
 
                             }
-
-                           
-
-
-
+                                                
 
                         }
                         else
@@ -149,6 +146,7 @@ namespace Faden_Api.Controllers.CAT
                             fila.Religion = p.Religion;
                             fila.Convive = p.Convive;
                             fila.Visita = p.Visita;
+                            fila.RefVisita = p.RefVisita;
                             fila.Referencia = p.Referencia;
                             fila.Trabaja = p.Trabaja;
                             fila.RefTrabajo = p.RefTrabajo;
@@ -158,14 +156,14 @@ namespace Faden_Api.Controllers.CAT
                             fila.Pensionado = p.Pensionado;
                             
                             _conexion.SaveChanges();
-
+                            // FIXME SE PODRIA DAR DE ALTA UN PACIENTE SIN NECESIDAD DE QUE LLEVE ACOMPANANTE, SE PUEDE DAR 
+                            // EL CASO QUE REGISTRES EL PACIENTE Y DESPUES SE AGREGUE EL ACOMPANANTE
                             foreach (Cls_TAcompanante a in p.TAcompanante) { 
 
                                 bool esnuevo = false;
-
                                 Acompanante _a = _conexion.Acompanante.Find(a.IdAcpte);
 
-                                if (a == null) {
+                                if (_a == null) {
 
                                     esnuevo = true;
                                     _a = new Acompanante();
@@ -176,7 +174,7 @@ namespace Faden_Api.Controllers.CAT
                                 _a.Direccion = a.Direccion;
                                 _a.Correo = a.Correo;
                                 _a.EsAcpte = a.EsAcpte;
-                                _a.EsCuidador = a.EsCiudador;
+                                _a.EsCuidador = a.EsCuidador;
                                 _a.EsPrimario = a.EsPrimario;
                                 _a.EsSecundario = a.EsSecundario;
                                 _a.IdPaciente = fila.IdPaciente;
@@ -192,7 +190,7 @@ namespace Faden_Api.Controllers.CAT
 
                         scope.Complete();
 
-                        json = Cls_Mensaje.Tojson(null, 1, string.Empty, "Registro Guardado", 0);
+                        json = Cls_Mensaje.Tojson(p, 1, string.Empty, "Registro Guardado", 0);
                     }
                 }
 
@@ -221,17 +219,66 @@ namespace Faden_Api.Controllers.CAT
             {
                 using (FADENEntities _conexion = new FADENEntities())
                 {
+
+                    List<object> lst = new List<object>();
+
+                    var LstAcompanante = (from _q in _conexion.Acompanante
+                                          select new
+                                          {
+                                              NombreCompleto = _q.NombreCompleto,
+                                              Telefono = _q.Telefono,
+                                              Direccion = _q.Direccion,
+                                              Correo = _q.Correo,
+                                              EsAcpte = _q.EsAcpte,
+                                              EsCuidador = _q.EsCuidador,
+                                              EsPrimario = _q.EsPrimario,
+                                              EsSecundario = _q.EsSecundario,
+                                              IdPaciente = _q.IdPaciente,
+                                              IdAcpte= _q.IdAcpte
+                                          }
+                                          ).ToList();
+
+
                     var qPaciente = (from _m in _conexion.Paciente
                                      select new
                                      {
                                          Seleccionar = false,
+                                         IdPaciente = _m.IdPaciente,
                                          NoExpediente = _m.NoExpediente,
                                          NombreCompleto = string.Concat(_m.PNombre, "_",_m.PApellido),
+                                         FechaIngreso = _m.FechaIngreso,
+                                         PNombre = _m.PNombre,
+                                         SNombre = _m.SNombre,
+                                         PApellido = _m.PApellido,
+                                         SApellido = _m.SApellido,
+                                         Sexo = _m.Sexo,
+                                         IdLugarNac = string.Concat(_m.IdDepto, "_", _m.IdCiudad),
+                                         FechaNacim = _m.FechaNacim,
+                                         Ocupacion = _m.Ocupacion,
                                          Identificacion = _m.Identificacion,
+                                         IdEscolaridad = _m.IdEscolaridad,
+                                         ECivil = _m.ECivil,
+                                         Direccion = _m.Direccion,
+                                         Telefono = _m.Telefono,
                                          Celular = _m.Celular,
-                                     }).ToList();
+                                         Correo = _m.Correo,
+                                         Religion = _m.Religion,
+                                         Convive = _m.Convive,
+                                         Visita = _m.Visita,
+                                         RefVisita = _m.RefVisita,
+                                         Referencia = _m.Referencia,
+                                         Trabaja = _m.Trabaja,
+                                         RefTrabajo = _m.RefTrabajo,
+                                         UltimoTrabajo = _m.UltimoTrabajo,
+                                         RefUltTrabajo = _m.RefUltTrabajo,
+                                         Jubilado = _m.Jubilado,
+                                         Pensionado = _m.Pensionado,
+ 
+                                      }).ToList();
 
-                    json = Cls_Mensaje.Tojson(qPaciente, qPaciente.Count, string.Empty, string.Empty, 0);
+                    lst.Add(qPaciente);
+                    lst.Add(LstAcompanante);
+                    json = Cls_Mensaje.Tojson(lst, lst.Count, string.Empty, string.Empty, 0);
 
                 }
 
