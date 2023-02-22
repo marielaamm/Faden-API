@@ -219,6 +219,8 @@
     <Compile Include="Class\cat\Cls_Departamento.cs" />
     <Compile Include="Class\cat\Cls_Medico.cs" />
     <Compile Include="Class\cat\Cls_Paciente.cs" />
+    <Compile Include="Class\cat\Cls_Consenso.cs" />
+    <Compile Include="Class\cat\Cls_SindromePredominante.cs" />
     <Compile Include="Class\Cls_Mensaje.cs" />
     <Compile Include="Class\cat\Cls_Municipio.cs" />
     <Compile Include="Class\Cls_TAcompanante.cs" />
