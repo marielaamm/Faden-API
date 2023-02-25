@@ -14,18 +14,19 @@ namespace Faden_Api.Models
     
     public partial class Consenso
     {
-        public int RdDetCognitivo { get; set; }
-        public int RdSospechaDiag { get; set; }
+        public int IdConsenso { get; set; }
+        public int DetCognitivo { get; set; }
+        public int SospechaDiag { get; set; }
         public string RefNormal { get; set; }
         public string RefLeve { get; set; }
         public string RefMayor { get; set; }
-        public string Depresion { get; set; }
+        public bool Depresion { get; set; }
         public string RefDepresion { get; set; }
-        public string TrastornoBip { get; set; }
+        public bool TrastornoBip { get; set; }
         public string RefTrasBip { get; set; }
-        public string Esquizo { get; set; }
+        public bool Esquizo { get; set; }
         public string RefEsquizo { get; set; }
-        public string OtroDiag { get; set; }
+        public bool OtroDiag { get; set; }
         public string RefOtroDiag { get; set; }
         public string RefProbable { get; set; }
         public string RefConfirmado { get; set; }
@@ -34,5 +35,7 @@ namespace Faden_Api.Models
         public string Recomendaciones { get; set; }
         public string Examenes { get; set; }
         public int IdPaciente { get; set; }
+    
+        public virtual Paciente Paciente { get; set; }
     }
 }

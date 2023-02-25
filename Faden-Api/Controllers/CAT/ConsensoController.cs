@@ -39,56 +39,68 @@ namespace Faden_Api.Controllers.CAT
                 {
                     using (FADENEntities _conexion = new FADENEntities())
                     {
-                        
-                        int IdPaciente = 0;
-                        string z = Convert.ToString(IdPaciente);
+                        Consenso _c = _conexion.Consenso.Find(c.IdConsenso);
+                        bool esNuevo = false;
+                        bool esNuevoDet = false;
 
-                        if (c.IdPaciente == 1011)
+
+                        if (_c == null)
                         {
-                       
-                            Consenso _c = new Consenso();
-                                              
-                            _c.RdDetCognitivo = c.RdDetCognitivo;
-                            _c.RdSospechaDiag = c.RdSospechaDiag;
-                            _c.RefNormal = c.RefNormal;
-                            _c.RefLeve = c.RefLeve;
-                            _c.RefMayor = c.RefMayor;
-                            _c.Depresion = c.Depresion;
-                            _c.RefDepresion = c.RefDepresion;
-                            _c.TrastornoBip = c.TrastornoBip;   
-                            _c.RefTrasBip = c.RefTrasBip;
-                            _c.Esquizo = c.Esquizo;
-                            _c.RefEsquizo = c.RefEsquizo;
-                            _c.OtroDiag = c.OtroDiag;
-                            _c.RefOtroDiag = c.RefOtroDiag;
-                            _c.RefProbable = c.RefProbable;
-                            _c.RefConfirmado = c.RefConfirmado;
-                            _c.TrataFarma = c.TrataFarma;
-                            _c.TrataNoFarma = c.TrataNoFarma;
-                            _c.Recomendaciones = c.Recomendaciones;
-                            _c.Examenes = c.Examenes;
-
-                            _conexion.Consenso.Add(_c);
-                            _conexion.SaveChanges();
-
-
-                            foreach (Cls_SindromePredominante s in c.SindromePredominante) { 
-
-                                SindromePredominante _s = new SindromePredominante();
-
-                                _s.IdSindrome = s.IdSindrome;
-                                _s.TipoSindrome = s.TipoSindrome;
-                                _s.IdPaciente = s.IdPaciente;
-
-                                _conexion.SindromePredominante.Add(_s);
-                                _conexion.SaveChanges();
-
-                            }
-
+                            _c = new Consenso();
+                            esNuevo = true;
                         }
 
 
-                                                
+
+                        _c.DetCognitivo = c.DetCognitivo;
+                        _c.SospechaDiag = c.SospechaDiag;
+                        _c.RefNormal = c.RefNormal;
+                        _c.RefLeve = c.RefLeve;
+                        _c.RefMayor = c.RefMayor;
+                        _c.Depresion = c.Depresion;
+                        _c.RefDepresion = c.RefDepresion;
+                        _c.TrastornoBip = c.TrastornoBip;
+                        _c.RefTrasBip = c.RefTrasBip;
+                        _c.Esquizo = c.Esquizo;
+                        _c.RefEsquizo = c.RefEsquizo;
+                        _c.OtroDiag = c.OtroDiag;
+                        _c.RefOtroDiag = c.RefOtroDiag;
+                        _c.RefProbable = c.RefProbable;
+                        _c.RefConfirmado = c.RefConfirmado;
+                        _c.TrataFarma = c.TrataFarma;
+                        _c.TrataNoFarma = c.TrataNoFarma;
+                        _c.Recomendaciones = c.Recomendaciones;
+                        _c.Examenes = c.Examenes;
+                        _c.IdPaciente = c.IdPaciente;
+
+
+
+                        if(esNuevo) _conexion.Consenso.Add(_c);
+                        _conexion.SaveChanges();
+
+
+                        foreach (Cls_SindromePredominante s in c.TSindromePredominante)
+                        {
+
+                            SindromePredominante _s = _conexion.SindromePredominante.Find(s.IdSindrome);
+
+                            if(_s == null)
+                            {
+                                _s = new SindromePredominante();
+                                esNuevoDet = true;
+                            }
+
+
+                            _s.TipoSindrome = s.TipoSindrome;
+                            _s.IdPaciente = s.IdPaciente;
+
+                            if(esNuevoDet) _conexion.SindromePredominante.Add(_s);
+                            
+
+                        }
+
+                        _conexion.SaveChanges();
+
                         scope.Complete();
 
                         json = Cls_Mensaje.Tojson(c, 1, string.Empty, "Registro guardado.", 0);

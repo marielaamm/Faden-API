@@ -7,8 +7,9 @@ namespace Faden_Api.Class.cat
 {
     public class Cls_Consenso
     {
-        public int RdDetCognitivo = 0;
-        public int RdSospechaDiag = 0;
+        public int IdConsenso = 0;
+        public int DetCognitivo = 0;
+        public int SospechaDiag = 0;
         public string RefNormal = string.Empty;
         public string RefLeve = string.Empty;
         public string RefMayor = string.Empty;
@@ -27,7 +28,7 @@ namespace Faden_Api.Class.cat
         public string Recomendaciones = string.Empty;
         public string Examenes = string.Empty;
         public int IdPaciente = 0;       
-        public Cls_SindromePredominante[] SindromePredominante = null;
+        public Cls_SindromePredominante[] TSindromePredominante = null;
 
 
 

@@ -30,28 +30,29 @@
         </EntityType>
         <EntityType Name="Consenso">
           <Key>
-            <PropertyRef Name="IdPaciente" />
+            <PropertyRef Name="IdConsenso" />
           </Key>
-          <Property Name="RdDetCognitivo" Type="int" Nullable="false" />
-          <Property Name="RdSospechaDiag" Type="int" Nullable="false" />
-          <Property Name="RefNormal" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="RefLeve" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="RefMayor" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Depresion" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="RefDepresion" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="TrastornoBip" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="RefTrasBip" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Esquizo" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="RefEsquizo" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="OtroDiag" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="RefOtroDiag" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="RefProbable" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="RefConfirmado" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="TrataFarma" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="TrataNoFarma" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Recomendaciones" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Examenes" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="IdPaciente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdConsenso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DetCognitivo" Type="int" Nullable="false" />
+          <Property Name="SospechaDiag" Type="int" Nullable="false" />
+          <Property Name="RefNormal" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="RefLeve" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="RefMayor" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Depresion" Type="bit" Nullable="false" />
+          <Property Name="RefDepresion" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TrastornoBip" Type="bit" Nullable="false" />
+          <Property Name="RefTrasBip" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Esquizo" Type="bit" Nullable="false" />
+          <Property Name="RefEsquizo" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="OtroDiag" Type="bit" Nullable="false" />
+          <Property Name="RefOtroDiag" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="RefProbable" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="RefConfirmado" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TrataFarma" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TrataNoFarma" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Recomendaciones" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Examenes" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdPaciente" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Departamento">
           <Key>
@@ -167,6 +168,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Consenso_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Consenso" Type="Self.Consenso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="Consenso">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Medicos">
           <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
           <End Role="Medicos" Type="Self.Medicos" Multiplicity="*" />
@@ -209,6 +222,10 @@
             <End Role="Departamento" EntitySet="Departamento" />
             <End Role="Ciudad" EntitySet="Ciudad" />
           </AssociationSet>
+          <AssociationSet Name="FK_Consenso_Paciente" Association="Self.FK_Consenso_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Consenso" EntitySet="Consenso" />
+          </AssociationSet>
           <AssociationSet Name="FK_Medicos" Association="Self.FK_Medicos">
             <End Role="Ciudad" EntitySet="Ciudad" />
             <End Role="Medicos" EntitySet="Medicos" />
@@ -246,8 +263,12 @@
             <End Role="Acompanante" EntitySet="Acompanante" />
           </AssociationSet>
           <EntitySet Name="Rol" EntityType="FADENModel.Rol" />
-          <EntitySet Name="Consenso" EntityType="FADENModel.Consenso" />
           <EntitySet Name="SindromePredominante" EntityType="FADENModel.SindromePredominante" />
+          <EntitySet Name="Consenso" EntityType="FADENModel.Consenso" />
+          <AssociationSet Name="FK_Consenso_Paciente" Association="FADENModel.FK_Consenso_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Consenso" EntitySet="Consenso" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Departamento">
           <Key>
@@ -361,6 +382,7 @@
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Escolaridad" Relationship="FADENModel.FK_Paciente_Escolaridad" FromRole="Paciente" ToRole="Escolaridad" />
           <NavigationProperty Name="Acompanante" Relationship="FADENModel.FK_Acompanante_Paciente" FromRole="Paciente" ToRole="Acompanante" />
+          <NavigationProperty Name="Consenso" Relationship="FADENModel.FK_Consenso_Paciente" FromRole="Paciente" ToRole="Consenso" />
         </EntityType>
         <Association Name="FK_Paciente_Escolaridad">
           <End Type="FADENModel.Escolaridad" Role="Escolaridad" Multiplicity="1" />
@@ -410,31 +432,6 @@
           <Property Name="Rol1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
         </EntityType>
-        <EntityType Name="Consenso">
-          <Key>
-            <PropertyRef Name="IdPaciente" />
-          </Key>
-          <Property Name="RdDetCognitivo" Type="Int32" Nullable="false" />
-          <Property Name="RdSospechaDiag" Type="Int32" Nullable="false" />
-          <Property Name="RefNormal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RefLeve" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RefMayor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Depresion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RefDepresion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TrastornoBip" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RefTrasBip" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Esquizo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RefEsquizo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="OtroDiag" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RefOtroDiag" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RefProbable" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RefConfirmado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TrataFarma" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="TrataNoFarma" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Recomendaciones" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Examenes" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="IdPaciente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
         <EntityType Name="SindromePredominante">
           <Key>
             <PropertyRef Name="IdSindrome" />
@@ -443,6 +440,45 @@
           <Property Name="TipoSindrome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IdPaciente" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="Consenso">
+          <Key>
+            <PropertyRef Name="IdConsenso" />
+          </Key>
+          <Property Name="IdConsenso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DetCognitivo" Type="Int32" Nullable="false" />
+          <Property Name="SospechaDiag" Type="Int32" Nullable="false" />
+          <Property Name="RefNormal" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RefLeve" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RefMayor" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Depresion" Type="Boolean" Nullable="false" />
+          <Property Name="RefDepresion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TrastornoBip" Type="Boolean" Nullable="false" />
+          <Property Name="RefTrasBip" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Esquizo" Type="Boolean" Nullable="false" />
+          <Property Name="RefEsquizo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="OtroDiag" Type="Boolean" Nullable="false" />
+          <Property Name="RefOtroDiag" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RefProbable" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RefConfirmado" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TrataFarma" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrataNoFarma" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Recomendaciones" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Examenes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_Consenso_Paciente" FromRole="Consenso" ToRole="Paciente" />
+        </EntityType>
+        <Association Name="FK_Consenso_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.Consenso" Role="Consenso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="Consenso">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -561,6 +597,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SindromePredominante">
+            <EntityTypeMapping TypeName="FADENModel.SindromePredominante">
+              <MappingFragment StoreEntitySet="SindromePredominante">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="TipoSindrome" ColumnName="TipoSindrome" />
+                <ScalarProperty Name="IdSindrome" ColumnName="IdSindrome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Consenso">
             <EntityTypeMapping TypeName="FADENModel.Consenso">
               <MappingFragment StoreEntitySet="Consenso">
@@ -582,17 +627,9 @@
                 <ScalarProperty Name="RefMayor" ColumnName="RefMayor" />
                 <ScalarProperty Name="RefLeve" ColumnName="RefLeve" />
                 <ScalarProperty Name="RefNormal" ColumnName="RefNormal" />
-                <ScalarProperty Name="RdSospechaDiag" ColumnName="RdSospechaDiag" />
-                <ScalarProperty Name="RdDetCognitivo" ColumnName="RdDetCognitivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SindromePredominante">
-            <EntityTypeMapping TypeName="FADENModel.SindromePredominante">
-              <MappingFragment StoreEntitySet="SindromePredominante">
-                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
-                <ScalarProperty Name="TipoSindrome" ColumnName="TipoSindrome" />
-                <ScalarProperty Name="IdSindrome" ColumnName="IdSindrome" />
+                <ScalarProperty Name="SospechaDiag" ColumnName="SospechaDiag" />
+                <ScalarProperty Name="DetCognitivo" ColumnName="DetCognitivo" />
+                <ScalarProperty Name="IdConsenso" ColumnName="IdConsenso" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
