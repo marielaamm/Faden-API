@@ -12,13 +12,13 @@ namespace Faden_Api.Class.cat
         public string RefNormal = string.Empty;
         public string RefLeve = string.Empty;
         public string RefMayor = string.Empty;
-        public string Depresion = string.Empty;
+        public bool Depresion = false;
         public string RefDepresion = string.Empty;
-        public string TrastornoBip = string.Empty;
+        public bool TrastornoBip = false;
         public string RefTrasBip = string.Empty;
-        public string Esquizo = string.Empty;
+        public bool Esquizo = false;
         public string RefEsquizo = string.Empty;
-        public string OtroDiag = string.Empty;
+        public bool OtroDiag = false;
         public string RefOtroDiag = string.Empty;
         public string RefProbable = string.Empty;
         public string RefConfirmado = string.Empty;
@@ -26,8 +26,7 @@ namespace Faden_Api.Class.cat
         public string TrataNoFarma = string.Empty;
         public string Recomendaciones = string.Empty;
         public string Examenes = string.Empty;
-        public int IdPaciente = 0;
-        public string NoExpediente = string.Empty;
+        public int IdPaciente = 0;       
         public Cls_SindromePredominante[] SindromePredominante = null;
 
 

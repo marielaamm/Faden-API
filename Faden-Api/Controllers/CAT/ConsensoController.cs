@@ -39,11 +39,13 @@ namespace Faden_Api.Controllers.CAT
                 {
                     using (FADENEntities _conexion = new FADENEntities())
                     {
+                        
+                        int IdPaciente = 0;
+                        string z = Convert.ToString(IdPaciente);
 
-                        if (c.NoExpediente == string.Empty)
+                        if (c.IdPaciente == 1011)
                         {
-                            string NoExpediente = string.Empty;
-
+                       
                             Consenso _c = new Consenso();
                                               
                             _c.RdDetCognitivo = c.RdDetCognitivo;
@@ -69,7 +71,23 @@ namespace Faden_Api.Controllers.CAT
                             _conexion.Consenso.Add(_c);
                             _conexion.SaveChanges();
 
+
+                            foreach (Cls_SindromePredominante s in c.SindromePredominante) { 
+
+                                SindromePredominante _s = new SindromePredominante();
+
+                                _s.IdSindrome = s.IdSindrome;
+                                _s.TipoSindrome = s.TipoSindrome;
+                                _s.IdPaciente = s.IdPaciente;
+
+                                _conexion.SindromePredominante.Add(_s);
+                                _conexion.SaveChanges();
+
+                            }
+
                         }
+
+
                                                 
                         scope.Complete();
 
