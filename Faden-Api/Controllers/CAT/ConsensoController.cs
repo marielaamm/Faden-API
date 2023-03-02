@@ -17,7 +17,7 @@ namespace Faden_Api.Controllers.CAT
     {
         [Route("api/cat/Consenso/Guardar")]
         [System.Web.Http.HttpPost]
-
+                                                        
         public IHttpActionResult Guardar(Cls_Consenso c)
         {
             if (ModelState.IsValid)
@@ -38,8 +38,8 @@ namespace Faden_Api.Controllers.CAT
                 using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.Serializable }))
                 {
                     using (FADENEntities _conexion = new FADENEntities())
-                    {
-                        Consenso _c = _conexion.Consenso.Find(c.IdConsenso);
+                    {                       
+                        Consenso _c = _conexion.Consenso.Find(c.IdConsenso);    
                         bool esNuevo = false;
                         bool esNuevoDet = false;
 
