@@ -16,6 +16,8 @@
         <EntityTypeShape EntityType="FADENModel.Acompanante" Width="1.5" PointX="9.625" PointY="11.75" />
         <AssociationConnector Association="FADENModel.FK_Acompanante_Paciente" />
         <EntityTypeShape EntityType="FADENModel.Rol" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FADENModel.Usuario" Width="1.5" PointX="9.625" PointY="5" />
+        <AssociationConnector Association="FADENModel.FK_Usuario_Rol" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
