@@ -14,6 +14,12 @@ namespace Faden_Api.Models
     
     public partial class Usuario
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Usuario()
+        {
+            this.PerfilUsuario = new HashSet<PerfilUsuario>();
+        }
+    
         public int IdUsuario { get; set; }
         public int IdRol { get; set; }
         public string Nombre { get; set; }
@@ -23,5 +29,7 @@ namespace Faden_Api.Models
         public bool Activo { get; set; }
     
         public virtual Rol Rol { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PerfilUsuario> PerfilUsuario { get; set; }
     }
 }

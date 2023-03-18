@@ -19,6 +19,10 @@
         <EntityTypeShape EntityType="FADENModel.SindromePredominante" Width="1.5" PointX="2.75" PointY="7.75" />
         <EntityTypeShape EntityType="FADENModel.Consenso" Width="1.5" PointX="9.625" PointY="15.75" />
         <AssociationConnector Association="FADENModel.FK_Consenso_Paciente" />
+        <EntityTypeShape EntityType="FADENModel.Usuario" Width="1.5" PointX="9.625" PointY="5" />
+        <AssociationConnector Association="FADENModel.FK_Usuario_Rol" />
+        <EntityTypeShape EntityType="FADENModel.PerfilUsuario" Width="1.5" PointX="11.875" PointY="5.375" />
+        <AssociationConnector Association="FADENModel.FK_PerfilUsuario_Usuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

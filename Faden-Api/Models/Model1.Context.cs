@@ -34,5 +34,7 @@ namespace Faden_Api.Models
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<SindromePredominante> SindromePredominante { get; set; }
         public virtual DbSet<Consenso> Consenso { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<PerfilUsuario> PerfilUsuario { get; set; }
     }
 }
