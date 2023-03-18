@@ -219,10 +219,13 @@
     <Compile Include="Class\cat\Cls_Departamento.cs" />
     <Compile Include="Class\cat\Cls_Medico.cs" />
     <Compile Include="Class\cat\Cls_Paciente.cs" />
+    <Compile Include="Class\cat\Cls_Consenso.cs" />
+    <Compile Include="Class\cat\Cls_SindromePredominante.cs" />
     <Compile Include="Class\Cls_Mensaje.cs" />
     <Compile Include="Class\cat\Cls_Municipio.cs" />
     <Compile Include="Class\Cls_TAcompanante.cs" />
     <Compile Include="Controllers\CAT\CiudadController.cs" />
+    <Compile Include="Controllers\CAT\ConsensoController.cs" />
     <Compile Include="Controllers\CAT\DepartamentoController.cs" />
     <Compile Include="Controllers\CAT\EscolaridadController.cs" />
     <Compile Include="Controllers\CAT\MedicoController.cs" />
@@ -239,6 +242,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Ciudad.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Consenso.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Departamento.cs">
@@ -271,7 +277,7 @@
     <Compile Include="Models\Rol.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Usuario.cs">
+    <Compile Include="Models\SindromePredominante.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -347,6 +353,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Ciudad\" />
+    <Folder Include="Views\Consenso\" />
     <Folder Include="Views\Departamento\" />
     <Folder Include="Views\Escolaridad\" />
     <Folder Include="Views\FuncionesGenerales\" />
