@@ -245,7 +245,7 @@ namespace Faden_Api.Controllers.CAT
                                          Seleccionar = false,
                                          IdPaciente = _m.IdPaciente,
                                          NoExpediente = _m.NoExpediente,
-                                         NombreCompleto = string.Concat(_m.PNombre, "_",_m.PApellido),
+                                         NombreCompleto = string.Concat(_m.PNombre, " ",_m.PApellido),
                                          FechaIngreso = _m.FechaIngreso,
                                          PNombre = _m.PNombre,
                                          SNombre = _m.SNombre,

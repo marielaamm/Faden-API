@@ -17,5 +17,7 @@ namespace Faden_Api.Models
         public int IdSindrome { get; set; }
         public string TipoSindrome { get; set; }
         public int IdPaciente { get; set; }
+    
+        public virtual Paciente Paciente { get; set; }
     }
 }

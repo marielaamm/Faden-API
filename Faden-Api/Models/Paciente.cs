@@ -18,6 +18,7 @@ namespace Faden_Api.Models
         public Paciente()
         {
             this.Acompanante = new HashSet<Acompanante>();
+            this.SindromePredominante = new HashSet<SindromePredominante>();
             this.Consenso = new HashSet<Consenso>();
         }
     
@@ -56,6 +57,8 @@ namespace Faden_Api.Models
         public virtual Escolaridad Escolaridad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Acompanante> Acompanante { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SindromePredominante> SindromePredominante { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Consenso> Consenso { get; set; }
     }
