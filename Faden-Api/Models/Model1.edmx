@@ -159,9 +159,7 @@
           </Key>
           <Property Name="IdSoap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
-          <Property Name="Hora" Type="datetime" Nullable="false" />
-          <Property Name="NombrePaciente" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="NoExpediente" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="TipoAcompanante" Type="int" Nullable="false" />
           <Property Name="NombreAcompanante" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Direccion" Type="nvarchar" MaxLength="500" Nullable="false" />
@@ -171,6 +169,18 @@
           <Property Name="Objetivo" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Avaluo" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Planes" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdPaciente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TratamientoHistorico">
+          <Key>
+            <PropertyRef Name="IdTratamiento" />
+          </Key>
+          <Property Name="IdTratamiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tratamiento" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Dosis" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdMedico" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Tipo" Type="int" Nullable="false" />
           <Property Name="IdPaciente" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
@@ -281,6 +291,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TratamientoHistorico_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="TratamientoHistorico" Type="Self.TratamientoHistorico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="TratamientoHistorico">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Usuario_Rol">
           <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -305,6 +327,7 @@
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SindromePredominante" EntityType="Self.SindromePredominante" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SistemaSoap" EntityType="Self.SistemaSoap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TratamientoHistorico" EntityType="Self.TratamientoHistorico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Acompanante_Paciente" Association="Self.FK_Acompanante_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
@@ -337,6 +360,10 @@
           <AssociationSet Name="FK_SistemaSoap_Paciente" Association="Self.FK_SistemaSoap_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="SistemaSoap" EntitySet="SistemaSoap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TratamientoHistorico_Paciente" Association="Self.FK_TratamientoHistorico_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="TratamientoHistorico" EntitySet="TratamientoHistorico" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Rol" Association="Self.FK_Usuario_Rol">
             <End Role="Rol" EntitySet="Rol" />
@@ -395,6 +422,11 @@
           <AssociationSet Name="FK_SistemaSoap_Paciente" Association="FADENModel.FK_SistemaSoap_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="SistemaSoap" EntitySet="SistemaSoap" />
+          </AssociationSet>
+          <EntitySet Name="TratamientoHistorico" EntityType="FADENModel.TratamientoHistorico" />
+          <AssociationSet Name="FK_TratamientoHistorico_Paciente" Association="FADENModel.FK_TratamientoHistorico_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="TratamientoHistorico" EntitySet="TratamientoHistorico" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Departamento">
@@ -512,6 +544,7 @@
           <NavigationProperty Name="SindromePredominante" Relationship="FADENModel.FK_SindromePredominante_Paciente" FromRole="Paciente" ToRole="SindromePredominante" />
           <NavigationProperty Name="Consenso" Relationship="FADENModel.FK_Consenso_Paciente1" FromRole="Paciente" ToRole="Consenso" />
           <NavigationProperty Name="SistemaSoap" Relationship="FADENModel.FK_SistemaSoap_Paciente" FromRole="Paciente" ToRole="SistemaSoap" />
+          <NavigationProperty Name="TratamientoHistorico" Relationship="FADENModel.FK_TratamientoHistorico_Paciente" FromRole="Paciente" ToRole="TratamientoHistorico" />
         </EntityType>
         <Association Name="FK_Paciente_Escolaridad">
           <End Type="FADENModel.Escolaridad" Role="Escolaridad" Multiplicity="1" />
@@ -676,9 +709,7 @@
           </Key>
           <Property Name="IdSoap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Hora" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="NombrePaciente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NoExpediente" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="TipoAcompanante" Type="Int32" Nullable="false" />
           <Property Name="NombreAcompanante" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Direccion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -699,6 +730,31 @@
               <PropertyRef Name="IdPaciente" />
             </Principal>
             <Dependent Role="SistemaSoap">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TratamientoHistorico">
+          <Key>
+            <PropertyRef Name="IdTratamiento" />
+          </Key>
+          <Property Name="IdTratamiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tratamiento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dosis" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdMedico" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Tipo" Type="Int32" Nullable="false" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_TratamientoHistorico_Paciente" FromRole="TratamientoHistorico" ToRole="Paciente" />
+        </EntityType>
+        <Association Name="FK_TratamientoHistorico_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.TratamientoHistorico" Role="TratamientoHistorico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="TratamientoHistorico">
               <PropertyRef Name="IdPaciente" />
             </Dependent>
           </ReferentialConstraint>
@@ -893,11 +949,22 @@
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="NombreAcompanante" ColumnName="NombreAcompanante" />
                 <ScalarProperty Name="TipoAcompanante" ColumnName="TipoAcompanante" />
-                <ScalarProperty Name="NoExpediente" ColumnName="NoExpediente" />
-                <ScalarProperty Name="NombrePaciente" ColumnName="NombrePaciente" />
-                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="IdSoap" ColumnName="IdSoap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TratamientoHistorico">
+            <EntityTypeMapping TypeName="FADENModel.TratamientoHistorico">
+              <MappingFragment StoreEntitySet="TratamientoHistorico">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="IdMedico" ColumnName="IdMedico" />
+                <ScalarProperty Name="Dosis" ColumnName="Dosis" />
+                <ScalarProperty Name="Tratamiento" ColumnName="Tratamiento" />
+                <ScalarProperty Name="IdTratamiento" ColumnName="IdTratamiento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

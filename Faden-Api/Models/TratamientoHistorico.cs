@@ -12,20 +12,14 @@ namespace Faden_Api.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SistemaSoap
+    public partial class TratamientoHistorico
     {
-        public int IdSoap { get; set; }
-        public System.DateTime Fecha { get; set; }
+        public int IdTratamiento { get; set; }
+        public string Tratamiento { get; set; }
+        public string Dosis { get; set; }
+        public int IdMedico { get; set; }
         public System.DateTime FechaRegistro { get; set; }
-        public int TipoAcompanante { get; set; }
-        public string NombreAcompanante { get; set; }
-        public string Direccion { get; set; }
-        public string Telefono { get; set; }
-        public int PropositoVisita { get; set; }
-        public string Subjetivo { get; set; }
-        public string Objetivo { get; set; }
-        public string Avaluo { get; set; }
-        public string Planes { get; set; }
+        public int Tipo { get; set; }
         public int IdPaciente { get; set; }
     
         public virtual Paciente Paciente { get; set; }

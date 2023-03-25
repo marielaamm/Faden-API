@@ -50,11 +50,9 @@ namespace Faden_Api.Controllers.CAT
                         
                        
                         _s.Fecha = s.Fecha;
-                        _s.Hora = s.Hora;
-                        _s.NombrePaciente = s.NombrePaciente;
-                        _s.NoExpediente = s.NoExpediente;
+                        _s.FechaRegistro = DateTime.Now;
                         _s.TipoAcompanante = s.TipoAcompanante;
-                        _s.NombreAcompanante = _s.NombreAcompanante;
+                        _s.NombreAcompanante = s.NombreAcompanante;
                         _s.Direccion = s.Direccion;
                         _s.Telefono = s.Telefono;
                         _s.PropositoVisita = s.PropositoVisita;

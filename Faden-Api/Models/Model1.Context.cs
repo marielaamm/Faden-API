@@ -37,5 +37,6 @@ namespace Faden_Api.Models
         public virtual DbSet<PerfilUsuario> PerfilUsuario { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<SistemaSoap> SistemaSoap { get; set; }
+        public virtual DbSet<TratamientoHistorico> TratamientoHistorico { get; set; }
     }
 }

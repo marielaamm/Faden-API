@@ -225,10 +225,12 @@
     <Compile Include="Class\Cls_Mensaje.cs" />
     <Compile Include="Class\cat\Cls_Municipio.cs" />
     <Compile Include="Class\Cls_TAcompanante.cs" />
+    <Compile Include="Class\EXP\cls_TratamientoHistorico.cs" />
     <Compile Include="Controllers\CAT\CiudadController.cs" />
     <Compile Include="Controllers\CAT\ConsensoController.cs" />
     <Compile Include="Controllers\CAT\DepartamentoController.cs" />
     <Compile Include="Controllers\CAT\EscolaridadController.cs" />
+    <Compile Include="Controllers\CAT\EXP\TratamientoController.cs" />
     <Compile Include="Controllers\CAT\MedicoController.cs" />
     <Compile Include="Controllers\CAT\PacienteController.cs" />
     <Compile Include="Controllers\CAT\SistemaSoapController.cs" />
@@ -286,6 +288,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SistemaSoap.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TratamientoHistorico.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuario.cs">
@@ -373,6 +378,7 @@
     <Folder Include="Views\Roles\" />
     <Folder Include="Views\SistemaSoap\" />
     <Folder Include="Views\Soap\" />
+    <Folder Include="Views\Tratamiento\" />
     <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>

@@ -9,9 +9,7 @@ namespace Faden_Api.Class.cat
     {
         public int IdSoap = 0;
         public DateTime Fecha = DateTime.Now;
-        public DateTime Hora = DateTime.Now;
-        public string NombrePaciente = string.Empty;
-        public int NoExpediente = 0;
+        public DateTime FechaRegistro = DateTime.Now;
         public int TipoAcompanante = 0;
         public string NombreAcompanante = string.Empty;
         public string Direccion = string.Empty;
