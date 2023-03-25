@@ -20,6 +20,7 @@ namespace Faden_Api.Models
             this.Acompanante = new HashSet<Acompanante>();
             this.SindromePredominante = new HashSet<SindromePredominante>();
             this.Consenso = new HashSet<Consenso>();
+            this.SistemaSoap = new HashSet<SistemaSoap>();
         }
     
         public int IdPaciente { get; set; }
@@ -61,5 +62,7 @@ namespace Faden_Api.Models
         public virtual ICollection<SindromePredominante> SindromePredominante { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Consenso> Consenso { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SistemaSoap> SistemaSoap { get; set; }
     }
 }

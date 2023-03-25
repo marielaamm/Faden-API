@@ -36,5 +36,6 @@ namespace Faden_Api.Models
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<PerfilUsuario> PerfilUsuario { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<SistemaSoap> SistemaSoap { get; set; }
     }
 }

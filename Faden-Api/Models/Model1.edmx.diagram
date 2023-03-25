@@ -24,6 +24,8 @@
         <EntityTypeShape EntityType="FADENModel.Usuario" Width="1.5" PointX="9.625" PointY="4.125" />
         <AssociationConnector Association="FADENModel.FK_PerfilUsuario_Usuario" />
         <AssociationConnector Association="FADENModel.FK_Usuario_Rol" />
+        <EntityTypeShape EntityType="FADENModel.SistemaSoap" Width="1.5" PointX="9.625" PointY="22.5" />
+        <AssociationConnector Association="FADENModel.FK_SistemaSoap_Paciente" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
