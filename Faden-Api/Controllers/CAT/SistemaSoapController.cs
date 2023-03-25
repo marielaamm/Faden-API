@@ -13,7 +13,7 @@ using RouteAttribute = System.Web.Http.RouteAttribute;
 
 namespace Faden_Api.Controllers.CAT
 {
-    public class SistemaSoapController : Controller
+    public class SistemaSoapController : ApiController
     {
         [Route("api/cat/SOAP/Guardar")]
         [System.Web.Http.HttpPost]
