@@ -48,7 +48,7 @@ namespace Faden_Api.Controllers.CAT
                             esNuevo = true;
                         }
                         
-                        _s.IdSoap = s.IdSoap;
+                       
                         _s.Fecha = s.Fecha;
                         _s.Hora = s.Hora;
                         _s.NombrePaciente = s.NombrePaciente;
