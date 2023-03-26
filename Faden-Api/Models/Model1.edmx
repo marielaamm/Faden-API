@@ -20,6 +20,16 @@
           <Property Name="EsSecundario" Type="bit" Nullable="false" />
           <Property Name="IdPaciente" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="AntecendeteQuirurgico">
+          <Key>
+            <PropertyRef Name="IdAntQ" />
+          </Key>
+          <Property Name="IdAntQ" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lugar" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="IdPaciente" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Ciudad">
           <Key>
             <PropertyRef Name="IdCiudad" />
@@ -91,6 +101,24 @@
           <Property Name="Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Telefono" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="Celular" Type="nvarchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="MSreplication_options">
+          <Key>
+            <PropertyRef Name="optname" />
+            <PropertyRef Name="value" />
+            <PropertyRef Name="major_version" />
+            <PropertyRef Name="minor_version" />
+            <PropertyRef Name="revision" />
+            <PropertyRef Name="install_failures" />
+          </Key>
+          <Property Name="optname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="value" Type="bit" Nullable="false" />
+          <Property Name="major_version" Type="int" Nullable="false" />
+          <Property Name="minor_version" Type="int" Nullable="false" />
+          <Property Name="revision" Type="int" Nullable="false" />
+          <Property Name="install_failures" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Paciente">
           <Key>
@@ -207,6 +235,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AntecendeteQuirurgico_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="AntecendeteQuirurgico" Type="Self.AntecendeteQuirurgico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="AntecendeteQuirurgico">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Ciudad_Departamento">
           <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
           <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="*" />
@@ -317,6 +357,7 @@
         </Association>
         <EntityContainer Name="FADENModelStoreContainer">
           <EntitySet Name="Acompanante" EntityType="Self.Acompanante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AntecendeteQuirurgico" EntityType="Self.AntecendeteQuirurgico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Consenso" EntityType="Self.Consenso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
@@ -329,9 +370,23 @@
           <EntitySet Name="SistemaSoap" EntityType="Self.SistemaSoap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TratamientoHistorico" EntityType="Self.TratamientoHistorico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MSreplication_options" EntityType="Self.MSreplication_options" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MSreplication_options].[optname] AS [optname], 
+    [MSreplication_options].[value] AS [value], 
+    [MSreplication_options].[major_version] AS [major_version], 
+    [MSreplication_options].[minor_version] AS [minor_version], 
+    [MSreplication_options].[revision] AS [revision], 
+    [MSreplication_options].[install_failures] AS [install_failures]
+    FROM [dbo].[MSreplication_options] AS [MSreplication_options]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Acompanante_Paciente" Association="Self.FK_Acompanante_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Acompanante" EntitySet="Acompanante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AntecendeteQuirurgico_Paciente" Association="Self.FK_AntecendeteQuirurgico_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="AntecendeteQuirurgico" EntitySet="AntecendeteQuirurgico" />
           </AssociationSet>
           <AssociationSet Name="FK_Ciudad_Departamento" Association="Self.FK_Ciudad_Departamento">
             <End Role="Departamento" EntitySet="Departamento" />
@@ -375,41 +430,52 @@
     <edmx:ConceptualModels>
       <Schema Namespace="FADENModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="FADENEntities" annotation:LazyLoadingEnabled="true" >
-          <EntitySet Name="Departamento" EntityType="FADENModel.Departamento" />
-          <EntitySet Name="Ciudad" EntityType="FADENModel.Ciudad" />
-          <AssociationSet Name="FK_Ciudad_Departamento" Association="FADENModel.FK_Ciudad_Departamento">
-            <End Role="Departamento" EntitySet="Departamento" />
-            <End Role="Ciudad" EntitySet="Ciudad" />
-          </AssociationSet>
-          <EntitySet Name="Medicos" EntityType="FADENModel.Medicos" />
-          <AssociationSet Name="FK_Medicos" Association="FADENModel.FK_Medicos">
-            <End Role="Ciudad" EntitySet="Ciudad" />
-            <End Role="Medicos" EntitySet="Medicos" />
-          </AssociationSet>
-          <EntitySet Name="Escolaridad" EntityType="FADENModel.Escolaridad" />
-          <EntitySet Name="Paciente" EntityType="FADENModel.Paciente" />
-          <AssociationSet Name="FK_Paciente_Escolaridad" Association="FADENModel.FK_Paciente_Escolaridad">
-            <End Role="Escolaridad" EntitySet="Escolaridad" />
-            <End Role="Paciente" EntitySet="Paciente" />
-          </AssociationSet>
           <EntitySet Name="Acompanante" EntityType="FADENModel.Acompanante" />
+          <EntitySet Name="Ciudad" EntityType="FADENModel.Ciudad" />
+          <EntitySet Name="Consenso" EntityType="FADENModel.Consenso" />
+          <EntitySet Name="Departamento" EntityType="FADENModel.Departamento" />
+          <EntitySet Name="Escolaridad" EntityType="FADENModel.Escolaridad" />
+          <EntitySet Name="Medicos" EntityType="FADENModel.Medicos" />
+          <EntitySet Name="Paciente" EntityType="FADENModel.Paciente" />
+          <EntitySet Name="PerfilUsuario" EntityType="FADENModel.PerfilUsuario" />
+          <EntitySet Name="Rol" EntityType="FADENModel.Rol" />
+          <EntitySet Name="SindromePredominante" EntityType="FADENModel.SindromePredominante" />
+          <EntitySet Name="SistemaSoap" EntityType="FADENModel.SistemaSoap" />
+          <EntitySet Name="TratamientoHistorico" EntityType="FADENModel.TratamientoHistorico" />
+          <EntitySet Name="Usuario" EntityType="FADENModel.Usuario" />
+          <EntitySet Name="MSreplication_options" EntityType="FADENModel.MSreplication_options" />
           <AssociationSet Name="FK_Acompanante_Paciente" Association="FADENModel.FK_Acompanante_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Acompanante" EntitySet="Acompanante" />
           </AssociationSet>
-          <EntitySet Name="SindromePredominante" EntityType="FADENModel.SindromePredominante" />
-          <AssociationSet Name="FK_SindromePredominante_Paciente" Association="FADENModel.FK_SindromePredominante_Paciente">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="SindromePredominante" EntitySet="SindromePredominante" />
+          <AssociationSet Name="FK_Ciudad_Departamento" Association="FADENModel.FK_Ciudad_Departamento">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="Ciudad" EntitySet="Ciudad" />
           </AssociationSet>
-          <EntitySet Name="Consenso" EntityType="FADENModel.Consenso" />
+          <AssociationSet Name="FK_Medicos" Association="FADENModel.FK_Medicos">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="Medicos" EntitySet="Medicos" />
+          </AssociationSet>
           <AssociationSet Name="FK_Consenso_Paciente1" Association="FADENModel.FK_Consenso_Paciente1">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Consenso" EntitySet="Consenso" />
           </AssociationSet>
-          <EntitySet Name="Rol" EntityType="FADENModel.Rol" />
-          <EntitySet Name="PerfilUsuario" EntityType="FADENModel.PerfilUsuario" />
-          <EntitySet Name="Usuario" EntityType="FADENModel.Usuario" />
+          <AssociationSet Name="FK_Paciente_Escolaridad" Association="FADENModel.FK_Paciente_Escolaridad">
+            <End Role="Escolaridad" EntitySet="Escolaridad" />
+            <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SindromePredominante_Paciente" Association="FADENModel.FK_SindromePredominante_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="SindromePredominante" EntitySet="SindromePredominante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SistemaSoap_Paciente" Association="FADENModel.FK_SistemaSoap_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="SistemaSoap" EntitySet="SistemaSoap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TratamientoHistorico_Paciente" Association="FADENModel.FK_TratamientoHistorico_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="TratamientoHistorico" EntitySet="TratamientoHistorico" />
+          </AssociationSet>
           <AssociationSet Name="FK_PerfilUsuario_Usuario" Association="FADENModel.FK_PerfilUsuario_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PerfilUsuario" EntitySet="PerfilUsuario" />
@@ -418,25 +484,27 @@
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <EntitySet Name="SistemaSoap" EntityType="FADENModel.SistemaSoap" />
-          <AssociationSet Name="FK_SistemaSoap_Paciente" Association="FADENModel.FK_SistemaSoap_Paciente">
+          <EntitySet Name="AntecendeteQuirurgico" EntityType="FADENModel.AntecendeteQuirurgico" />
+          <AssociationSet Name="FK_AntecendeteQuirurgico_Paciente" Association="FADENModel.FK_AntecendeteQuirurgico_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="SistemaSoap" EntitySet="SistemaSoap" />
+            <End Role="AntecendeteQuirurgico" EntitySet="AntecendeteQuirurgico" />
           </AssociationSet>
-          <EntitySet Name="TratamientoHistorico" EntityType="FADENModel.TratamientoHistorico" />
-          <AssociationSet Name="FK_TratamientoHistorico_Paciente" Association="FADENModel.FK_TratamientoHistorico_Paciente">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="TratamientoHistorico" EntitySet="TratamientoHistorico" />
-          </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="Departamento">
+        </EntityContainer>
+        <EntityType Name="Acompanante">
           <Key>
-            <PropertyRef Name="IdDepto" />
+            <PropertyRef Name="IdAcpte" />
           </Key>
-          <Property Name="IdDepto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Ciudad" Relationship="FADENModel.FK_Ciudad_Departamento" FromRole="Departamento" ToRole="Ciudad" />
+          <Property Name="IdAcpte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EsAcpte" Type="Boolean" Nullable="false" />
+          <Property Name="EsCuidador" Type="Boolean" Nullable="false" />
+          <Property Name="EsPrimario" Type="Boolean" Nullable="false" />
+          <Property Name="EsSecundario" Type="Boolean" Nullable="false" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_Acompanante_Paciente" FromRole="Acompanante" ToRole="Paciente" />
         </EntityType>
         <EntityType Name="Ciudad">
           <Key>
@@ -448,18 +516,51 @@
           <NavigationProperty Name="Departamento" Relationship="FADENModel.FK_Ciudad_Departamento" FromRole="Ciudad" ToRole="Departamento" />
           <NavigationProperty Name="Medicos" Relationship="FADENModel.FK_Medicos" FromRole="Ciudad" ToRole="Medicos" />
         </EntityType>
-        <Association Name="FK_Ciudad_Departamento">
-          <End Type="FADENModel.Departamento" Role="Departamento" Multiplicity="1" />
-          <End Type="FADENModel.Ciudad" Role="Ciudad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Departamento">
-              <PropertyRef Name="IdDepto" />
-            </Principal>
-            <Dependent Role="Ciudad">
-              <PropertyRef Name="IdDepto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="Consenso">
+          <Key>
+            <PropertyRef Name="IdConsenso" />
+          </Key>
+          <Property Name="IdConsenso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DetCognitivo" Type="Int32" Nullable="false" />
+          <Property Name="SospechaDiag" Type="Int32" Nullable="false" />
+          <Property Name="RefNormal" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RefLeve" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RefMayor" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Depresion" Type="Boolean" Nullable="false" />
+          <Property Name="RefDepresion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TrastornoBip" Type="Boolean" Nullable="false" />
+          <Property Name="RefTrasBip" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Esquizo" Type="Boolean" Nullable="false" />
+          <Property Name="RefEsquizo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="OtroDiag" Type="Boolean" Nullable="false" />
+          <Property Name="RefOtroDiag" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RefProbable" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RefConfirmado" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TrataFarma" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrataNoFarma" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Recomendaciones" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Examenes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_Consenso_Paciente1" FromRole="Consenso" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="IdDepto" />
+          </Key>
+          <Property Name="IdDepto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ciudad" Relationship="FADENModel.FK_Ciudad_Departamento" FromRole="Departamento" ToRole="Ciudad" />
+        </EntityType>
+        <EntityType Name="Escolaridad">
+          <Key>
+            <PropertyRef Name="IdEscolaridad" />
+          </Key>
+          <Property Name="IdEscolaridad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_Paciente_Escolaridad" FromRole="Escolaridad" ToRole="Paciente" />
+        </EntityType>
         <EntityType Name="Medicos">
           <Key>
             <PropertyRef Name="IdMedico" />
@@ -482,27 +583,6 @@
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="Celular" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Ciudad" Relationship="FADENModel.FK_Medicos" FromRole="Medicos" ToRole="Ciudad" />
-        </EntityType>
-        <Association Name="FK_Medicos">
-          <End Type="FADENModel.Ciudad" Role="Ciudad" Multiplicity="1" />
-          <End Type="FADENModel.Medicos" Role="Medicos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ciudad">
-              <PropertyRef Name="IdCiudad" />
-            </Principal>
-            <Dependent Role="Medicos">
-              <PropertyRef Name="IdCiudad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Escolaridad">
-          <Key>
-            <PropertyRef Name="IdEscolaridad" />
-          </Key>
-          <Property Name="IdEscolaridad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_Paciente_Escolaridad" FromRole="Escolaridad" ToRole="Paciente" />
         </EntityType>
         <EntityType Name="Paciente">
           <Key>
@@ -539,121 +619,13 @@
           <Property Name="Jubilado" Type="Boolean" Nullable="false" />
           <Property Name="Pensionado" Type="Boolean" Nullable="false" />
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Escolaridad" Relationship="FADENModel.FK_Paciente_Escolaridad" FromRole="Paciente" ToRole="Escolaridad" />
           <NavigationProperty Name="Acompanante" Relationship="FADENModel.FK_Acompanante_Paciente" FromRole="Paciente" ToRole="Acompanante" />
-          <NavigationProperty Name="SindromePredominante" Relationship="FADENModel.FK_SindromePredominante_Paciente" FromRole="Paciente" ToRole="SindromePredominante" />
           <NavigationProperty Name="Consenso" Relationship="FADENModel.FK_Consenso_Paciente1" FromRole="Paciente" ToRole="Consenso" />
+          <NavigationProperty Name="Escolaridad" Relationship="FADENModel.FK_Paciente_Escolaridad" FromRole="Paciente" ToRole="Escolaridad" />
+          <NavigationProperty Name="SindromePredominante" Relationship="FADENModel.FK_SindromePredominante_Paciente" FromRole="Paciente" ToRole="SindromePredominante" />
           <NavigationProperty Name="SistemaSoap" Relationship="FADENModel.FK_SistemaSoap_Paciente" FromRole="Paciente" ToRole="SistemaSoap" />
           <NavigationProperty Name="TratamientoHistorico" Relationship="FADENModel.FK_TratamientoHistorico_Paciente" FromRole="Paciente" ToRole="TratamientoHistorico" />
-        </EntityType>
-        <Association Name="FK_Paciente_Escolaridad">
-          <End Type="FADENModel.Escolaridad" Role="Escolaridad" Multiplicity="1" />
-          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Escolaridad">
-              <PropertyRef Name="IdEscolaridad" />
-            </Principal>
-            <Dependent Role="Paciente">
-              <PropertyRef Name="IdEscolaridad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Acompanante">
-          <Key>
-            <PropertyRef Name="IdAcpte" />
-          </Key>
-          <Property Name="IdAcpte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EsAcpte" Type="Boolean" Nullable="false" />
-          <Property Name="EsCuidador" Type="Boolean" Nullable="false" />
-          <Property Name="EsPrimario" Type="Boolean" Nullable="false" />
-          <Property Name="EsSecundario" Type="Boolean" Nullable="false" />
-          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_Acompanante_Paciente" FromRole="Acompanante" ToRole="Paciente" />
-        </EntityType>
-        <Association Name="FK_Acompanante_Paciente">
-          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
-          <End Type="FADENModel.Acompanante" Role="Acompanante" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="IdPaciente" />
-            </Principal>
-            <Dependent Role="Acompanante">
-              <PropertyRef Name="IdPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="SindromePredominante">
-          <Key>
-            <PropertyRef Name="IdSindrome" />
-          </Key>
-          <Property Name="IdSindrome" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TipoSindrome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_SindromePredominante_Paciente" FromRole="SindromePredominante" ToRole="Paciente" />
-        </EntityType>
-        <Association Name="FK_SindromePredominante_Paciente">
-          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
-          <End Type="FADENModel.SindromePredominante" Role="SindromePredominante" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="IdPaciente" />
-            </Principal>
-            <Dependent Role="SindromePredominante">
-              <PropertyRef Name="IdPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Consenso">
-          <Key>
-            <PropertyRef Name="IdConsenso" />
-          </Key>
-          <Property Name="IdConsenso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DetCognitivo" Type="Int32" Nullable="false" />
-          <Property Name="SospechaDiag" Type="Int32" Nullable="false" />
-          <Property Name="RefNormal" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="RefLeve" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="RefMayor" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Depresion" Type="Boolean" Nullable="false" />
-          <Property Name="RefDepresion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="TrastornoBip" Type="Boolean" Nullable="false" />
-          <Property Name="RefTrasBip" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Esquizo" Type="Boolean" Nullable="false" />
-          <Property Name="RefEsquizo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="OtroDiag" Type="Boolean" Nullable="false" />
-          <Property Name="RefOtroDiag" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="RefProbable" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="RefConfirmado" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="TrataFarma" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TrataNoFarma" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Recomendaciones" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Examenes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_Consenso_Paciente1" FromRole="Consenso" ToRole="Paciente" />
-        </EntityType>
-        <Association Name="FK_Consenso_Paciente1">
-          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
-          <End Type="FADENModel.Consenso" Role="Consenso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="IdPaciente" />
-            </Principal>
-            <Dependent Role="Consenso">
-              <PropertyRef Name="IdPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Rol">
-          <Key>
-            <PropertyRef Name="IdRol" />
-          </Key>
-          <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Rol1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="FADENModel.FK_Usuario_Rol" FromRole="Rol" ToRole="Usuario" />
+          <NavigationProperty Name="AntecendeteQuirurgico" Relationship="FADENModel.FK_AntecendeteQuirurgico_Paciente" FromRole="Paciente" ToRole="AntecendeteQuirurgico" />
         </EntityType>
         <EntityType Name="PerfilUsuario">
           <Key>
@@ -664,6 +636,56 @@
           <Property Name="Acceso" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Usuario" Relationship="FADENModel.FK_PerfilUsuario_Usuario" FromRole="PerfilUsuario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="IdRol" />
+          </Key>
+          <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rol1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="FADENModel.FK_Usuario_Rol" FromRole="Rol" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="SindromePredominante">
+          <Key>
+            <PropertyRef Name="IdSindrome" />
+          </Key>
+          <Property Name="IdSindrome" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoSindrome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_SindromePredominante_Paciente" FromRole="SindromePredominante" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="SistemaSoap">
+          <Key>
+            <PropertyRef Name="IdSoap" />
+          </Key>
+          <Property Name="IdSoap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="TipoAcompanante" Type="Int32" Nullable="false" />
+          <Property Name="NombreAcompanante" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PropositoVisita" Type="Int32" Nullable="false" />
+          <Property Name="Subjetivo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Objetivo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Avaluo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Planes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_SistemaSoap_Paciente" FromRole="SistemaSoap" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="TratamientoHistorico">
+          <Key>
+            <PropertyRef Name="IdTratamiento" />
+          </Key>
+          <Property Name="IdTratamiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tratamiento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dosis" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdMedico" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Tipo" Type="Int32" Nullable="false" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_TratamientoHistorico_Paciente" FromRole="TratamientoHistorico" ToRole="Paciente" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -679,6 +701,118 @@
           <NavigationProperty Name="PerfilUsuario" Relationship="FADENModel.FK_PerfilUsuario_Usuario" FromRole="Usuario" ToRole="PerfilUsuario" />
           <NavigationProperty Name="Rol" Relationship="FADENModel.FK_Usuario_Rol" FromRole="Usuario" ToRole="Rol" />
         </EntityType>
+        <EntityType Name="MSreplication_options">
+          <Key>
+            <PropertyRef Name="optname" />
+            <PropertyRef Name="value" />
+            <PropertyRef Name="major_version" />
+            <PropertyRef Name="minor_version" />
+            <PropertyRef Name="revision" />
+            <PropertyRef Name="install_failures" />
+          </Key>
+          <Property Name="optname" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="value" Type="Boolean" Nullable="false" />
+          <Property Name="major_version" Type="Int32" Nullable="false" />
+          <Property Name="minor_version" Type="Int32" Nullable="false" />
+          <Property Name="revision" Type="Int32" Nullable="false" />
+          <Property Name="install_failures" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Acompanante_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.Acompanante" Role="Acompanante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="Acompanante">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ciudad_Departamento">
+          <End Type="FADENModel.Departamento" Role="Departamento" Multiplicity="1" />
+          <End Type="FADENModel.Ciudad" Role="Ciudad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="IdDepto" />
+            </Principal>
+            <Dependent Role="Ciudad">
+              <PropertyRef Name="IdDepto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Medicos">
+          <End Type="FADENModel.Ciudad" Role="Ciudad" Multiplicity="1" />
+          <End Type="FADENModel.Medicos" Role="Medicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="IdCiudad" />
+            </Principal>
+            <Dependent Role="Medicos">
+              <PropertyRef Name="IdCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consenso_Paciente1">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.Consenso" Role="Consenso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="Consenso">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_Escolaridad">
+          <End Type="FADENModel.Escolaridad" Role="Escolaridad" Multiplicity="1" />
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Escolaridad">
+              <PropertyRef Name="IdEscolaridad" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="IdEscolaridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SindromePredominante_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.SindromePredominante" Role="SindromePredominante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="SindromePredominante">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SistemaSoap_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.SistemaSoap" Role="SistemaSoap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="SistemaSoap">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TratamientoHistorico_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.TratamientoHistorico" Role="TratamientoHistorico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="TratamientoHistorico">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PerfilUsuario_Usuario">
           <End Type="FADENModel.Usuario" Role="Usuario" Multiplicity="1" />
           <End Type="FADENModel.PerfilUsuario" Role="PerfilUsuario" Multiplicity="*" />
@@ -703,58 +837,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SistemaSoap">
+        <EntityType Name="AntecendeteQuirurgico">
           <Key>
-            <PropertyRef Name="IdSoap" />
+            <PropertyRef Name="IdAntQ" />
           </Key>
-          <Property Name="IdSoap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdAntQ" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lugar" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="TipoAcompanante" Type="Int32" Nullable="false" />
-          <Property Name="NombreAcompanante" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="PropositoVisita" Type="Int32" Nullable="false" />
-          <Property Name="Subjetivo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Objetivo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Avaluo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Planes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IdPaciente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_SistemaSoap_Paciente" FromRole="SistemaSoap" ToRole="Paciente" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_AntecendeteQuirurgico_Paciente" FromRole="AntecendeteQuirurgico" ToRole="Paciente" />
         </EntityType>
-        <Association Name="FK_SistemaSoap_Paciente">
+        <Association Name="FK_AntecendeteQuirurgico_Paciente">
           <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
-          <End Type="FADENModel.SistemaSoap" Role="SistemaSoap" Multiplicity="*" />
+          <End Type="FADENModel.AntecendeteQuirurgico" Role="AntecendeteQuirurgico" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Paciente">
               <PropertyRef Name="IdPaciente" />
             </Principal>
-            <Dependent Role="SistemaSoap">
-              <PropertyRef Name="IdPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="TratamientoHistorico">
-          <Key>
-            <PropertyRef Name="IdTratamiento" />
-          </Key>
-          <Property Name="IdTratamiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Tratamiento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Dosis" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IdMedico" Type="Int32" Nullable="false" />
-          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Tipo" Type="Int32" Nullable="false" />
-          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_TratamientoHistorico_Paciente" FromRole="TratamientoHistorico" ToRole="Paciente" />
-        </EntityType>
-        <Association Name="FK_TratamientoHistorico_Paciente">
-          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
-          <End Type="FADENModel.TratamientoHistorico" Role="TratamientoHistorico" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="IdPaciente" />
-            </Principal>
-            <Dependent Role="TratamientoHistorico">
+            <Dependent Role="AntecendeteQuirurgico">
               <PropertyRef Name="IdPaciente" />
             </Dependent>
           </ReferentialConstraint>
@@ -765,12 +866,19 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="FADENModelStoreContainer" CdmEntityContainer="FADENEntities" >
-          <EntitySetMapping Name="Departamento">
-            <EntityTypeMapping TypeName="FADENModel.Departamento">
-              <MappingFragment StoreEntitySet="Departamento">
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="IdDepto" ColumnName="IdDepto" />
+          <EntitySetMapping Name="Acompanante">
+            <EntityTypeMapping TypeName="FADENModel.Acompanante">
+              <MappingFragment StoreEntitySet="Acompanante">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="EsSecundario" ColumnName="EsSecundario" />
+                <ScalarProperty Name="EsPrimario" ColumnName="EsPrimario" />
+                <ScalarProperty Name="EsCuidador" ColumnName="EsCuidador" />
+                <ScalarProperty Name="EsAcpte" ColumnName="EsAcpte" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="IdAcpte" ColumnName="IdAcpte" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -780,6 +888,51 @@
                 <ScalarProperty Name="IdDepto" ColumnName="IdDepto" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Consenso">
+            <EntityTypeMapping TypeName="FADENModel.Consenso">
+              <MappingFragment StoreEntitySet="Consenso">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="Examenes" ColumnName="Examenes" />
+                <ScalarProperty Name="Recomendaciones" ColumnName="Recomendaciones" />
+                <ScalarProperty Name="TrataNoFarma" ColumnName="TrataNoFarma" />
+                <ScalarProperty Name="TrataFarma" ColumnName="TrataFarma" />
+                <ScalarProperty Name="RefConfirmado" ColumnName="RefConfirmado" />
+                <ScalarProperty Name="RefProbable" ColumnName="RefProbable" />
+                <ScalarProperty Name="RefOtroDiag" ColumnName="RefOtroDiag" />
+                <ScalarProperty Name="OtroDiag" ColumnName="OtroDiag" />
+                <ScalarProperty Name="RefEsquizo" ColumnName="RefEsquizo" />
+                <ScalarProperty Name="Esquizo" ColumnName="Esquizo" />
+                <ScalarProperty Name="RefTrasBip" ColumnName="RefTrasBip" />
+                <ScalarProperty Name="TrastornoBip" ColumnName="TrastornoBip" />
+                <ScalarProperty Name="RefDepresion" ColumnName="RefDepresion" />
+                <ScalarProperty Name="Depresion" ColumnName="Depresion" />
+                <ScalarProperty Name="RefMayor" ColumnName="RefMayor" />
+                <ScalarProperty Name="RefLeve" ColumnName="RefLeve" />
+                <ScalarProperty Name="RefNormal" ColumnName="RefNormal" />
+                <ScalarProperty Name="SospechaDiag" ColumnName="SospechaDiag" />
+                <ScalarProperty Name="DetCognitivo" ColumnName="DetCognitivo" />
+                <ScalarProperty Name="IdConsenso" ColumnName="IdConsenso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departamento">
+            <EntityTypeMapping TypeName="FADENModel.Departamento">
+              <MappingFragment StoreEntitySet="Departamento">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="IdDepto" ColumnName="IdDepto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Escolaridad">
+            <EntityTypeMapping TypeName="FADENModel.Escolaridad">
+              <MappingFragment StoreEntitySet="Escolaridad">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdEscolaridad" ColumnName="IdEscolaridad" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -803,15 +956,6 @@
                 <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
                 <ScalarProperty Name="NoMedico" ColumnName="NoMedico" />
                 <ScalarProperty Name="IdMedico" ColumnName="IdMedico" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Escolaridad">
-            <EntityTypeMapping TypeName="FADENModel.Escolaridad">
-              <MappingFragment StoreEntitySet="Escolaridad">
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IdEscolaridad" ColumnName="IdEscolaridad" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -852,55 +996,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Acompanante">
-            <EntityTypeMapping TypeName="FADENModel.Acompanante">
-              <MappingFragment StoreEntitySet="Acompanante">
-                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
-                <ScalarProperty Name="EsSecundario" ColumnName="EsSecundario" />
-                <ScalarProperty Name="EsPrimario" ColumnName="EsPrimario" />
-                <ScalarProperty Name="EsCuidador" ColumnName="EsCuidador" />
-                <ScalarProperty Name="EsAcpte" ColumnName="EsAcpte" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
-                <ScalarProperty Name="IdAcpte" ColumnName="IdAcpte" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SindromePredominante">
-            <EntityTypeMapping TypeName="FADENModel.SindromePredominante">
-              <MappingFragment StoreEntitySet="SindromePredominante">
-                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
-                <ScalarProperty Name="TipoSindrome" ColumnName="TipoSindrome" />
-                <ScalarProperty Name="IdSindrome" ColumnName="IdSindrome" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Consenso">
-            <EntityTypeMapping TypeName="FADENModel.Consenso">
-              <MappingFragment StoreEntitySet="Consenso">
-                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
-                <ScalarProperty Name="Examenes" ColumnName="Examenes" />
-                <ScalarProperty Name="Recomendaciones" ColumnName="Recomendaciones" />
-                <ScalarProperty Name="TrataNoFarma" ColumnName="TrataNoFarma" />
-                <ScalarProperty Name="TrataFarma" ColumnName="TrataFarma" />
-                <ScalarProperty Name="RefConfirmado" ColumnName="RefConfirmado" />
-                <ScalarProperty Name="RefProbable" ColumnName="RefProbable" />
-                <ScalarProperty Name="RefOtroDiag" ColumnName="RefOtroDiag" />
-                <ScalarProperty Name="OtroDiag" ColumnName="OtroDiag" />
-                <ScalarProperty Name="RefEsquizo" ColumnName="RefEsquizo" />
-                <ScalarProperty Name="Esquizo" ColumnName="Esquizo" />
-                <ScalarProperty Name="RefTrasBip" ColumnName="RefTrasBip" />
-                <ScalarProperty Name="TrastornoBip" ColumnName="TrastornoBip" />
-                <ScalarProperty Name="RefDepresion" ColumnName="RefDepresion" />
-                <ScalarProperty Name="Depresion" ColumnName="Depresion" />
-                <ScalarProperty Name="RefMayor" ColumnName="RefMayor" />
-                <ScalarProperty Name="RefLeve" ColumnName="RefLeve" />
-                <ScalarProperty Name="RefNormal" ColumnName="RefNormal" />
-                <ScalarProperty Name="SospechaDiag" ColumnName="SospechaDiag" />
-                <ScalarProperty Name="DetCognitivo" ColumnName="DetCognitivo" />
-                <ScalarProperty Name="IdConsenso" ColumnName="IdConsenso" />
+          <EntitySetMapping Name="PerfilUsuario">
+            <EntityTypeMapping TypeName="FADENModel.PerfilUsuario">
+              <MappingFragment StoreEntitySet="PerfilUsuario">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Acceso" ColumnName="Acceso" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -913,26 +1015,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PerfilUsuario">
-            <EntityTypeMapping TypeName="FADENModel.PerfilUsuario">
-              <MappingFragment StoreEntitySet="PerfilUsuario">
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="Acceso" ColumnName="Acceso" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="FADENModel.Usuario">
-              <MappingFragment StoreEntitySet="Usuario">
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
-                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
-                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
-                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <EntitySetMapping Name="SindromePredominante">
+            <EntityTypeMapping TypeName="FADENModel.SindromePredominante">
+              <MappingFragment StoreEntitySet="SindromePredominante">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="TipoSindrome" ColumnName="TipoSindrome" />
+                <ScalarProperty Name="IdSindrome" ColumnName="IdSindrome" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -968,7 +1056,43 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="FADENModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSreplication_options">
+            <EntityTypeMapping TypeName="FADENModel.MSreplication_options">
+              <MappingFragment StoreEntitySet="MSreplication_options">
+                <ScalarProperty Name="install_failures" ColumnName="install_failures" />
+                <ScalarProperty Name="revision" ColumnName="revision" />
+                <ScalarProperty Name="minor_version" ColumnName="minor_version" />
+                <ScalarProperty Name="major_version" ColumnName="major_version" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="optname" ColumnName="optname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AntecendeteQuirurgico">
+            <EntityTypeMapping TypeName="FADENModel.AntecendeteQuirurgico">
+              <MappingFragment StoreEntitySet="AntecendeteQuirurgico">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Lugar" ColumnName="Lugar" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdAntQ" ColumnName="IdAntQ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

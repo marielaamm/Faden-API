@@ -25,18 +25,20 @@ namespace Faden_Api.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Departamento> Departamento { get; set; }
-        public virtual DbSet<Ciudad> Ciudad { get; set; }
-        public virtual DbSet<Medicos> Medicos { get; set; }
-        public virtual DbSet<Escolaridad> Escolaridad { get; set; }
-        public virtual DbSet<Paciente> Paciente { get; set; }
         public virtual DbSet<Acompanante> Acompanante { get; set; }
-        public virtual DbSet<SindromePredominante> SindromePredominante { get; set; }
+        public virtual DbSet<Ciudad> Ciudad { get; set; }
         public virtual DbSet<Consenso> Consenso { get; set; }
-        public virtual DbSet<Rol> Rol { get; set; }
+        public virtual DbSet<Departamento> Departamento { get; set; }
+        public virtual DbSet<Escolaridad> Escolaridad { get; set; }
+        public virtual DbSet<Medicos> Medicos { get; set; }
+        public virtual DbSet<Paciente> Paciente { get; set; }
         public virtual DbSet<PerfilUsuario> PerfilUsuario { get; set; }
-        public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Rol> Rol { get; set; }
+        public virtual DbSet<SindromePredominante> SindromePredominante { get; set; }
         public virtual DbSet<SistemaSoap> SistemaSoap { get; set; }
         public virtual DbSet<TratamientoHistorico> TratamientoHistorico { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<MSreplication_options> MSreplication_options { get; set; }
+        public virtual DbSet<AntecendeteQuirurgico> AntecendeteQuirurgico { get; set; }
     }
 }

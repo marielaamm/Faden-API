@@ -4,31 +4,34 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8d072ee5c4a2420d8e2bf712937a73ae" Name="Diagram1" >
-        <EntityTypeShape EntityType="FADENModel.Departamento" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="FADENModel.Ciudad" Width="1.5" PointX="3" PointY="4.125" />
-        <AssociationConnector Association="FADENModel.FK_Ciudad_Departamento" />
-        <EntityTypeShape EntityType="FADENModel.Medicos" Width="1.5" PointX="5.25" PointY="2.875" />
-        <AssociationConnector Association="FADENModel.FK_Medicos" />
-        <EntityTypeShape EntityType="FADENModel.Escolaridad" Width="1.5" PointX="5.125" PointY="0.75" />
-        <EntityTypeShape EntityType="FADENModel.Paciente" Width="1.5" PointX="7.375" PointY="9.625" />
-        <AssociationConnector Association="FADENModel.FK_Paciente_Escolaridad" />
-        <EntityTypeShape EntityType="FADENModel.Acompanante" Width="1.5" PointX="9.625" PointY="11.75" />
+      <Diagram DiagramId="8d072ee5c4a2420d8e2bf712937a73ae" Name="Diagram1" ZoomLevel="25" >
+        <EntityTypeShape EntityType="FADENModel.Acompanante" Width="1.5" PointX="5.25" PointY="1.75" />
+        <EntityTypeShape EntityType="FADENModel.Ciudad" Width="1.5" PointX="10" PointY="6.25" />
+        <EntityTypeShape EntityType="FADENModel.Consenso" Width="1.5" PointX="5.25" PointY="10.125" />
+        <EntityTypeShape EntityType="FADENModel.Departamento" Width="1.5" PointX="7.75" PointY="6.375" />
+        <EntityTypeShape EntityType="FADENModel.Escolaridad" Width="1.5" PointX="0.75" PointY="10.625" />
+        <EntityTypeShape EntityType="FADENModel.Medicos" Width="1.5" PointX="12.25" PointY="5" />
+        <EntityTypeShape EntityType="FADENModel.Paciente" Width="1.5" PointX="3" PointY="7.5" />
+        <EntityTypeShape EntityType="FADENModel.PerfilUsuario" Width="1.5" PointX="12.25" PointY="1.375" />
+        <EntityTypeShape EntityType="FADENModel.Rol" Width="1.5" PointX="7.75" PointY="1.5" />
+        <EntityTypeShape EntityType="FADENModel.SindromePredominante" Width="1.5" PointX="5.25" PointY="19.5" />
+        <EntityTypeShape EntityType="FADENModel.SistemaSoap" Width="1.5" PointX="5.25" PointY="5.625" />
+        <EntityTypeShape EntityType="FADENModel.TratamientoHistorico" Width="1.5" PointX="5.25" PointY="16.125" />
+        <EntityTypeShape EntityType="FADENModel.Usuario" Width="1.5" PointX="10" PointY="1" />
+        <EntityTypeShape EntityType="FADENModel.MSreplication_options" Width="1.5" PointX="0.75" PointY="0.75" />
         <AssociationConnector Association="FADENModel.FK_Acompanante_Paciente" />
-        <EntityTypeShape EntityType="FADENModel.SindromePredominante" Width="1.5" PointX="9.625" PointY="8.625" />
-        <AssociationConnector Association="FADENModel.FK_SindromePredominante_Paciente" />
-        <EntityTypeShape EntityType="FADENModel.Consenso" Width="1.5" PointX="9.625" PointY="15.875" />
+        <AssociationConnector Association="FADENModel.FK_Ciudad_Departamento" />
+        <AssociationConnector Association="FADENModel.FK_Medicos" />
         <AssociationConnector Association="FADENModel.FK_Consenso_Paciente1" />
-        <EntityTypeShape EntityType="FADENModel.Rol" Width="1.5" PointX="7.375" PointY="0.75" />
-        <EntityTypeShape EntityType="FADENModel.PerfilUsuario" Width="1.5" PointX="11.875" PointY="5.25" />
-        <EntityTypeShape EntityType="FADENModel.Usuario" Width="1.5" PointX="9.625" PointY="4.125" />
+        <AssociationConnector Association="FADENModel.FK_Paciente_Escolaridad" />
+        <AssociationConnector Association="FADENModel.FK_SindromePredominante_Paciente" />
+        <AssociationConnector Association="FADENModel.FK_SistemaSoap_Paciente" />
+        <AssociationConnector Association="FADENModel.FK_TratamientoHistorico_Paciente" />
         <AssociationConnector Association="FADENModel.FK_PerfilUsuario_Usuario" />
         <AssociationConnector Association="FADENModel.FK_Usuario_Rol" />
-        <EntityTypeShape EntityType="FADENModel.SistemaSoap" Width="1.5" PointX="9.625" PointY="22.75" />
-        <AssociationConnector Association="FADENModel.FK_SistemaSoap_Paciente" />
-        <EntityTypeShape EntityType="FADENModel.TratamientoHistorico" Width="1.5" PointX="9.625" PointY="0.75" />
-        <AssociationConnector Association="FADENModel.FK_TratamientoHistorico_Paciente" />
-        </Diagram>
+        <EntityTypeShape EntityType="FADENModel.AntecendeteQuirurgico" Width="1.5" PointX="5.25" PointY="22.625" />
+        <AssociationConnector Association="FADENModel.FK_AntecendeteQuirurgico_Paciente" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
