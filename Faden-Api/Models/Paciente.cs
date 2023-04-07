@@ -23,6 +23,9 @@ namespace Faden_Api.Models
             this.SistemaSoap = new HashSet<SistemaSoap>();
             this.TratamientoHistorico = new HashSet<TratamientoHistorico>();
             this.AntecendeteQuirurgico = new HashSet<AntecendeteQuirurgico>();
+            this.ExamenClinico = new HashSet<ExamenClinico>();
+            this.AntecedentePatologico = new HashSet<AntecedentePatologico>();
+            this.AntecedenteFamiliar = new HashSet<AntecedenteFamiliar>();
         }
     
         public int IdPaciente { get; set; }
@@ -70,5 +73,11 @@ namespace Faden_Api.Models
         public virtual ICollection<TratamientoHistorico> TratamientoHistorico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AntecendeteQuirurgico> AntecendeteQuirurgico { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ExamenClinico> ExamenClinico { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AntecedentePatologico> AntecedentePatologico { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AntecedenteFamiliar> AntecedenteFamiliar { get; set; }
     }
 }

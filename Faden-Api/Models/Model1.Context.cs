@@ -40,5 +40,8 @@ namespace Faden_Api.Models
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<MSreplication_options> MSreplication_options { get; set; }
         public virtual DbSet<AntecendeteQuirurgico> AntecendeteQuirurgico { get; set; }
+        public virtual DbSet<ExamenClinico> ExamenClinico { get; set; }
+        public virtual DbSet<AntecedentePatologico> AntecedentePatologico { get; set; }
+        public virtual DbSet<AntecedenteFamiliar> AntecedenteFamiliar { get; set; }
     }
 }

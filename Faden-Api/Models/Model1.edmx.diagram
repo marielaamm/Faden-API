@@ -31,6 +31,12 @@
         <AssociationConnector Association="FADENModel.FK_Usuario_Rol" />
         <EntityTypeShape EntityType="FADENModel.AntecendeteQuirurgico" Width="1.5" PointX="5.25" PointY="22.625" />
         <AssociationConnector Association="FADENModel.FK_AntecendeteQuirurgico_Paciente" />
+        <EntityTypeShape EntityType="FADENModel.ExamenClinico" Width="1.5" PointX="5.25" PointY="25.625" />
+        <AssociationConnector Association="FADENModel.FK_ExamenClinico_Paciente" />
+        <EntityTypeShape EntityType="FADENModel.AntecedentePatologico" Width="1.5" PointX="5.25" PointY="28.875" />
+        <AssociationConnector Association="FADENModel.FK_AntecedentePatologico_Paciente" />
+        <EntityTypeShape EntityType="FADENModel.AntecedenteFamiliar" Width="1.5" PointX="5.25" PointY="32" />
+        <AssociationConnector Association="FADENModel.FK_AntecedenteFamiliar_Paciente" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

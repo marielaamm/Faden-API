@@ -230,6 +230,9 @@
     <Compile Include="Controllers\CAT\ConsensoController.cs" />
     <Compile Include="Controllers\CAT\DepartamentoController.cs" />
     <Compile Include="Controllers\CAT\EscolaridadController.cs" />
+    <Compile Include="Controllers\EXP\AntecedenteFamiliarController.cs" />
+    <Compile Include="Controllers\EXP\AntecedentePatologicoController.cs" />
+    <Compile Include="Controllers\EXP\ExamenClinicoController.cs" />
     <Compile Include="Controllers\EXP\TratamientoController.cs" />
     <Compile Include="Controllers\CAT\MedicoController.cs" />
     <Compile Include="Controllers\CAT\PacienteController.cs" />
@@ -246,6 +249,12 @@
     <Compile Include="Models\Acompanante.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AntecedenteFamiliar.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AntecedentePatologico.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AntecendeteQuirurgico.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -259,6 +268,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Escolaridad.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ExamenClinico.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Medicos.cs">
@@ -377,10 +389,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AntecedenteFamiliar\" />
+    <Folder Include="Views\AntecedentePatologico\" />
     <Folder Include="Views\Ciudad\" />
     <Folder Include="Views\Consenso\" />
     <Folder Include="Views\Departamento\" />
     <Folder Include="Views\Escolaridad\" />
+    <Folder Include="Views\ExamenClinico\" />
     <Folder Include="Views\FuncionesGenerales\" />
     <Folder Include="Views\Medico\" />
     <Folder Include="Views\Paciente\" />
