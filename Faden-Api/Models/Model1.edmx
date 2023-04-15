@@ -20,6 +20,15 @@
           <Property Name="EsSecundario" Type="bit" Nullable="false" />
           <Property Name="IdPaciente" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="AnalisisPresuncion">
+          <Key>
+            <PropertyRef Name="IdAnalisiPresuncion" />
+          </Key>
+          <Property Name="IdAnalisiPresuncion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="IdPaciente" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="AntecedenteFamiliar">
           <Key>
             <PropertyRef Name="IdAntecedente" />
@@ -27,6 +36,18 @@
           <Property Name="IdAntecedente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TipoAntecedente" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdPaciente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AntecedentenNeuroPsiquiatrico">
+          <Key>
+            <PropertyRef Name="IdAntNeuroPsiq" />
+          </Key>
+          <Property Name="IdAntNeuroPsiq" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Vive" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Enfermedad" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Padece" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Parentesco" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="IdPaciente" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="AntecedentePatologico">
@@ -129,24 +150,6 @@
           <Property Name="Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Telefono" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="Celular" Type="nvarchar" MaxLength="8" Nullable="false" />
-        </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="MSreplication_options">
-          <Key>
-            <PropertyRef Name="optname" />
-            <PropertyRef Name="value" />
-            <PropertyRef Name="major_version" />
-            <PropertyRef Name="minor_version" />
-            <PropertyRef Name="revision" />
-            <PropertyRef Name="install_failures" />
-          </Key>
-          <Property Name="optname" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="value" Type="bit" Nullable="false" />
-          <Property Name="major_version" Type="int" Nullable="false" />
-          <Property Name="minor_version" Type="int" Nullable="false" />
-          <Property Name="revision" Type="int" Nullable="false" />
-          <Property Name="install_failures" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Paciente">
           <Key>
@@ -263,6 +266,18 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AnalisisPresuncion_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="AnalisisPresuncion" Type="Self.AnalisisPresuncion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="AnalisisPresuncion">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AntecedenteFamiliar_Paciente">
           <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
           <End Role="AntecedenteFamiliar" Type="Self.AntecedenteFamiliar" Multiplicity="*" />
@@ -271,6 +286,18 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
               <PropertyRef Name="IdPaciente" />
             </Principal>
             <Dependent Role="AntecedenteFamiliar">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AntecedentenNeuroPsiquiatrico_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="AntecedentenNeuroPsiquiatrico" Type="Self.AntecedentenNeuroPsiquiatrico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="AntecedentenNeuroPsiquiatrico">
               <PropertyRef Name="IdPaciente" />
             </Dependent>
           </ReferentialConstraint>
@@ -421,7 +448,9 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
         </Association>
         <EntityContainer Name="FADENModelStoreContainer">
           <EntitySet Name="Acompanante" EntityType="Self.Acompanante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnalisisPresuncion" EntityType="Self.AnalisisPresuncion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AntecedenteFamiliar" EntityType="Self.AntecedenteFamiliar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AntecedentenNeuroPsiquiatrico" EntityType="Self.AntecedentenNeuroPsiquiatrico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AntecedentePatologico" EntityType="Self.AntecedentePatologico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AntecendeteQuirurgico" EntityType="Self.AntecendeteQuirurgico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
@@ -437,23 +466,21 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
           <EntitySet Name="SistemaSoap" EntityType="Self.SistemaSoap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TratamientoHistorico" EntityType="Self.TratamientoHistorico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MSreplication_options" EntityType="Self.MSreplication_options" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [MSreplication_options].[optname] AS [optname], 
-    [MSreplication_options].[value] AS [value], 
-    [MSreplication_options].[major_version] AS [major_version], 
-    [MSreplication_options].[minor_version] AS [minor_version], 
-    [MSreplication_options].[revision] AS [revision], 
-    [MSreplication_options].[install_failures] AS [install_failures]
-    FROM [dbo].[MSreplication_options] AS [MSreplication_options]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Acompanante_Paciente" Association="Self.FK_Acompanante_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Acompanante" EntitySet="Acompanante" />
           </AssociationSet>
+          <AssociationSet Name="FK_AnalisisPresuncion_Paciente" Association="Self.FK_AnalisisPresuncion_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="AnalisisPresuncion" EntitySet="AnalisisPresuncion" />
+          </AssociationSet>
           <AssociationSet Name="FK_AntecedenteFamiliar_Paciente" Association="Self.FK_AntecedenteFamiliar_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="AntecedenteFamiliar" EntitySet="AntecedenteFamiliar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AntecedentenNeuroPsiquiatrico_Paciente" Association="Self.FK_AntecedentenNeuroPsiquiatrico_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="AntecedentenNeuroPsiquiatrico" EntitySet="AntecedentenNeuroPsiquiatrico" />
           </AssociationSet>
           <AssociationSet Name="FK_AntecedentePatologico_Paciente" Association="Self.FK_AntecedentePatologico_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
@@ -510,10 +537,15 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
       <Schema Namespace="FADENModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="FADENEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="Acompanante" EntityType="FADENModel.Acompanante" />
+          <EntitySet Name="AntecedenteFamiliar" EntityType="FADENModel.AntecedenteFamiliar" />
+          <EntitySet Name="AntecedentenNeuroPsiquiatrico" EntityType="FADENModel.AntecedentenNeuroPsiquiatrico" />
+          <EntitySet Name="AntecedentePatologico" EntityType="FADENModel.AntecedentePatologico" />
+          <EntitySet Name="AntecendeteQuirurgico" EntityType="FADENModel.AntecendeteQuirurgico" />
           <EntitySet Name="Ciudad" EntityType="FADENModel.Ciudad" />
           <EntitySet Name="Consenso" EntityType="FADENModel.Consenso" />
           <EntitySet Name="Departamento" EntityType="FADENModel.Departamento" />
           <EntitySet Name="Escolaridad" EntityType="FADENModel.Escolaridad" />
+          <EntitySet Name="ExamenClinico" EntityType="FADENModel.ExamenClinico" />
           <EntitySet Name="Medicos" EntityType="FADENModel.Medicos" />
           <EntitySet Name="Paciente" EntityType="FADENModel.Paciente" />
           <EntitySet Name="PerfilUsuario" EntityType="FADENModel.PerfilUsuario" />
@@ -522,10 +554,25 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
           <EntitySet Name="SistemaSoap" EntityType="FADENModel.SistemaSoap" />
           <EntitySet Name="TratamientoHistorico" EntityType="FADENModel.TratamientoHistorico" />
           <EntitySet Name="Usuario" EntityType="FADENModel.Usuario" />
-          <EntitySet Name="MSreplication_options" EntityType="FADENModel.MSreplication_options" />
           <AssociationSet Name="FK_Acompanante_Paciente" Association="FADENModel.FK_Acompanante_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Acompanante" EntitySet="Acompanante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AntecedenteFamiliar_Paciente" Association="FADENModel.FK_AntecedenteFamiliar_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="AntecedenteFamiliar" EntitySet="AntecedenteFamiliar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AntecedentenNeuroPsiquiatrico_Paciente" Association="FADENModel.FK_AntecedentenNeuroPsiquiatrico_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="AntecedentenNeuroPsiquiatrico" EntitySet="AntecedentenNeuroPsiquiatrico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AntecedentePatologico_Paciente" Association="FADENModel.FK_AntecedentePatologico_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="AntecedentePatologico" EntitySet="AntecedentePatologico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AntecendeteQuirurgico_Paciente" Association="FADENModel.FK_AntecendeteQuirurgico_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="AntecendeteQuirurgico" EntitySet="AntecendeteQuirurgico" />
           </AssociationSet>
           <AssociationSet Name="FK_Ciudad_Departamento" Association="FADENModel.FK_Ciudad_Departamento">
             <End Role="Departamento" EntitySet="Departamento" />
@@ -542,6 +589,10 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
           <AssociationSet Name="FK_Paciente_Escolaridad" Association="FADENModel.FK_Paciente_Escolaridad">
             <End Role="Escolaridad" EntitySet="Escolaridad" />
             <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExamenClinico_Paciente" Association="FADENModel.FK_ExamenClinico_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="ExamenClinico" EntitySet="ExamenClinico" />
           </AssociationSet>
           <AssociationSet Name="FK_SindromePredominante_Paciente" Association="FADENModel.FK_SindromePredominante_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
@@ -563,25 +614,10 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <EntitySet Name="AntecendeteQuirurgico" EntityType="FADENModel.AntecendeteQuirurgico" />
-          <AssociationSet Name="FK_AntecendeteQuirurgico_Paciente" Association="FADENModel.FK_AntecendeteQuirurgico_Paciente">
+          <EntitySet Name="AnalisisPresuncion" EntityType="FADENModel.AnalisisPresuncion" />
+          <AssociationSet Name="FK_AnalisisPresuncion_Paciente" Association="FADENModel.FK_AnalisisPresuncion_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="AntecendeteQuirurgico" EntitySet="AntecendeteQuirurgico" />
-          </AssociationSet>
-          <EntitySet Name="ExamenClinico" EntityType="FADENModel.ExamenClinico" />
-          <AssociationSet Name="FK_ExamenClinico_Paciente" Association="FADENModel.FK_ExamenClinico_Paciente">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="ExamenClinico" EntitySet="ExamenClinico" />
-          </AssociationSet>
-          <EntitySet Name="AntecedentePatologico" EntityType="FADENModel.AntecedentePatologico" />
-          <AssociationSet Name="FK_AntecedentePatologico_Paciente" Association="FADENModel.FK_AntecedentePatologico_Paciente">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="AntecedentePatologico" EntitySet="AntecedentePatologico" />
-          </AssociationSet>
-          <EntitySet Name="AntecedenteFamiliar" EntityType="FADENModel.AntecedenteFamiliar" />
-          <AssociationSet Name="FK_AntecedenteFamiliar_Paciente" Association="FADENModel.FK_AntecedenteFamiliar_Paciente">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="AntecedenteFamiliar" EntitySet="AntecedenteFamiliar" />
+            <End Role="AnalisisPresuncion" EntitySet="AnalisisPresuncion" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Acompanante">
@@ -599,6 +635,50 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
           <Property Name="EsSecundario" Type="Boolean" Nullable="false" />
           <Property Name="IdPaciente" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_Acompanante_Paciente" FromRole="Acompanante" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="AntecedenteFamiliar">
+          <Key>
+            <PropertyRef Name="IdAntecedente" />
+          </Key>
+          <Property Name="IdAntecedente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoAntecedente" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_AntecedenteFamiliar_Paciente" FromRole="AntecedenteFamiliar" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="AntecedentenNeuroPsiquiatrico">
+          <Key>
+            <PropertyRef Name="IdAntNeuroPsiq" />
+          </Key>
+          <Property Name="IdAntNeuroPsiq" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Vive" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Enfermedad" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Padece" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Parentesco" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_AntecedentenNeuroPsiquiatrico_Paciente" FromRole="AntecedentenNeuroPsiquiatrico" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="AntecedentePatologico">
+          <Key>
+            <PropertyRef Name="IdAntecedentePatologico" />
+          </Key>
+          <Property Name="IdAntecedentePatologico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Enfermedad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_AntecedentePatologico_Paciente" FromRole="AntecedentePatologico" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="AntecendeteQuirurgico">
+          <Key>
+            <PropertyRef Name="IdAntQ" />
+          </Key>
+          <Property Name="IdAntQ" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lugar" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_AntecendeteQuirurgico_Paciente" FromRole="AntecendeteQuirurgico" ToRole="Paciente" />
         </EntityType>
         <EntityType Name="Ciudad">
           <Key>
@@ -654,6 +734,17 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_Paciente_Escolaridad" FromRole="Escolaridad" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="ExamenClinico">
+          <Key>
+            <PropertyRef Name="IdExamenClinico" />
+          </Key>
+          <Property Name="IdExamenClinico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TipoExamen" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_ExamenClinico_Paciente" FromRole="ExamenClinico" ToRole="Paciente" />
         </EntityType>
         <EntityType Name="Medicos">
           <Key>
@@ -714,15 +805,17 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
           <Property Name="Pensionado" Type="Boolean" Nullable="false" />
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Acompanante" Relationship="FADENModel.FK_Acompanante_Paciente" FromRole="Paciente" ToRole="Acompanante" />
+          <NavigationProperty Name="AntecedenteFamiliar" Relationship="FADENModel.FK_AntecedenteFamiliar_Paciente" FromRole="Paciente" ToRole="AntecedenteFamiliar" />
+          <NavigationProperty Name="AntecedentenNeuroPsiquiatrico" Relationship="FADENModel.FK_AntecedentenNeuroPsiquiatrico_Paciente" FromRole="Paciente" ToRole="AntecedentenNeuroPsiquiatrico" />
+          <NavigationProperty Name="AntecedentePatologico" Relationship="FADENModel.FK_AntecedentePatologico_Paciente" FromRole="Paciente" ToRole="AntecedentePatologico" />
+          <NavigationProperty Name="AntecendeteQuirurgico" Relationship="FADENModel.FK_AntecendeteQuirurgico_Paciente" FromRole="Paciente" ToRole="AntecendeteQuirurgico" />
           <NavigationProperty Name="Consenso" Relationship="FADENModel.FK_Consenso_Paciente1" FromRole="Paciente" ToRole="Consenso" />
           <NavigationProperty Name="Escolaridad" Relationship="FADENModel.FK_Paciente_Escolaridad" FromRole="Paciente" ToRole="Escolaridad" />
+          <NavigationProperty Name="ExamenClinico" Relationship="FADENModel.FK_ExamenClinico_Paciente" FromRole="Paciente" ToRole="ExamenClinico" />
           <NavigationProperty Name="SindromePredominante" Relationship="FADENModel.FK_SindromePredominante_Paciente" FromRole="Paciente" ToRole="SindromePredominante" />
           <NavigationProperty Name="SistemaSoap" Relationship="FADENModel.FK_SistemaSoap_Paciente" FromRole="Paciente" ToRole="SistemaSoap" />
           <NavigationProperty Name="TratamientoHistorico" Relationship="FADENModel.FK_TratamientoHistorico_Paciente" FromRole="Paciente" ToRole="TratamientoHistorico" />
-          <NavigationProperty Name="AntecendeteQuirurgico" Relationship="FADENModel.FK_AntecendeteQuirurgico_Paciente" FromRole="Paciente" ToRole="AntecendeteQuirurgico" />
-          <NavigationProperty Name="ExamenClinico" Relationship="FADENModel.FK_ExamenClinico_Paciente" FromRole="Paciente" ToRole="ExamenClinico" />
-          <NavigationProperty Name="AntecedentePatologico" Relationship="FADENModel.FK_AntecedentePatologico_Paciente" FromRole="Paciente" ToRole="AntecedentePatologico" />
-          <NavigationProperty Name="AntecedenteFamiliar" Relationship="FADENModel.FK_AntecedenteFamiliar_Paciente" FromRole="Paciente" ToRole="AntecedenteFamiliar" />
+          <NavigationProperty Name="AnalisisPresuncion" Relationship="FADENModel.FK_AnalisisPresuncion_Paciente" FromRole="Paciente" ToRole="AnalisisPresuncion" />
         </EntityType>
         <EntityType Name="PerfilUsuario">
           <Key>
@@ -798,22 +891,6 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
           <NavigationProperty Name="PerfilUsuario" Relationship="FADENModel.FK_PerfilUsuario_Usuario" FromRole="Usuario" ToRole="PerfilUsuario" />
           <NavigationProperty Name="Rol" Relationship="FADENModel.FK_Usuario_Rol" FromRole="Usuario" ToRole="Rol" />
         </EntityType>
-        <EntityType Name="MSreplication_options">
-          <Key>
-            <PropertyRef Name="optname" />
-            <PropertyRef Name="value" />
-            <PropertyRef Name="major_version" />
-            <PropertyRef Name="minor_version" />
-            <PropertyRef Name="revision" />
-            <PropertyRef Name="install_failures" />
-          </Key>
-          <Property Name="optname" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="value" Type="Boolean" Nullable="false" />
-          <Property Name="major_version" Type="Int32" Nullable="false" />
-          <Property Name="minor_version" Type="Int32" Nullable="false" />
-          <Property Name="revision" Type="Int32" Nullable="false" />
-          <Property Name="install_failures" Type="Int32" Nullable="false" />
-        </EntityType>
         <Association Name="FK_Acompanante_Paciente">
           <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
           <End Type="FADENModel.Acompanante" Role="Acompanante" Multiplicity="*" />
@@ -822,6 +899,54 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
               <PropertyRef Name="IdPaciente" />
             </Principal>
             <Dependent Role="Acompanante">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AntecedenteFamiliar_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.AntecedenteFamiliar" Role="AntecedenteFamiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="AntecedenteFamiliar">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AntecedentenNeuroPsiquiatrico_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.AntecedentenNeuroPsiquiatrico" Role="AntecedentenNeuroPsiquiatrico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="AntecedentenNeuroPsiquiatrico">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AntecedentePatologico_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.AntecedentePatologico" Role="AntecedentePatologico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="AntecedentePatologico">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AntecendeteQuirurgico_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.AntecendeteQuirurgico" Role="AntecendeteQuirurgico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="AntecendeteQuirurgico">
               <PropertyRef Name="IdPaciente" />
             </Dependent>
           </ReferentialConstraint>
@@ -871,6 +996,18 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
             </Principal>
             <Dependent Role="Paciente">
               <PropertyRef Name="IdEscolaridad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExamenClinico_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.ExamenClinico" Role="ExamenClinico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="ExamenClinico">
+              <PropertyRef Name="IdPaciente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -934,92 +1071,24 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="AntecendeteQuirurgico">
+        <EntityType Name="AnalisisPresuncion">
           <Key>
-            <PropertyRef Name="IdAntQ" />
+            <PropertyRef Name="IdAnalisiPresuncion" />
           </Key>
-          <Property Name="IdAntQ" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Lugar" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdAnalisiPresuncion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IdPaciente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_AntecendeteQuirurgico_Paciente" FromRole="AntecendeteQuirurgico" ToRole="Paciente" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_AnalisisPresuncion_Paciente" FromRole="AnalisisPresuncion" ToRole="Paciente" />
         </EntityType>
-        <Association Name="FK_AntecendeteQuirurgico_Paciente">
+        <Association Name="FK_AnalisisPresuncion_Paciente">
           <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
-          <End Type="FADENModel.AntecendeteQuirurgico" Role="AntecendeteQuirurgico" Multiplicity="*" />
+          <End Type="FADENModel.AnalisisPresuncion" Role="AnalisisPresuncion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Paciente">
               <PropertyRef Name="IdPaciente" />
             </Principal>
-            <Dependent Role="AntecendeteQuirurgico">
-              <PropertyRef Name="IdPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="ExamenClinico">
-          <Key>
-            <PropertyRef Name="IdExamenClinico" />
-          </Key>
-          <Property Name="IdExamenClinico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TipoExamen" Type="Int32" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_ExamenClinico_Paciente" FromRole="ExamenClinico" ToRole="Paciente" />
-        </EntityType>
-        <Association Name="FK_ExamenClinico_Paciente">
-          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
-          <End Type="FADENModel.ExamenClinico" Role="ExamenClinico" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="IdPaciente" />
-            </Principal>
-            <Dependent Role="ExamenClinico">
-              <PropertyRef Name="IdPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="AntecedentePatologico">
-          <Key>
-            <PropertyRef Name="IdAntecedentePatologico" />
-          </Key>
-          <Property Name="IdAntecedentePatologico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Enfermedad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_AntecedentePatologico_Paciente" FromRole="AntecedentePatologico" ToRole="Paciente" />
-        </EntityType>
-        <Association Name="FK_AntecedentePatologico_Paciente">
-          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
-          <End Type="FADENModel.AntecedentePatologico" Role="AntecedentePatologico" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="IdPaciente" />
-            </Principal>
-            <Dependent Role="AntecedentePatologico">
-              <PropertyRef Name="IdPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="AntecedenteFamiliar">
-          <Key>
-            <PropertyRef Name="IdAntecedente" />
-          </Key>
-          <Property Name="IdAntecedente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TipoAntecedente" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_AntecedenteFamiliar_Paciente" FromRole="AntecedenteFamiliar" ToRole="Paciente" />
-        </EntityType>
-        <Association Name="FK_AntecedenteFamiliar_Paciente">
-          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
-          <End Type="FADENModel.AntecedenteFamiliar" Role="AntecedenteFamiliar" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="IdPaciente" />
-            </Principal>
-            <Dependent Role="AntecedenteFamiliar">
+            <Dependent Role="AnalisisPresuncion">
               <PropertyRef Name="IdPaciente" />
             </Dependent>
           </ReferentialConstraint>
@@ -1043,6 +1112,50 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
                 <ScalarProperty Name="IdAcpte" ColumnName="IdAcpte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AntecedenteFamiliar">
+            <EntityTypeMapping TypeName="FADENModel.AntecedenteFamiliar">
+              <MappingFragment StoreEntitySet="AntecedenteFamiliar">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TipoAntecedente" ColumnName="TipoAntecedente" />
+                <ScalarProperty Name="IdAntecedente" ColumnName="IdAntecedente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AntecedentenNeuroPsiquiatrico">
+            <EntityTypeMapping TypeName="FADENModel.AntecedentenNeuroPsiquiatrico">
+              <MappingFragment StoreEntitySet="AntecedentenNeuroPsiquiatrico">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="Parentesco" ColumnName="Parentesco" />
+                <ScalarProperty Name="Padece" ColumnName="Padece" />
+                <ScalarProperty Name="Enfermedad" ColumnName="Enfermedad" />
+                <ScalarProperty Name="Vive" ColumnName="Vive" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdAntNeuroPsiq" ColumnName="IdAntNeuroPsiq" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AntecedentePatologico">
+            <EntityTypeMapping TypeName="FADENModel.AntecedentePatologico">
+              <MappingFragment StoreEntitySet="AntecedentePatologico">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Enfermedad" ColumnName="Enfermedad" />
+                <ScalarProperty Name="IdAntecedentePatologico" ColumnName="IdAntecedentePatologico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AntecendeteQuirurgico">
+            <EntityTypeMapping TypeName="FADENModel.AntecendeteQuirurgico">
+              <MappingFragment StoreEntitySet="AntecendeteQuirurgico">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Lugar" ColumnName="Lugar" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdAntQ" ColumnName="IdAntQ" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1097,6 +1210,17 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdEscolaridad" ColumnName="IdEscolaridad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExamenClinico">
+            <EntityTypeMapping TypeName="FADENModel.ExamenClinico">
+              <MappingFragment StoreEntitySet="ExamenClinico">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="TipoExamen" ColumnName="TipoExamen" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdExamenClinico" ColumnName="IdExamenClinico" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1233,57 +1357,13 @@ advertencia 6002: La tabla o vista 'master.dbo.MSreplication_options' no tiene d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MSreplication_options">
-            <EntityTypeMapping TypeName="FADENModel.MSreplication_options">
-              <MappingFragment StoreEntitySet="MSreplication_options">
-                <ScalarProperty Name="install_failures" ColumnName="install_failures" />
-                <ScalarProperty Name="revision" ColumnName="revision" />
-                <ScalarProperty Name="minor_version" ColumnName="minor_version" />
-                <ScalarProperty Name="major_version" ColumnName="major_version" />
-                <ScalarProperty Name="value" ColumnName="value" />
-                <ScalarProperty Name="optname" ColumnName="optname" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AntecendeteQuirurgico">
-            <EntityTypeMapping TypeName="FADENModel.AntecendeteQuirurgico">
-              <MappingFragment StoreEntitySet="AntecendeteQuirurgico">
+          <EntitySetMapping Name="AnalisisPresuncion">
+            <EntityTypeMapping TypeName="FADENModel.AnalisisPresuncion">
+              <MappingFragment StoreEntitySet="AnalisisPresuncion">
                 <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Lugar" ColumnName="Lugar" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="IdAntQ" ColumnName="IdAntQ" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ExamenClinico">
-            <EntityTypeMapping TypeName="FADENModel.ExamenClinico">
-              <MappingFragment StoreEntitySet="ExamenClinico">
-                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="TipoExamen" ColumnName="TipoExamen" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="IdExamenClinico" ColumnName="IdExamenClinico" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AntecedentePatologico">
-            <EntityTypeMapping TypeName="FADENModel.AntecedentePatologico">
-              <MappingFragment StoreEntitySet="AntecedentePatologico">
-                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Enfermedad" ColumnName="Enfermedad" />
-                <ScalarProperty Name="IdAntecedentePatologico" ColumnName="IdAntecedentePatologico" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AntecedenteFamiliar">
-            <EntityTypeMapping TypeName="FADENModel.AntecedenteFamiliar">
-              <MappingFragment StoreEntitySet="AntecedenteFamiliar">
-                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="TipoAntecedente" ColumnName="TipoAntecedente" />
-                <ScalarProperty Name="IdAntecedente" ColumnName="IdAntecedente" />
+                <ScalarProperty Name="IdAnalisiPresuncion" ColumnName="IdAnalisiPresuncion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

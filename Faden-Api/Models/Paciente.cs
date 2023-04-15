@@ -18,14 +18,16 @@ namespace Faden_Api.Models
         public Paciente()
         {
             this.Acompanante = new HashSet<Acompanante>();
+            this.AntecedenteFamiliar = new HashSet<AntecedenteFamiliar>();
+            this.AntecedentenNeuroPsiquiatrico = new HashSet<AntecedentenNeuroPsiquiatrico>();
+            this.AntecedentePatologico = new HashSet<AntecedentePatologico>();
+            this.AntecendeteQuirurgico = new HashSet<AntecendeteQuirurgico>();
             this.Consenso = new HashSet<Consenso>();
+            this.ExamenClinico = new HashSet<ExamenClinico>();
             this.SindromePredominante = new HashSet<SindromePredominante>();
             this.SistemaSoap = new HashSet<SistemaSoap>();
             this.TratamientoHistorico = new HashSet<TratamientoHistorico>();
-            this.AntecendeteQuirurgico = new HashSet<AntecendeteQuirurgico>();
-            this.ExamenClinico = new HashSet<ExamenClinico>();
-            this.AntecedentePatologico = new HashSet<AntecedentePatologico>();
-            this.AntecedenteFamiliar = new HashSet<AntecedenteFamiliar>();
+            this.AnalisisPresuncion = new HashSet<AnalisisPresuncion>();
         }
     
         public int IdPaciente { get; set; }
@@ -63,8 +65,18 @@ namespace Faden_Api.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Acompanante> Acompanante { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AntecedenteFamiliar> AntecedenteFamiliar { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AntecedentenNeuroPsiquiatrico> AntecedentenNeuroPsiquiatrico { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AntecedentePatologico> AntecedentePatologico { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AntecendeteQuirurgico> AntecendeteQuirurgico { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Consenso> Consenso { get; set; }
         public virtual Escolaridad Escolaridad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ExamenClinico> ExamenClinico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SindromePredominante> SindromePredominante { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -72,12 +84,6 @@ namespace Faden_Api.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TratamientoHistorico> TratamientoHistorico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AntecendeteQuirurgico> AntecendeteQuirurgico { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ExamenClinico> ExamenClinico { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AntecedentePatologico> AntecedentePatologico { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AntecedenteFamiliar> AntecedenteFamiliar { get; set; }
+        public virtual ICollection<AnalisisPresuncion> AnalisisPresuncion { get; set; }
     }
 }
