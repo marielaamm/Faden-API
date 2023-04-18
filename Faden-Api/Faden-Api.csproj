@@ -226,6 +226,7 @@
     <Compile Include="Class\Cls_TAcompanante.cs" />
     <Compile Include="Class\EXP\Cls_AntecedenteQuirurgico.cs" />
     <Compile Include="Class\EXP\cls_TratamientoHistorico.cs" />
+    <Compile Include="Class\EXP\Cls_ValoracionNeuroPsicologica.cs" />
     <Compile Include="Controllers\CAT\CiudadController.cs" />
     <Compile Include="Controllers\CAT\ConsensoController.cs" />
     <Compile Include="Controllers\CAT\DepartamentoController.cs" />
@@ -240,6 +241,7 @@
     <Compile Include="Controllers\CAT\PacienteController.cs" />
     <Compile Include="Controllers\CAT\SistemaSoapController.cs" />
     <Compile Include="Controllers\EXP\TratamientoQuirurgicoController.cs" />
+    <Compile Include="Controllers\EXP\ValoracionNeuroPsicologicaController.cs" />
     <Compile Include="Controllers\FN\FuncionesGeneralesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SIS\RolesController.cs" />
@@ -320,6 +322,9 @@
     <Compile Include="Models\Usuario.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ValoracionNeuroPsico.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -369,6 +374,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -412,6 +418,7 @@
     <Folder Include="Views\TratamientoQuirurgico\" />
     <Folder Include="Views\Tratamiento\" />
     <Folder Include="Views\Usuario\" />
+    <Folder Include="Views\ValoracionNeuroPsicologica\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
