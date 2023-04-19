@@ -1,5 +1,6 @@
 ﻿using Faden_Api.Class;
 using Faden_Api.Class.cat;
+using Faden_Api.Class.EXP;
 using Faden_Api.Models;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using RouteAttribute = System.Web.Http.RouteAttribute;
 
 namespace Faden_Api.Controllers.EXP
 {
-    public class ValoracionNeuroPsicologicaController : ApiController
+    public class ValoracionNeuroPsicoController : ApiController
     {
         [Route("api/cat/Valoracion/Guardar")]
         [System.Web.Http.HttpPost]
@@ -40,12 +41,12 @@ namespace Faden_Api.Controllers.EXP
                 {
                     using (FADENEntities _conexion = new FADENEntities())
                     {
-                        ValoracionNeuroPsicologica _v = _conexion.ValoracionNeuroPsicologica.Find(v.IdValoracion);
+                        ValoracionNeuroPsico _v = _conexion.ValoracionNeuroPsico.Find(v.IdValoracion);
                         bool esNuevo = false;
 
                         if (_v == null)
                         {
-                            _v = new ValoracionNeuroPsicologica();
+                            _v = new ValoracionNeuroPsico();
                             esNuevo = true;
                         }
 
@@ -60,7 +61,7 @@ namespace Faden_Api.Controllers.EXP
                         
                        
                        
-                        if (esNuevo) _conexion.ValoracionNeuroPsicologica.Add(_v);
+                        if (esNuevo) _conexion.ValoracionNeuroPsico.Add(_v);
                         _conexion.SaveChanges();
                         scope.Complete();
 
