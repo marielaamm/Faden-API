@@ -42,6 +42,8 @@
         <AssociationConnector Association="FADENModel.FK_AnalisisPresuncion_Paciente" />
         <EntityTypeShape EntityType="FADENModel.ValoracionNeuroPsico" Width="1.5" PointX="5.25" PointY="41.25" />
         <AssociationConnector Association="FADENModel.FK_ValoracionNeuroPsico_Paciente" />
+        <EntityTypeShape EntityType="FADENModel.HistoriaFamSoc" Width="1.5" PointX="5.25" PointY="45.875" />
+        <AssociationConnector Association="FADENModel.FK_HistoriaFamSoc_Paciente" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
