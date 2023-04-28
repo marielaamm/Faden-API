@@ -31,6 +31,16 @@ namespace Faden_Api.Controllers.EXP
             }
         }
 
+        private IHttpActionResult Ok(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        private IHttpActionResult BadRequest()
+        {
+            throw new NotImplementedException();
+        }
+
         private string _Guardar(Cls_HistoriaFamSoc h)
         {
             string json = string.Empty;
