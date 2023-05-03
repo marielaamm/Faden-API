@@ -1,5 +1,4 @@
 ﻿using Faden_Api.Class;
-using Faden_Api.Class.cat;
 using Faden_Api.Class.EXP;
 using Faden_Api.Models;
 using System;
@@ -14,7 +13,7 @@ using RouteAttribute = System.Web.Http.RouteAttribute;
 
 namespace Faden_Api.Controllers.EXP
 {
-    public class HistoriaFamSocController : Controller
+    public class HistoriaFamSocController : ApiController
     {
         [Route("api/cat/Historia/Guardar")]
         [System.Web.Http.HttpPost]
@@ -29,16 +28,6 @@ namespace Faden_Api.Controllers.EXP
             {
                 return BadRequest();
             }
-        }
-
-        private IHttpActionResult Ok(string v)
-        {
-            throw new NotImplementedException();
-        }
-
-        private IHttpActionResult BadRequest()
-        {
-            throw new NotImplementedException();
         }
 
         private string _Guardar(Cls_HistoriaFamSoc h)
