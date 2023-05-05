@@ -120,5 +120,68 @@ namespace Faden_Api.Controllers.CAT
 
         }
 
+
+
+        [Route("api/cat/Consenso/Buscar")]
+        [HttpGet]
+        public string Buscar(int IdPaciente)
+        {
+            return _Buscar(IdPaciente);
+        }
+
+        private string _Buscar(int IdPaciente)
+        {
+            string json = string.Empty;
+
+
+
+            try
+            {
+                using (FADENEntities _conexion = new FADENEntities())
+                {
+                    var qDetalle = (from _d in _conexion.Consenso
+                                    where _d.IdPaciente == IdPaciente
+                                    select new
+                                    {
+                                        IdConsenso = _d.IdConsenso,
+                                        DetCognitivo = _d.DetCognitivo,
+                                        SospechaDiag = _d.SospechaDiag,
+                                        RefNormal = _d.RefNormal,
+                                        RefLeve = _d.RefLeve,
+                                        RefMayor = _d.RefMayor,
+                                        Depresion = _d.Depresion,
+                                        RefDepresion = _d.RefDepresion,
+                                        TrastornoBip = _d.TrastornoBip,
+                                        RefTrasBip = _d.RefTrasBip,
+                                        Esquizo = _d.Esquizo,
+                                        RefEsquizo = _d.RefEsquizo,
+                                        OtroDiag = _d.OtroDiag,
+                                        RefOtroDiag = _d.RefOtroDiag,
+                                        RefProbable = _d.RefProbable,
+                                        RefConfirmado = _d.RefConfirmado,
+                                        TrataFarma = _d.TrataFarma,
+                                        TrataNoFarma = _d.TrataNoFarma,
+                                        Recomendaciones = _d.Recomendaciones,
+                                        Examenes = _d.Examenes,
+                                        IdPaciente = _d.IdPaciente,
+                                    }).ToList();
+
+                    json = Cls_Mensaje.Tojson(qDetalle, qDetalle.Count, string.Empty, string.Empty, 0);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                json = Cls_Mensaje.Tojson(null, 0, "1", ex.Message, 1);
+            }
+
+            return json;
+        }
+
+
+
     }
+
+
+
 }
