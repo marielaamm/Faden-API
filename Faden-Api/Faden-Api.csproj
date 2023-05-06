@@ -236,6 +236,7 @@
     <Compile Include="Controllers\EXP\AntecedentePatologicoController.cs" />
     <Compile Include="Controllers\EXP\AntNeuroPsiquiatricoController.cs" />
     <Compile Include="Controllers\EXP\ExamenClinicoController.cs" />
+    <Compile Include="Controllers\EXP\ExamenFisicoSistemaController.cs" />
     <Compile Include="Controllers\EXP\HistoriaFamSocController.cs" />
     <Compile Include="Controllers\EXP\PresuncionController.cs" />
     <Compile Include="Controllers\EXP\TratamientoController.cs" />
@@ -285,6 +286,9 @@
     <Compile Include="Models\ExamenClinico.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ExamenFisicoSistema.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HistoriaFamSoc.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -325,9 +329,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuario.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ValoracionNeuroPsico.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -413,6 +414,7 @@
     <Folder Include="Views\Departamento\" />
     <Folder Include="Views\Escolaridad\" />
     <Folder Include="Views\ExamenClinico\" />
+    <Folder Include="Views\ExamenFisicoSistema\" />
     <Folder Include="Views\FuncionesGenerales\" />
     <Folder Include="Views\HistoriaFamSoc\" />
     <Folder Include="Views\Medico\" />

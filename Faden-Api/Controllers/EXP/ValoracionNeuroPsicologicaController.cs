@@ -58,9 +58,9 @@ namespace Faden_Api.Controllers.EXP
                         _v.Comportamiento = v.Comportamiento;
                         _v.FuncionAutonomica = v.FuncionAutonomica;
                         _v.IdPaciente = v.IdPaciente;
-                        
-                       
-                       
+
+
+
                         if (esNuevo) _conexion.ValoracionNeuroPsico.Add(_v);
                         _conexion.SaveChanges();
                         scope.Complete();

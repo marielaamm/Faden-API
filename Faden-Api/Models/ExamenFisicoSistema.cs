@@ -12,16 +12,12 @@ namespace Faden_Api.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ValoracionNeuroPsico
+    public partial class ExamenFisicoSistema
     {
-        public int IdValoracion { get; set; }
-        public string Memoria { get; set; }
-        public string FuncionesEjecutivas { get; set; }
-        public string Lenguaje { get; set; }
-        public string FuncionesVisoEspaciales { get; set; }
-        public string FuncionesMotoras { get; set; }
-        public string Comportamiento { get; set; }
-        public string FuncionAutonomica { get; set; }
+        public int IdExFisicoSistema { get; set; }
+        public string IdElemento { get; set; }
+        public string Observaciones { get; set; }
+        public bool Activo { get; set; }
         public int IdPaciente { get; set; }
     
         public virtual Paciente Paciente { get; set; }

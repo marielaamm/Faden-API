@@ -129,6 +129,16 @@
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="IdPaciente" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ExamenFisicoSistema">
+          <Key>
+            <PropertyRef Name="IdExFisicoSistema" />
+          </Key>
+          <Property Name="IdExFisicoSistema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdElemento" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="IdPaciente" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="HistoriaFamSoc">
           <Key>
             <PropertyRef Name="IdHistoriaFamSoc" />
@@ -263,20 +273,6 @@
           <Property Name="IdRol" Type="int" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="ValoracionNeuroPsico">
-          <Key>
-            <PropertyRef Name="IdValoracion" />
-          </Key>
-          <Property Name="IdValoracion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Memoria" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="FuncionesEjecutivas" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="Lenguaje" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="FuncionesVisoEspaciales" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="FuncionesMotoras" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="Comportamiento" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="FuncionAutonomica" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="IdPaciente" Type="int" Nullable="false" />
-        </EntityType>
         <Association Name="FK_Acompanante_Paciente">
           <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
           <End Role="Acompanante" Type="Self.Acompanante" Multiplicity="*" />
@@ -385,6 +381,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ExamenFisicoSistema_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="ExamenFisicoSistema" Type="Self.ExamenFisicoSistema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="ExamenFisicoSistema">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_HistoriaFamSoc_Paciente">
           <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
           <End Role="HistoriaFamSoc" Type="Self.HistoriaFamSoc" Multiplicity="*" />
@@ -481,18 +489,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ValoracionNeuroPsico_Paciente">
-          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
-          <End Role="ValoracionNeuroPsico" Type="Self.ValoracionNeuroPsico" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="IdPaciente" />
-            </Principal>
-            <Dependent Role="ValoracionNeuroPsico">
-              <PropertyRef Name="IdPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="FADENModelStoreContainer">
           <EntitySet Name="Acompanante" EntityType="Self.Acompanante" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnalisisPresuncion" EntityType="Self.AnalisisPresuncion" Schema="dbo" store:Type="Tables" />
@@ -505,6 +501,7 @@
           <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Escolaridad" EntityType="Self.Escolaridad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExamenClinico" EntityType="Self.ExamenClinico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExamenFisicoSistema" EntityType="Self.ExamenFisicoSistema" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistoriaFamSoc" EntityType="Self.HistoriaFamSoc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Medicos" EntityType="Self.Medicos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
@@ -514,7 +511,6 @@
           <EntitySet Name="SistemaSoap" EntityType="Self.SistemaSoap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TratamientoHistorico" EntityType="Self.TratamientoHistorico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ValoracionNeuroPsico" EntityType="Self.ValoracionNeuroPsico" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Acompanante_Paciente" Association="Self.FK_Acompanante_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Acompanante" EntitySet="Acompanante" />
@@ -551,6 +547,10 @@
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="ExamenClinico" EntitySet="ExamenClinico" />
           </AssociationSet>
+          <AssociationSet Name="FK_ExamenFisicoSistema_Paciente" Association="Self.FK_ExamenFisicoSistema_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="ExamenFisicoSistema" EntitySet="ExamenFisicoSistema" />
+          </AssociationSet>
           <AssociationSet Name="FK_HistoriaFamSoc_Paciente" Association="Self.FK_HistoriaFamSoc_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="HistoriaFamSoc" EntitySet="HistoriaFamSoc" />
@@ -583,10 +583,6 @@
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <AssociationSet Name="FK_ValoracionNeuroPsico_Paciente" Association="Self.FK_ValoracionNeuroPsico_Paciente">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="ValoracionNeuroPsico" EntitySet="ValoracionNeuroPsico" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -594,6 +590,7 @@
       <Schema Namespace="FADENModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="FADENEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="Acompanante" EntityType="FADENModel.Acompanante" />
+          <EntitySet Name="AnalisisPresuncion" EntityType="FADENModel.AnalisisPresuncion" />
           <EntitySet Name="AntecedenteFamiliar" EntityType="FADENModel.AntecedenteFamiliar" />
           <EntitySet Name="AntecedentenNeuroPsiquiatrico" EntityType="FADENModel.AntecedentenNeuroPsiquiatrico" />
           <EntitySet Name="AntecedentePatologico" EntityType="FADENModel.AntecedentePatologico" />
@@ -603,6 +600,8 @@
           <EntitySet Name="Departamento" EntityType="FADENModel.Departamento" />
           <EntitySet Name="Escolaridad" EntityType="FADENModel.Escolaridad" />
           <EntitySet Name="ExamenClinico" EntityType="FADENModel.ExamenClinico" />
+          <EntitySet Name="ExamenFisicoSistema" EntityType="FADENModel.ExamenFisicoSistema" />
+          <EntitySet Name="HistoriaFamSoc" EntityType="FADENModel.HistoriaFamSoc" />
           <EntitySet Name="Medicos" EntityType="FADENModel.Medicos" />
           <EntitySet Name="Paciente" EntityType="FADENModel.Paciente" />
           <EntitySet Name="PerfilUsuario" EntityType="FADENModel.PerfilUsuario" />
@@ -614,6 +613,10 @@
           <AssociationSet Name="FK_Acompanante_Paciente" Association="FADENModel.FK_Acompanante_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Acompanante" EntitySet="Acompanante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnalisisPresuncion_Paciente" Association="FADENModel.FK_AnalisisPresuncion_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="AnalisisPresuncion" EntitySet="AnalisisPresuncion" />
           </AssociationSet>
           <AssociationSet Name="FK_AntecedenteFamiliar_Paciente" Association="FADENModel.FK_AntecedenteFamiliar_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
@@ -651,6 +654,14 @@
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="ExamenClinico" EntitySet="ExamenClinico" />
           </AssociationSet>
+          <AssociationSet Name="FK_ExamenFisicoSistema_Paciente" Association="FADENModel.FK_ExamenFisicoSistema_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="ExamenFisicoSistema" EntitySet="ExamenFisicoSistema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoriaFamSoc_Paciente" Association="FADENModel.FK_HistoriaFamSoc_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="HistoriaFamSoc" EntitySet="HistoriaFamSoc" />
+          </AssociationSet>
           <AssociationSet Name="FK_SindromePredominante_Paciente" Association="FADENModel.FK_SindromePredominante_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="SindromePredominante" EntitySet="SindromePredominante" />
@@ -671,21 +682,6 @@
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <EntitySet Name="AnalisisPresuncion" EntityType="FADENModel.AnalisisPresuncion" />
-          <AssociationSet Name="FK_AnalisisPresuncion_Paciente" Association="FADENModel.FK_AnalisisPresuncion_Paciente">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="AnalisisPresuncion" EntitySet="AnalisisPresuncion" />
-          </AssociationSet>
-          <EntitySet Name="ValoracionNeuroPsico" EntityType="FADENModel.ValoracionNeuroPsico" />
-          <AssociationSet Name="FK_ValoracionNeuroPsico_Paciente" Association="FADENModel.FK_ValoracionNeuroPsico_Paciente">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="ValoracionNeuroPsico" EntitySet="ValoracionNeuroPsico" />
-          </AssociationSet>
-          <EntitySet Name="HistoriaFamSoc" EntityType="FADENModel.HistoriaFamSoc" />
-          <AssociationSet Name="FK_HistoriaFamSoc_Paciente" Association="FADENModel.FK_HistoriaFamSoc_Paciente">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="HistoriaFamSoc" EntitySet="HistoriaFamSoc" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Acompanante">
           <Key>
@@ -702,6 +698,16 @@
           <Property Name="EsSecundario" Type="Boolean" Nullable="false" />
           <Property Name="IdPaciente" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_Acompanante_Paciente" FromRole="Acompanante" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="AnalisisPresuncion">
+          <Key>
+            <PropertyRef Name="IdAnalisiPresuncion" />
+          </Key>
+          <Property Name="IdAnalisiPresuncion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_AnalisisPresuncion_Paciente" FromRole="AnalisisPresuncion" ToRole="Paciente" />
         </EntityType>
         <EntityType Name="AntecedenteFamiliar">
           <Key>
@@ -813,6 +819,27 @@
           <Property Name="IdPaciente" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_ExamenClinico_Paciente" FromRole="ExamenClinico" ToRole="Paciente" />
         </EntityType>
+        <EntityType Name="ExamenFisicoSistema">
+          <Key>
+            <PropertyRef Name="IdExFisicoSistema" />
+          </Key>
+          <Property Name="IdExFisicoSistema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdElemento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Observaciones" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_ExamenFisicoSistema_Paciente" FromRole="ExamenFisicoSistema" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="HistoriaFamSoc">
+          <Key>
+            <PropertyRef Name="IdHistoriaFamSoc" />
+          </Key>
+          <Property Name="IdHistoriaFamSoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HistoriaFamiliar" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HistoriaSocial" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_HistoriaFamSoc_Paciente" FromRole="HistoriaFamSoc" ToRole="Paciente" />
+        </EntityType>
         <EntityType Name="Medicos">
           <Key>
             <PropertyRef Name="IdMedico" />
@@ -872,6 +899,7 @@
           <Property Name="Pensionado" Type="Boolean" Nullable="false" />
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Acompanante" Relationship="FADENModel.FK_Acompanante_Paciente" FromRole="Paciente" ToRole="Acompanante" />
+          <NavigationProperty Name="AnalisisPresuncion" Relationship="FADENModel.FK_AnalisisPresuncion_Paciente" FromRole="Paciente" ToRole="AnalisisPresuncion" />
           <NavigationProperty Name="AntecedenteFamiliar" Relationship="FADENModel.FK_AntecedenteFamiliar_Paciente" FromRole="Paciente" ToRole="AntecedenteFamiliar" />
           <NavigationProperty Name="AntecedentenNeuroPsiquiatrico" Relationship="FADENModel.FK_AntecedentenNeuroPsiquiatrico_Paciente" FromRole="Paciente" ToRole="AntecedentenNeuroPsiquiatrico" />
           <NavigationProperty Name="AntecedentePatologico" Relationship="FADENModel.FK_AntecedentePatologico_Paciente" FromRole="Paciente" ToRole="AntecedentePatologico" />
@@ -879,12 +907,11 @@
           <NavigationProperty Name="Consenso" Relationship="FADENModel.FK_Consenso_Paciente1" FromRole="Paciente" ToRole="Consenso" />
           <NavigationProperty Name="Escolaridad" Relationship="FADENModel.FK_Paciente_Escolaridad" FromRole="Paciente" ToRole="Escolaridad" />
           <NavigationProperty Name="ExamenClinico" Relationship="FADENModel.FK_ExamenClinico_Paciente" FromRole="Paciente" ToRole="ExamenClinico" />
+          <NavigationProperty Name="ExamenFisicoSistema" Relationship="FADENModel.FK_ExamenFisicoSistema_Paciente" FromRole="Paciente" ToRole="ExamenFisicoSistema" />
+          <NavigationProperty Name="HistoriaFamSoc" Relationship="FADENModel.FK_HistoriaFamSoc_Paciente" FromRole="Paciente" ToRole="HistoriaFamSoc" />
           <NavigationProperty Name="SindromePredominante" Relationship="FADENModel.FK_SindromePredominante_Paciente" FromRole="Paciente" ToRole="SindromePredominante" />
           <NavigationProperty Name="SistemaSoap" Relationship="FADENModel.FK_SistemaSoap_Paciente" FromRole="Paciente" ToRole="SistemaSoap" />
           <NavigationProperty Name="TratamientoHistorico" Relationship="FADENModel.FK_TratamientoHistorico_Paciente" FromRole="Paciente" ToRole="TratamientoHistorico" />
-          <NavigationProperty Name="AnalisisPresuncion" Relationship="FADENModel.FK_AnalisisPresuncion_Paciente" FromRole="Paciente" ToRole="AnalisisPresuncion" />
-          <NavigationProperty Name="ValoracionNeuroPsico" Relationship="FADENModel.FK_ValoracionNeuroPsico_Paciente" FromRole="Paciente" ToRole="ValoracionNeuroPsico" />
-          <NavigationProperty Name="HistoriaFamSoc" Relationship="FADENModel.FK_HistoriaFamSoc_Paciente" FromRole="Paciente" ToRole="HistoriaFamSoc" />
         </EntityType>
         <EntityType Name="PerfilUsuario">
           <Key>
@@ -968,6 +995,18 @@
               <PropertyRef Name="IdPaciente" />
             </Principal>
             <Dependent Role="Acompanante">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnalisisPresuncion_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.AnalisisPresuncion" Role="AnalisisPresuncion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="AnalisisPresuncion">
               <PropertyRef Name="IdPaciente" />
             </Dependent>
           </ReferentialConstraint>
@@ -1080,6 +1119,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ExamenFisicoSistema_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.ExamenFisicoSistema" Role="ExamenFisicoSistema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="ExamenFisicoSistema">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoriaFamSoc_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.HistoriaFamSoc" Role="HistoriaFamSoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="HistoriaFamSoc">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SindromePredominante_Paciente">
           <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
           <End Type="FADENModel.SindromePredominante" Role="SindromePredominante" Multiplicity="*" />
@@ -1140,77 +1203,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="AnalisisPresuncion">
-          <Key>
-            <PropertyRef Name="IdAnalisiPresuncion" />
-          </Key>
-          <Property Name="IdAnalisiPresuncion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_AnalisisPresuncion_Paciente" FromRole="AnalisisPresuncion" ToRole="Paciente" />
-        </EntityType>
-        <Association Name="FK_AnalisisPresuncion_Paciente">
-          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
-          <End Type="FADENModel.AnalisisPresuncion" Role="AnalisisPresuncion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="IdPaciente" />
-            </Principal>
-            <Dependent Role="AnalisisPresuncion">
-              <PropertyRef Name="IdPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="ValoracionNeuroPsico">
-          <Key>
-            <PropertyRef Name="IdValoracion" />
-          </Key>
-          <Property Name="IdValoracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Memoria" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="FuncionesEjecutivas" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Lenguaje" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="FuncionesVisoEspaciales" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="FuncionesMotoras" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Comportamiento" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="FuncionAutonomica" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_ValoracionNeuroPsico_Paciente" FromRole="ValoracionNeuroPsico" ToRole="Paciente" />
-        </EntityType>
-        <Association Name="FK_ValoracionNeuroPsico_Paciente">
-          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
-          <End Type="FADENModel.ValoracionNeuroPsico" Role="ValoracionNeuroPsico" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="IdPaciente" />
-            </Principal>
-            <Dependent Role="ValoracionNeuroPsico">
-              <PropertyRef Name="IdPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="HistoriaFamSoc">
-          <Key>
-            <PropertyRef Name="IdHistoriaFamSoc" />
-          </Key>
-          <Property Name="IdHistoriaFamSoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="HistoriaFamiliar" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="HistoriaSocial" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_HistoriaFamSoc_Paciente" FromRole="HistoriaFamSoc" ToRole="Paciente" />
-        </EntityType>
-        <Association Name="FK_HistoriaFamSoc_Paciente">
-          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
-          <End Type="FADENModel.HistoriaFamSoc" Role="HistoriaFamSoc" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="IdPaciente" />
-            </Principal>
-            <Dependent Role="HistoriaFamSoc">
-              <PropertyRef Name="IdPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1230,6 +1222,16 @@
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
                 <ScalarProperty Name="IdAcpte" ColumnName="IdAcpte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnalisisPresuncion">
+            <EntityTypeMapping TypeName="FADENModel.AnalisisPresuncion">
+              <MappingFragment StoreEntitySet="AnalisisPresuncion">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdAnalisiPresuncion" ColumnName="IdAnalisiPresuncion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1339,6 +1341,27 @@
                 <ScalarProperty Name="TipoExamen" ColumnName="TipoExamen" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="IdExamenClinico" ColumnName="IdExamenClinico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExamenFisicoSistema">
+            <EntityTypeMapping TypeName="FADENModel.ExamenFisicoSistema">
+              <MappingFragment StoreEntitySet="ExamenFisicoSistema">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="IdElemento" ColumnName="IdElemento" />
+                <ScalarProperty Name="IdExFisicoSistema" ColumnName="IdExFisicoSistema" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoriaFamSoc">
+            <EntityTypeMapping TypeName="FADENModel.HistoriaFamSoc">
+              <MappingFragment StoreEntitySet="HistoriaFamSoc">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="HistoriaSocial" ColumnName="HistoriaSocial" />
+                <ScalarProperty Name="HistoriaFamiliar" ColumnName="HistoriaFamiliar" />
+                <ScalarProperty Name="IdHistoriaFamSoc" ColumnName="IdHistoriaFamSoc" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1472,41 +1495,6 @@
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AnalisisPresuncion">
-            <EntityTypeMapping TypeName="FADENModel.AnalisisPresuncion">
-              <MappingFragment StoreEntitySet="AnalisisPresuncion">
-                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="IdAnalisiPresuncion" ColumnName="IdAnalisiPresuncion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ValoracionNeuroPsico">
-            <EntityTypeMapping TypeName="FADENModel.ValoracionNeuroPsico">
-              <MappingFragment StoreEntitySet="ValoracionNeuroPsico">
-                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
-                <ScalarProperty Name="FuncionAutonomica" ColumnName="FuncionAutonomica" />
-                <ScalarProperty Name="Comportamiento" ColumnName="Comportamiento" />
-                <ScalarProperty Name="FuncionesMotoras" ColumnName="FuncionesMotoras" />
-                <ScalarProperty Name="FuncionesVisoEspaciales" ColumnName="FuncionesVisoEspaciales" />
-                <ScalarProperty Name="Lenguaje" ColumnName="Lenguaje" />
-                <ScalarProperty Name="FuncionesEjecutivas" ColumnName="FuncionesEjecutivas" />
-                <ScalarProperty Name="Memoria" ColumnName="Memoria" />
-                <ScalarProperty Name="IdValoracion" ColumnName="IdValoracion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HistoriaFamSoc">
-            <EntityTypeMapping TypeName="FADENModel.HistoriaFamSoc">
-              <MappingFragment StoreEntitySet="HistoriaFamSoc">
-                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
-                <ScalarProperty Name="HistoriaSocial" ColumnName="HistoriaSocial" />
-                <ScalarProperty Name="HistoriaFamiliar" ColumnName="HistoriaFamiliar" />
-                <ScalarProperty Name="IdHistoriaFamSoc" ColumnName="IdHistoriaFamSoc" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

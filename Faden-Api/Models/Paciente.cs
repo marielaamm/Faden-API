@@ -18,18 +18,18 @@ namespace Faden_Api.Models
         public Paciente()
         {
             this.Acompanante = new HashSet<Acompanante>();
+            this.AnalisisPresuncion = new HashSet<AnalisisPresuncion>();
             this.AntecedenteFamiliar = new HashSet<AntecedenteFamiliar>();
             this.AntecedentenNeuroPsiquiatrico = new HashSet<AntecedentenNeuroPsiquiatrico>();
             this.AntecedentePatologico = new HashSet<AntecedentePatologico>();
             this.AntecendeteQuirurgico = new HashSet<AntecendeteQuirurgico>();
             this.Consenso = new HashSet<Consenso>();
             this.ExamenClinico = new HashSet<ExamenClinico>();
+            this.ExamenFisicoSistema = new HashSet<ExamenFisicoSistema>();
+            this.HistoriaFamSoc = new HashSet<HistoriaFamSoc>();
             this.SindromePredominante = new HashSet<SindromePredominante>();
             this.SistemaSoap = new HashSet<SistemaSoap>();
             this.TratamientoHistorico = new HashSet<TratamientoHistorico>();
-            this.AnalisisPresuncion = new HashSet<AnalisisPresuncion>();
-            this.ValoracionNeuroPsico = new HashSet<ValoracionNeuroPsico>();
-            this.HistoriaFamSoc = new HashSet<HistoriaFamSoc>();
         }
     
         public int IdPaciente { get; set; }
@@ -67,6 +67,8 @@ namespace Faden_Api.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Acompanante> Acompanante { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AnalisisPresuncion> AnalisisPresuncion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AntecedenteFamiliar> AntecedenteFamiliar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AntecedentenNeuroPsiquiatrico> AntecedentenNeuroPsiquiatrico { get; set; }
@@ -80,16 +82,14 @@ namespace Faden_Api.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ExamenClinico> ExamenClinico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ExamenFisicoSistema> ExamenFisicoSistema { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HistoriaFamSoc> HistoriaFamSoc { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SindromePredominante> SindromePredominante { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SistemaSoap> SistemaSoap { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TratamientoHistorico> TratamientoHistorico { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AnalisisPresuncion> AnalisisPresuncion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ValoracionNeuroPsico> ValoracionNeuroPsico { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HistoriaFamSoc> HistoriaFamSoc { get; set; }
     }
 }

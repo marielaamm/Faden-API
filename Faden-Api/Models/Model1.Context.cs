@@ -26,6 +26,7 @@ namespace Faden_Api.Models
         }
     
         public virtual DbSet<Acompanante> Acompanante { get; set; }
+        public virtual DbSet<AnalisisPresuncion> AnalisisPresuncion { get; set; }
         public virtual DbSet<AntecedenteFamiliar> AntecedenteFamiliar { get; set; }
         public virtual DbSet<AntecedentenNeuroPsiquiatrico> AntecedentenNeuroPsiquiatrico { get; set; }
         public virtual DbSet<AntecedentePatologico> AntecedentePatologico { get; set; }
@@ -35,6 +36,8 @@ namespace Faden_Api.Models
         public virtual DbSet<Departamento> Departamento { get; set; }
         public virtual DbSet<Escolaridad> Escolaridad { get; set; }
         public virtual DbSet<ExamenClinico> ExamenClinico { get; set; }
+        public virtual DbSet<ExamenFisicoSistema> ExamenFisicoSistema { get; set; }
+        public virtual DbSet<HistoriaFamSoc> HistoriaFamSoc { get; set; }
         public virtual DbSet<Medicos> Medicos { get; set; }
         public virtual DbSet<Paciente> Paciente { get; set; }
         public virtual DbSet<PerfilUsuario> PerfilUsuario { get; set; }
@@ -43,8 +46,5 @@ namespace Faden_Api.Models
         public virtual DbSet<SistemaSoap> SistemaSoap { get; set; }
         public virtual DbSet<TratamientoHistorico> TratamientoHistorico { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
-        public virtual DbSet<AnalisisPresuncion> AnalisisPresuncion { get; set; }
-        public virtual DbSet<ValoracionNeuroPsico> ValoracionNeuroPsico { get; set; }
-        public virtual DbSet<HistoriaFamSoc> HistoriaFamSoc { get; set; }
     }
 }
