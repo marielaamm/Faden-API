@@ -44,6 +44,12 @@
         <AssociationConnector Association="FADENModel.FK_TratamientoHistorico_Paciente" />
         <AssociationConnector Association="FADENModel.FK_PerfilUsuario_Usuario" />
         <AssociationConnector Association="FADENModel.FK_Usuario_Rol" />
+        <EntityTypeShape EntityType="FADENModel.EstiloVida" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="FADENModel.EstiloVidaAlimentacion" Width="1.5" PointX="5.25" PointY="51.375" />
+        <EntityTypeShape EntityType="FADENModel.EstiloVidaEjercicio" Width="1.5" PointX="5.25" PointY="48.5" />
+        <AssociationConnector Association="FADENModel.FK_EstiloVida_Paciente" />
+        <AssociationConnector Association="FADENModel.FK_EstiloVidaAlimentacion_Paciente" />
+        <AssociationConnector Association="FADENModel.FK_EstiloVidaEjercicio_Paciente" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

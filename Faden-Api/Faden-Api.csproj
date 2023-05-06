@@ -225,6 +225,7 @@
     <Compile Include="Class\cat\Cls_Municipio.cs" />
     <Compile Include="Class\Cls_TAcompanante.cs" />
     <Compile Include="Class\EXP\Cls_AntecedenteQuirurgico.cs" />
+    <Compile Include="Class\EXP\Cls_EstiloVidaDatos.cs" />
     <Compile Include="Class\EXP\cls_TratamientoHistorico.cs" />
     <Compile Include="Class\EXP\Cls_ValoracionNeuroPsicologica.cs" />
     <Compile Include="Class\EXP\HistoriaFamSoc.cs" />
@@ -281,6 +282,15 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Escolaridad.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EstiloVida.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EstiloVidaAlimentacion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EstiloVidaEjercicio.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ExamenClinico.cs">

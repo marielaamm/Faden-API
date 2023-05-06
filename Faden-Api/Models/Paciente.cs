@@ -30,6 +30,9 @@ namespace Faden_Api.Models
             this.SindromePredominante = new HashSet<SindromePredominante>();
             this.SistemaSoap = new HashSet<SistemaSoap>();
             this.TratamientoHistorico = new HashSet<TratamientoHistorico>();
+            this.EstiloVida = new HashSet<EstiloVida>();
+            this.EstiloVidaAlimentacion = new HashSet<EstiloVidaAlimentacion>();
+            this.EstiloVidaEjercicio = new HashSet<EstiloVidaEjercicio>();
         }
     
         public int IdPaciente { get; set; }
@@ -91,5 +94,11 @@ namespace Faden_Api.Models
         public virtual ICollection<SistemaSoap> SistemaSoap { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TratamientoHistorico> TratamientoHistorico { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EstiloVida> EstiloVida { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EstiloVidaAlimentacion> EstiloVidaAlimentacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EstiloVidaEjercicio> EstiloVidaEjercicio { get; set; }
     }
 }
