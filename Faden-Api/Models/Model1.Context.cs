@@ -49,5 +49,6 @@ namespace Faden_Api.Models
         public virtual DbSet<EstiloVida> EstiloVida { get; set; }
         public virtual DbSet<EstiloVidaAlimentacion> EstiloVidaAlimentacion { get; set; }
         public virtual DbSet<EstiloVidaEjercicio> EstiloVidaEjercicio { get; set; }
+        public virtual DbSet<ValoracionNeuroPsico> ValoracionNeuroPsico { get; set; }
     }
 }

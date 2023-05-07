@@ -122,7 +122,7 @@ namespace Faden_Api.Controllers.CAT
 
 
 
-        [Route("api/cat/Consenso/Buscar")]
+        [Route("api/cat/Consenso/BuscarConsenso")]
         [HttpGet]
         public string Buscar(int IdPaciente)
         {
@@ -132,8 +132,6 @@ namespace Faden_Api.Controllers.CAT
         private string _Buscar(int IdPaciente)
         {
             string json = string.Empty;
-
-
 
             try
             {
@@ -178,6 +176,45 @@ namespace Faden_Api.Controllers.CAT
             return json;
         }
 
+
+
+        [Route("api/cat/Consenso/BuscarSindrome")]
+        [HttpGet]
+        public string BuscarSindrome(int IdPaciente)
+        {
+            return _BuscarSindrome(IdPaciente);
+        }
+
+        private string _BuscarSindrome(int IdPaciente)
+        {
+            string json = string.Empty;
+
+
+
+            try
+            {
+                using (FADENEntities _conexion = new FADENEntities())
+                {
+                    var qDetalle = (from _d in _conexion.SindromePredominante
+                                    where _d.IdPaciente == IdPaciente
+                                    select new
+                                    {
+                                        IdSindrome = _d.IdSindrome,
+                                        TipoSindrome = _d.TipoSindrome,
+                                        IdPaciente = _d.IdPaciente,
+                                    }).ToList();
+
+                    json = Cls_Mensaje.Tojson(qDetalle, qDetalle.Count, string.Empty, string.Empty, 0);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                json = Cls_Mensaje.Tojson(null, 0, "1", ex.Message, 1);
+            }
+
+            return json;
+        }
 
 
     }

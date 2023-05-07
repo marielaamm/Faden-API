@@ -76,5 +76,43 @@ namespace Faden_Api.Controllers.EXP
         }
 
 
+        [Route("api/cat/Historia/Buscar")]
+        [HttpGet]
+        public string Buscar(int IdPaciente)
+        {
+            return _Buscar(IdPaciente);
+        }
+
+        private string _Buscar(int IdPaciente)
+        {
+            string json = string.Empty;
+
+            try
+            {
+                using (FADENEntities _conexion = new FADENEntities())
+                {
+                    var qDetalle = (from _h in _conexion.HistoriaFamSoc
+                                    where _h.IdPaciente == IdPaciente
+                                    select new
+                                    {
+                                        HistoriaFamiliar = _h.HistoriaFamiliar,
+                                        HistoriaSocial = _h.HistoriaSocial,
+                                        IdPaciente = _h.IdPaciente,
+
+                                    }).ToList();
+
+                    json = Cls_Mensaje.Tojson(qDetalle, qDetalle.Count, string.Empty, string.Empty, 0);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                json = Cls_Mensaje.Tojson(null, 0, "1", ex.Message, 1);
+            }
+
+            return json;
+        }
+
+
     }
 }

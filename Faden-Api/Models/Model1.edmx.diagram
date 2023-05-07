@@ -50,6 +50,8 @@
         <AssociationConnector Association="FADENModel.FK_EstiloVida_Paciente" />
         <AssociationConnector Association="FADENModel.FK_EstiloVidaAlimentacion_Paciente" />
         <AssociationConnector Association="FADENModel.FK_EstiloVidaEjercicio_Paciente" />
+        <EntityTypeShape EntityType="FADENModel.ValoracionNeuroPsico" Width="1.5" PointX="5.25" PointY="55.125" />
+        <AssociationConnector Association="FADENModel.FK_ValoracionNeuroPsico_Paciente" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

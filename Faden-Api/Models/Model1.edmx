@@ -307,6 +307,20 @@
           <Property Name="IdRol" Type="int" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="ValoracionNeuroPsico">
+          <Key>
+            <PropertyRef Name="IdValoracion" />
+          </Key>
+          <Property Name="IdValoracion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Memoria" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FuncionesEjecutivas" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Lenguaje" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FuncionesVisoEspaciales" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FuncionesMotoras" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Comportamiento" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FuncionAutonomica" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IdPaciente" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Acompanante_Paciente">
           <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
           <End Role="Acompanante" Type="Self.Acompanante" Multiplicity="*" />
@@ -559,6 +573,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ValoracionNeuroPsico_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="ValoracionNeuroPsico" Type="Self.ValoracionNeuroPsico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="ValoracionNeuroPsico">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="FADENModelStoreContainer">
           <EntitySet Name="Acompanante" EntityType="Self.Acompanante" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnalisisPresuncion" EntityType="Self.AnalisisPresuncion" Schema="dbo" store:Type="Tables" />
@@ -584,6 +610,7 @@
           <EntitySet Name="SistemaSoap" EntityType="Self.SistemaSoap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TratamientoHistorico" EntityType="Self.TratamientoHistorico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ValoracionNeuroPsico" EntityType="Self.ValoracionNeuroPsico" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Acompanante_Paciente" Association="Self.FK_Acompanante_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Acompanante" EntitySet="Acompanante" />
@@ -667,6 +694,10 @@
           <AssociationSet Name="FK_Usuario_Rol" Association="Self.FK_Usuario_Rol">
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValoracionNeuroPsico_Paciente" Association="Self.FK_ValoracionNeuroPsico_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="ValoracionNeuroPsico" EntitySet="ValoracionNeuroPsico" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -781,6 +812,11 @@
           <AssociationSet Name="FK_EstiloVidaEjercicio_Paciente" Association="FADENModel.FK_EstiloVidaEjercicio_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="EstiloVidaEjercicio" EntitySet="EstiloVidaEjercicio" />
+          </AssociationSet>
+          <EntitySet Name="ValoracionNeuroPsico" EntityType="FADENModel.ValoracionNeuroPsico" />
+          <AssociationSet Name="FK_ValoracionNeuroPsico_Paciente" Association="FADENModel.FK_ValoracionNeuroPsico_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="ValoracionNeuroPsico" EntitySet="ValoracionNeuroPsico" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Acompanante">
@@ -1015,6 +1051,7 @@
           <NavigationProperty Name="EstiloVida" Relationship="FADENModel.FK_EstiloVida_Paciente" FromRole="Paciente" ToRole="EstiloVida" />
           <NavigationProperty Name="EstiloVidaAlimentacion" Relationship="FADENModel.FK_EstiloVidaAlimentacion_Paciente" FromRole="Paciente" ToRole="EstiloVidaAlimentacion" />
           <NavigationProperty Name="EstiloVidaEjercicio" Relationship="FADENModel.FK_EstiloVidaEjercicio_Paciente" FromRole="Paciente" ToRole="EstiloVidaEjercicio" />
+          <NavigationProperty Name="ValoracionNeuroPsico" Relationship="FADENModel.FK_ValoracionNeuroPsico_Paciente" FromRole="Paciente" ToRole="ValoracionNeuroPsico" />
         </EntityType>
         <EntityType Name="PerfilUsuario">
           <Key>
@@ -1379,6 +1416,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ValoracionNeuroPsico">
+          <Key>
+            <PropertyRef Name="IdValoracion" />
+          </Key>
+          <Property Name="IdValoracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Memoria" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FuncionesEjecutivas" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Lenguaje" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FuncionesVisoEspaciales" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FuncionesMotoras" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Comportamiento" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FuncionAutonomica" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_ValoracionNeuroPsico_Paciente" FromRole="ValoracionNeuroPsico" ToRole="Paciente" />
+        </EntityType>
+        <Association Name="FK_ValoracionNeuroPsico_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.ValoracionNeuroPsico" Role="ValoracionNeuroPsico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="ValoracionNeuroPsico">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1708,6 +1772,21 @@
                 <ScalarProperty Name="Frecuencia" ColumnName="Frecuencia" />
                 <ScalarProperty Name="IdElemento" ColumnName="IdElemento" />
                 <ScalarProperty Name="IdEjercicio" ColumnName="IdEjercicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ValoracionNeuroPsico">
+            <EntityTypeMapping TypeName="FADENModel.ValoracionNeuroPsico">
+              <MappingFragment StoreEntitySet="ValoracionNeuroPsico">
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="FuncionAutonomica" ColumnName="FuncionAutonomica" />
+                <ScalarProperty Name="Comportamiento" ColumnName="Comportamiento" />
+                <ScalarProperty Name="FuncionesMotoras" ColumnName="FuncionesMotoras" />
+                <ScalarProperty Name="FuncionesVisoEspaciales" ColumnName="FuncionesVisoEspaciales" />
+                <ScalarProperty Name="Lenguaje" ColumnName="Lenguaje" />
+                <ScalarProperty Name="FuncionesEjecutivas" ColumnName="FuncionesEjecutivas" />
+                <ScalarProperty Name="Memoria" ColumnName="Memoria" />
+                <ScalarProperty Name="IdValoracion" ColumnName="IdValoracion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
