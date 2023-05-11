@@ -82,5 +82,47 @@ namespace Faden_Api.Controllers.EXP
 
         }
 
+        [Route("api/cat/Valoracion/Buscar")]
+        [HttpGet]
+        public string Buscar(int IdPaciente)
+        {
+            return _Buscar(IdPaciente);
+        }
+
+        private string _Buscar(int IdPaciente)
+        {
+            string json = string.Empty;
+
+            try
+            {
+                using (FADENEntities _conexion = new FADENEntities())
+                {
+                    var qDetalle = (from _d in _conexion.ValoracionNeuroPsico
+                                    where _d.IdPaciente == IdPaciente
+                                    select new
+                                    {
+                                        IdValoracion = _d.IdValoracion,
+                                        Memoria = _d.Memoria,
+                                        FuncionesEjecutivas = _d.FuncionesEjecutivas,
+                                        Lenguaje = _d.Lenguaje,
+                                        FuncionesVisoEspaciales = _d.FuncionesVisoEspaciales,
+                                        FuncionesMotoras = _d.FuncionesMotoras,
+                                        Comportamiento = _d.Comportamiento,
+                                        FuncionAutonomica = _d.FuncionAutonomica,                                                             
+                                        IdPaciente = _d.IdPaciente,
+                                    }).ToList();
+
+                    json = Cls_Mensaje.Tojson(qDetalle, qDetalle.Count, string.Empty, string.Empty, 0);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                json = Cls_Mensaje.Tojson(null, 0, "1", ex.Message, 1);
+            }
+
+            return json;
+        }
+
     }
 }
