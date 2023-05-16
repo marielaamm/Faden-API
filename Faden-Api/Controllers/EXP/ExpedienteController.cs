@@ -32,6 +32,22 @@ namespace Faden_Api.Controllers.EXP
             {
                 using (FADENEntities _conexion = new FADENEntities())
                 {
+
+
+                    var qHistoriaFamSoc = (from _h in _conexion.HistoriaFamSoc
+                                           where _h.IdPaciente == IdPaciente
+                                           select new
+                                           {
+                                               HistoriaFamiliar = _h.HistoriaFamiliar,
+                                               HistoriaSocial = _h.HistoriaSocial,
+                                               IdPaciente = _h.IdPaciente,
+
+                                           }).ToList();
+
+
+                    string strHistoriaFamSoc = JsonConvert.SerializeObject(qHistoriaFamSoc);
+
+
                     var qTratHisto = (from _d in _conexion.TratamientoHistorico
                                     where _d.IdPaciente == IdPaciente
                                     select new
@@ -96,7 +112,7 @@ namespace Faden_Api.Controllers.EXP
                                     }).ToList();
 
 
-                    string strqAntQuirurgico = JsonConvert.SerializeObject(qAntQuirurgico);
+                    string strAntQuirurgico = JsonConvert.SerializeObject(qAntQuirurgico);
 
 
 
@@ -110,15 +126,85 @@ namespace Faden_Api.Controllers.EXP
                                         IdPaciente = _d.IdPaciente
                                     }).ToList();
 
-                    string strqAntFamiliares = JsonConvert.SerializeObject(qAntFamiliares);
+                    string strAntFamiliares = JsonConvert.SerializeObject(qAntFamiliares);
+
+
+                    var qAntNeuroPsi = (from _d in _conexion.AntecedentenNeuroPsiquiatrico
+                                    where _d.IdPaciente == IdPaciente
+                                    select new
+                                    {
+                                        IdAntNeuroPsiq = _d.IdAntNeuroPsiq,
+                                        Nombre = _d.Nombre,
+                                        Vive = _d.Vive,
+                                        Enfermedad = _d.Enfermedad,
+                                        Padece = _d.Padece,
+                                        Parentesco = _d.Parentesco,
+                                        IdPaciente = _d.IdPaciente
+                                    }).ToList();
+
+
+                    string strAntNeuroPsi = JsonConvert.SerializeObject(qAntNeuroPsi);
+
+
+
+
+                    var qExamenFisicoSistema = (from _d in _conexion.ExamenFisicoSistema
+                                    where _d.IdPaciente == IdPaciente
+                                    select new
+                                    {
+                                        IdExFisicoSistema = _d.IdExFisicoSistema,
+                                        IdElemento = _d.IdElemento,
+                                        Observaciones = _d.Observaciones,
+                                        Activo = _d.Activo,
+                                        IdPaciente = _d.IdPaciente
+                                    }).ToList();
+
+                    string strExamenFisicoSistema = JsonConvert.SerializeObject(qExamenFisicoSistema);
+
+
+                    var qAnalisiPresuncion = (from _d in _conexion.AnalisisPresuncion
+                                    where _d.IdPaciente == IdPaciente
+                                    select new
+                                    {
+                                        IdAnalisiPresuncion = _d.IdAnalisiPresuncion,
+                                        Descripcion = _d.Descripcion,
+                                        Fecha = _d.Fecha,
+                                        IdPaciente = _d.IdPaciente
+                                    }).ToList();
+
+
+                    string strAnalisiPresuncion = JsonConvert.SerializeObject(qAnalisiPresuncion);
+
+
+                    var qValoracionNeuro = (from _d in _conexion.ValoracionNeuroPsico
+                                    where _d.IdPaciente == IdPaciente
+                                    select new
+                                    {
+                                        IdValoracion = _d.IdValoracion,
+                                        Memoria = _d.Memoria,
+                                        FuncionesEjecutivas = _d.FuncionesEjecutivas,
+                                        Lenguaje = _d.Lenguaje,
+                                        FuncionesVisoEspaciales = _d.FuncionesVisoEspaciales,
+                                        FuncionesMotoras = _d.FuncionesMotoras,
+                                        Comportamiento = _d.Comportamiento,
+                                        FuncionAutonomica = _d.FuncionAutonomica,
+                                        IdPaciente = _d.IdPaciente,
+                                    }).ToList();
+
+                    string strValoracionNeuro = JsonConvert.SerializeObject(qValoracionNeuro);
 
 
                     Cls_DatosExpediente Datos = new Cls_DatosExpediente();
+                    Datos.HistoriaFamSoc = strHistoriaFamSoc;
                     Datos.TratHisto = strTratHisto;
                     Datos.ExamenClinico = strExamenClinico;
                     Datos.AntPatologico = strAntPatologico;
-                    Datos.AntQuirurgico = strqAntQuirurgico;
-                    Datos.AntFamiliares = strqAntFamiliares;
+                    Datos.AntQuirurgico = strAntQuirurgico;
+                    Datos.AntFamiliares = strAntFamiliares;
+                    Datos.AntNeuroPsi = strAntNeuroPsi;
+                    Datos.ExamenFisicoSistema = strExamenFisicoSistema;
+                    Datos.AnalisiPresuncion = strAnalisiPresuncion;
+                    Datos.ValoracionNeuro = strAnalisiPresuncion;
 
 
                     json = Cls_Mensaje.Tojson(Datos, 1, string.Empty, string.Empty, 0);

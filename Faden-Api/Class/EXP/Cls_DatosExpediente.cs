@@ -12,5 +12,10 @@ namespace Faden_Api.Class.EXP
         public string AntPatologico;
         public string AntQuirurgico;
         public string AntFamiliares;
+        public string AntNeuroPsi;
+        public string HistoriaFamSoc;
+        public string ExamenFisicoSistema;
+        public string AnalisiPresuncion;
+        public string ValoracionNeuro;
     }
 }
