@@ -92,7 +92,7 @@ namespace Faden_Api.Controllers.CAT
 
 
                             _s.TipoSindrome = s.TipoSindrome;
-                            _s.IdPaciente = s.IdPaciente;
+                            _s.IdPaciente = c.IdPaciente;
 
                             if(esNuevoDet) _conexion.SindromePredominante.Add(_s);
                             
