@@ -229,6 +229,7 @@
     <Compile Include="Class\EXP\Cls_EstiloVidaDatos.cs" />
     <Compile Include="Class\EXP\cls_TratamientoHistorico.cs" />
     <Compile Include="Class\EXP\Cls_ValoracionNeuroPsicologica.cs" />
+    <Compile Include="Class\EXP\EstiloVidaController.cs" />
     <Compile Include="Class\EXP\HistoriaFamSoc.cs" />
     <Compile Include="Controllers\CAT\CiudadController.cs" />
     <Compile Include="Controllers\CAT\ConsensoController.cs" />
@@ -426,6 +427,7 @@
     <Folder Include="Views\Consenso\" />
     <Folder Include="Views\Departamento\" />
     <Folder Include="Views\Escolaridad\" />
+    <Folder Include="Views\EstiloVida\" />
     <Folder Include="Views\ExamenClinico\" />
     <Folder Include="Views\Expediente\" />
     <Folder Include="Views\FuncionesGenerales\" />

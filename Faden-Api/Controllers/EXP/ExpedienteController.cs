@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -194,6 +195,51 @@ namespace Faden_Api.Controllers.EXP
                     string strValoracionNeuro = JsonConvert.SerializeObject(qValoracionNeuro);
 
 
+                    var qEstiloVida = (from _e in _conexion.EstiloVida
+                                       where _e.IdPaciente == IdPaciente
+                                       select new
+                                       {
+                                           _e.IdEstiloVida,
+                                           _e.Senderismo,
+                                           _e.Alcoholismo,
+                                           _e.Tabaquismo,
+                                           _e.Cafe,
+                                           _e.Ruido,
+                                           _e.Horas,
+                                           _e.Despertar,
+                                           _e.IdPaciente
+                                       }).ToList();
+                   string strEstiloVIda = JsonConvert.SerializeObject(qEstiloVida);
+
+
+                    var qEstiloVidaEjercicio = (from _e in _conexion.EstiloVidaEjercicio
+                                                where _e.IdPaciente == IdPaciente
+                                                select new
+                                                {
+                                                    _e.IdEjercicio,
+                                                    _e.IdElemento,
+                                                    _e.Frecuencia,
+                                                    _e.Activo,
+                                                    _e.IdPaciente
+                                                }).ToList();
+                    string strEstiloVidaEjercicio = JsonConvert.SerializeObject(qEstiloVidaEjercicio);
+
+
+                    var qEstiloVidaAlimentacion = (from _e in _conexion.EstiloVidaAlimentacion
+                                                   where _e.IdPaciente == IdPaciente
+                                                   select new
+                                                   {
+                                                       _e.IdAlimentacion,
+                                                       _e.IdElemento,
+                                                       _e.Porcion,
+                                                       _e.Frecuencia,
+                                                       _e.IdPaciente
+                                                   }).ToList();
+                    string strEstiloVidaAlimentacion = JsonConvert.SerializeObject(qEstiloVidaAlimentacion);
+
+
+
+
                     Cls_DatosExpediente Datos = new Cls_DatosExpediente();
                     Datos.HistoriaFamSoc = strHistoriaFamSoc;
                     Datos.TratHisto = strTratHisto;
@@ -205,6 +251,9 @@ namespace Faden_Api.Controllers.EXP
                     Datos.ExamenFisicoSistema = strExamenFisicoSistema;
                     Datos.AnalisiPresuncion = strAnalisiPresuncion;
                     Datos.ValoracionNeuro = strAnalisiPresuncion;
+                    Datos.EstiloVida = strEstiloVIda;
+                    Datos.EstiloVidaAlimentacion = strEstiloVidaAlimentacion;
+                    Datos.EstiloVidaEjercicio = strEstiloVidaEjercicio;
 
 
                     json = Cls_Mensaje.Tojson(Datos, 1, string.Empty, string.Empty, 0);

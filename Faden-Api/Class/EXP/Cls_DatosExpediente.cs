@@ -17,5 +17,9 @@ namespace Faden_Api.Class.EXP
         public string ExamenFisicoSistema;
         public string AnalisiPresuncion;
         public string ValoracionNeuro;
+        public string EstiloVida;
+        public string EstiloVidaEjercicio;
+        public string EstiloVidaAlimentacion;
+        
     }
 }

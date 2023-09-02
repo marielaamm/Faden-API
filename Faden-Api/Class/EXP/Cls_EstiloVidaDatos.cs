@@ -9,7 +9,7 @@ namespace Faden_Api.Class.EXP
     public class Cls_EstiloVidaDatos
     {
         public EstiloVida EstiloVida;
-        public EstiloVidaEjercicio Ejercicios;
-        public EstiloVidaAlimentacion Alimentacion;
+        public List<EstiloVidaEjercicio>  Ejercicios;
+        public List<EstiloVidaAlimentacion> Alimentacion;
     }
 }

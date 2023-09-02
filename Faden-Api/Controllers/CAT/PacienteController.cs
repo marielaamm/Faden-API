@@ -273,8 +273,9 @@ namespace Faden_Api.Controllers.CAT
                                          RefUltTrabajo = _m.RefUltTrabajo,
                                          Jubilado = _m.Jubilado,
                                          Pensionado = _m.Pensionado,
- 
-                                      }).ToList();
+                                         Filtro = string.Concat(_m.PNombre, _m.PApellido, _m.NoExpediente, _m.Identificacion, _m.Celular)
+
+                                     }).ToList();
 
                     lst.Add(qPaciente);
                     lst.Add(LstAcompanante);

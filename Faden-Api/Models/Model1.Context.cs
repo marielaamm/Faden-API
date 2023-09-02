@@ -35,7 +35,6 @@ namespace Faden_Api.Models
         public virtual DbSet<Consenso> Consenso { get; set; }
         public virtual DbSet<Departamento> Departamento { get; set; }
         public virtual DbSet<Escolaridad> Escolaridad { get; set; }
-        public virtual DbSet<EstiloVida> EstiloVida { get; set; }
         public virtual DbSet<EstiloVidaAlimentacion> EstiloVidaAlimentacion { get; set; }
         public virtual DbSet<EstiloVidaEjercicio> EstiloVidaEjercicio { get; set; }
         public virtual DbSet<ExamenClinico> ExamenClinico { get; set; }
@@ -50,5 +49,6 @@ namespace Faden_Api.Models
         public virtual DbSet<TratamientoHistorico> TratamientoHistorico { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<ValoracionNeuroPsico> ValoracionNeuroPsico { get; set; }
+        public virtual DbSet<EstiloVida> EstiloVida { get; set; }
     }
 }
