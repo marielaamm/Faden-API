@@ -76,7 +76,7 @@ namespace Faden_Api.Controllers.FN
                 {
 
                     List<DateTime> list = new List<DateTime>();
-                    DateTime qFechaServer = _conexion.Database.SqlQuery<DateTime>("Select getdate();").FirstOrDefault();
+                    DateTime qFechaServer = DateTime.Now;
                     list.Add(qFechaServer);
 
 

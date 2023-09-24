@@ -50,6 +50,7 @@ namespace Faden_Api.Controllers.EXP
 
 
                     var qTratHisto = (from _d in _conexion.TratamientoHistorico
+                                      join _m in _conexion.Medicos on _d.IdMedico equals _m.IdMedico
                                     where _d.IdPaciente == IdPaciente
                                     select new
                                     {
@@ -57,6 +58,7 @@ namespace Faden_Api.Controllers.EXP
                                         Tratamiento = _d.Tratamiento,
                                         Dosis = _d.Dosis,
                                         IdMedico = _d.IdMedico,
+                                        Medico = _m.NombreCompleto,
                                         FechaRegistro = _d.FechaRegistro,
                                         Tipo = _d.Tipo,
                                         IdPaciente = _d.IdPaciente
