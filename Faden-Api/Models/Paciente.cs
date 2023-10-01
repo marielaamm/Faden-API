@@ -34,6 +34,7 @@ namespace Faden_Api.Models
             this.TratamientoHistorico = new HashSet<TratamientoHistorico>();
             this.ValoracionNeuroPsico = new HashSet<ValoracionNeuroPsico>();
             this.EstiloVida = new HashSet<EstiloVida>();
+            this.AgendaMedica = new HashSet<AgendaMedica>();
         }
     
         public int IdPaciente { get; set; }
@@ -103,5 +104,7 @@ namespace Faden_Api.Models
         public virtual ICollection<ValoracionNeuroPsico> ValoracionNeuroPsico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EstiloVida> EstiloVida { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AgendaMedica> AgendaMedica { get; set; }
     }
 }

@@ -20,6 +20,19 @@
           <Property Name="EsSecundario" Type="bit" Nullable="false" />
           <Property Name="IdPaciente" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="AgendaMedica">
+          <Key>
+            <PropertyRef Name="IdAgenda" />
+          </Key>
+          <Property Name="IdAgenda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPaciente" Type="int" Nullable="false" />
+          <Property Name="IdMedico" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="HoraInicio" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="HoraFin" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="AnalisisPresuncion">
           <Key>
             <PropertyRef Name="IdAnalisiPresuncion" />
@@ -333,6 +346,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AgendaMedica_Medicos">
+          <End Role="Medicos" Type="Self.Medicos" Multiplicity="1" />
+          <End Role="AgendaMedica" Type="Self.AgendaMedica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicos">
+              <PropertyRef Name="IdMedico" />
+            </Principal>
+            <Dependent Role="AgendaMedica">
+              <PropertyRef Name="IdMedico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AgendaMedica_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="AgendaMedica" Type="Self.AgendaMedica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="AgendaMedica">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AnalisisPresuncion_Paciente">
           <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
           <End Role="AnalisisPresuncion" Type="Self.AnalisisPresuncion" Multiplicity="*" />
@@ -587,6 +624,7 @@
         </Association>
         <EntityContainer Name="FADENModelStoreContainer">
           <EntitySet Name="Acompanante" EntityType="Self.Acompanante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AgendaMedica" EntityType="Self.AgendaMedica" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnalisisPresuncion" EntityType="Self.AnalisisPresuncion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AntecedenteFamiliar" EntityType="Self.AntecedenteFamiliar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AntecedentenNeuroPsiquiatrico" EntityType="Self.AntecedentenNeuroPsiquiatrico" Schema="dbo" store:Type="Tables" />
@@ -614,6 +652,14 @@
           <AssociationSet Name="FK_Acompanante_Paciente" Association="Self.FK_Acompanante_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Acompanante" EntitySet="Acompanante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AgendaMedica_Medicos" Association="Self.FK_AgendaMedica_Medicos">
+            <End Role="Medicos" EntitySet="Medicos" />
+            <End Role="AgendaMedica" EntitySet="AgendaMedica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AgendaMedica_Paciente" Association="Self.FK_AgendaMedica_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="AgendaMedica" EntitySet="AgendaMedica" />
           </AssociationSet>
           <AssociationSet Name="FK_AnalisisPresuncion_Paciente" Association="Self.FK_AnalisisPresuncion_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
@@ -818,7 +864,16 @@
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="EstiloVida" EntitySet="EstiloVida" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="AgendaMedica" EntityType="FADENModel.AgendaMedica" />
+          <AssociationSet Name="FK_AgendaMedica_Medicos" Association="FADENModel.FK_AgendaMedica_Medicos">
+            <End Role="Medicos" EntitySet="Medicos" />
+            <End Role="AgendaMedica" EntitySet="AgendaMedica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AgendaMedica_Paciente" Association="FADENModel.FK_AgendaMedica_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="AgendaMedica" EntitySet="AgendaMedica" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Acompanante">
           <Key>
             <PropertyRef Name="IdAcpte" />
@@ -1020,6 +1075,7 @@
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="Celular" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Ciudad" Relationship="FADENModel.FK_Medicos" FromRole="Medicos" ToRole="Ciudad" />
+          <NavigationProperty Name="AgendaMedica" Relationship="FADENModel.FK_AgendaMedica_Medicos" FromRole="Medicos" ToRole="AgendaMedica" />
         </EntityType>
         <EntityType Name="Paciente">
           <Key>
@@ -1074,6 +1130,7 @@
           <NavigationProperty Name="TratamientoHistorico" Relationship="FADENModel.FK_TratamientoHistorico_Paciente" FromRole="Paciente" ToRole="TratamientoHistorico" />
           <NavigationProperty Name="ValoracionNeuroPsico" Relationship="FADENModel.FK_ValoracionNeuroPsico_Paciente" FromRole="Paciente" ToRole="ValoracionNeuroPsico" />
           <NavigationProperty Name="EstiloVida" Relationship="FADENModel.FK_EstiloVida_Paciente" FromRole="Paciente" ToRole="EstiloVida" />
+          <NavigationProperty Name="AgendaMedica" Relationship="FADENModel.FK_AgendaMedica_Paciente" FromRole="Paciente" ToRole="AgendaMedica" />
         </EntityType>
         <EntityType Name="PerfilUsuario">
           <Key>
@@ -1443,6 +1500,45 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AgendaMedica">
+          <Key>
+            <PropertyRef Name="IdAgenda" />
+          </Key>
+          <Property Name="IdAgenda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <Property Name="IdMedico" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="HoraInicio" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HoraFin" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Observaciones" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Medicos" Relationship="FADENModel.FK_AgendaMedica_Medicos" FromRole="AgendaMedica" ToRole="Medicos" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_AgendaMedica_Paciente" FromRole="AgendaMedica" ToRole="Paciente" />
+        </EntityType>
+        <Association Name="FK_AgendaMedica_Medicos">
+          <End Type="FADENModel.Medicos" Role="Medicos" Multiplicity="1" />
+          <End Type="FADENModel.AgendaMedica" Role="AgendaMedica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicos">
+              <PropertyRef Name="IdMedico" />
+            </Principal>
+            <Dependent Role="AgendaMedica">
+              <PropertyRef Name="IdMedico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AgendaMedica_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.AgendaMedica" Role="AgendaMedica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="AgendaMedica">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1787,6 +1883,20 @@
                 <ScalarProperty Name="Alcoholismo" ColumnName="Alcoholismo" />
                 <ScalarProperty Name="Senderismo" ColumnName="Senderismo" />
                 <ScalarProperty Name="IdEstiloVida" ColumnName="IdEstiloVida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AgendaMedica">
+            <EntityTypeMapping TypeName="FADENModel.AgendaMedica">
+              <MappingFragment StoreEntitySet="AgendaMedica">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="HoraFin" ColumnName="HoraFin" />
+                <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IdMedico" ColumnName="IdMedico" />
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="IdAgenda" ColumnName="IdAgenda" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

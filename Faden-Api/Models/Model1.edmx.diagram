@@ -52,6 +52,9 @@
         <AssociationConnector Association="FADENModel.FK_Usuario_Rol" />
         <EntityTypeShape EntityType="FADENModel.EstiloVida" Width="1.5" PointX="5.25" PointY="60" />
         <AssociationConnector Association="FADENModel.FK_EstiloVida_Paciente" />
+        <EntityTypeShape EntityType="FADENModel.AgendaMedica" Width="1.5" PointX="14.5" PointY="19.5" />
+        <AssociationConnector Association="FADENModel.FK_AgendaMedica_Medicos" />
+        <AssociationConnector Association="FADENModel.FK_AgendaMedica_Paciente" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

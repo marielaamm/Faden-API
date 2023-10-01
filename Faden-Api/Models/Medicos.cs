@@ -14,6 +14,12 @@ namespace Faden_Api.Models
     
     public partial class Medicos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Medicos()
+        {
+            this.AgendaMedica = new HashSet<AgendaMedica>();
+        }
+    
         public int IdMedico { get; set; }
         public string NoMedico { get; set; }
         public System.DateTime FechaIngreso { get; set; }
@@ -33,5 +39,7 @@ namespace Faden_Api.Models
         public string Celular { get; set; }
     
         public virtual Ciudad Ciudad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AgendaMedica> AgendaMedica { get; set; }
     }
 }
