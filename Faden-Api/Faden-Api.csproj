@@ -221,6 +221,7 @@
     <Compile Include="Class\cat\Cls_Consenso.cs" />
     <Compile Include="Class\cat\Cls_SindromePredominante.cs" />
     <Compile Include="Class\cat\Cls_SistemaSoap.cs" />
+    <Compile Include="Class\Cls_Datos.cs" />
     <Compile Include="Class\Cls_Mensaje.cs" />
     <Compile Include="Class\cat\Cls_Municipio.cs" />
     <Compile Include="Class\Cls_TAcompanante.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="Controllers\FN\FuncionesGeneralesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SIS\RolesController.cs" />
+    <Compile Include="Controllers\SIS\ServerController.cs" />
     <Compile Include="Controllers\SIS\UsuarioController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -364,8 +366,8 @@
     <Content Include="Global.asax" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

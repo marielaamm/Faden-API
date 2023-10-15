@@ -18,12 +18,14 @@ namespace Faden_Api.Models
         public Paciente()
         {
             this.Acompanante = new HashSet<Acompanante>();
+            this.AgendaMedica = new HashSet<AgendaMedica>();
             this.AnalisisPresuncion = new HashSet<AnalisisPresuncion>();
             this.AntecedenteFamiliar = new HashSet<AntecedenteFamiliar>();
             this.AntecedentenNeuroPsiquiatrico = new HashSet<AntecedentenNeuroPsiquiatrico>();
             this.AntecedentePatologico = new HashSet<AntecedentePatologico>();
             this.AntecendeteQuirurgico = new HashSet<AntecendeteQuirurgico>();
             this.Consenso = new HashSet<Consenso>();
+            this.EstiloVida = new HashSet<EstiloVida>();
             this.EstiloVidaAlimentacion = new HashSet<EstiloVidaAlimentacion>();
             this.EstiloVidaEjercicio = new HashSet<EstiloVidaEjercicio>();
             this.ExamenClinico = new HashSet<ExamenClinico>();
@@ -33,8 +35,6 @@ namespace Faden_Api.Models
             this.SistemaSoap = new HashSet<SistemaSoap>();
             this.TratamientoHistorico = new HashSet<TratamientoHistorico>();
             this.ValoracionNeuroPsico = new HashSet<ValoracionNeuroPsico>();
-            this.EstiloVida = new HashSet<EstiloVida>();
-            this.AgendaMedica = new HashSet<AgendaMedica>();
         }
     
         public int IdPaciente { get; set; }
@@ -72,6 +72,8 @@ namespace Faden_Api.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Acompanante> Acompanante { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AgendaMedica> AgendaMedica { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnalisisPresuncion> AnalisisPresuncion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AntecedenteFamiliar> AntecedenteFamiliar { get; set; }
@@ -84,6 +86,8 @@ namespace Faden_Api.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Consenso> Consenso { get; set; }
         public virtual Escolaridad Escolaridad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EstiloVida> EstiloVida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EstiloVidaAlimentacion> EstiloVidaAlimentacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -102,9 +106,5 @@ namespace Faden_Api.Models
         public virtual ICollection<TratamientoHistorico> TratamientoHistorico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ValoracionNeuroPsico> ValoracionNeuroPsico { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EstiloVida> EstiloVida { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AgendaMedica> AgendaMedica { get; set; }
     }
 }

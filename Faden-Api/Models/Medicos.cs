@@ -18,6 +18,7 @@ namespace Faden_Api.Models
         public Medicos()
         {
             this.AgendaMedica = new HashSet<AgendaMedica>();
+            this.Usuario = new HashSet<Usuario>();
         }
     
         public int IdMedico { get; set; }
@@ -38,8 +39,10 @@ namespace Faden_Api.Models
         public string Telefono { get; set; }
         public string Celular { get; set; }
     
-        public virtual Ciudad Ciudad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AgendaMedica> AgendaMedica { get; set; }
+        public virtual Ciudad Ciudad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }

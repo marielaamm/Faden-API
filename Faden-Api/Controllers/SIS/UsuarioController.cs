@@ -62,6 +62,7 @@ namespace Faden_Api.Controllers.SIS
                             _C.Apellido = d.Apellido;
                             _C.Usuario1 = d.Usuario1;
                             _C.Contrasena = d.Contrasena;
+                            _C.IdMedico = d.IdMedico;
                             _C.Activo = true;
                             _conexion.Usuario.Add(_C);
 
@@ -73,6 +74,7 @@ namespace Faden_Api.Controllers.SIS
                             _C.Apellido = d.Apellido;
                             _C.Usuario1 = d.Usuario1;
                             _C.Contrasena = d.Contrasena;
+                            _C.IdMedico = d.IdMedico;
                             _C.Activo = d.Activo;
 
                         }
@@ -96,6 +98,87 @@ namespace Faden_Api.Controllers.SIS
             return json;
 
         }
+
+
+
+
+        [Route("api/SIS/Usuario/Datos")]
+        [HttpGet]
+        public string Datos()
+        {
+            return v_Datos();
+        }
+
+        private string v_Datos()
+        {
+            string json = string.Empty;
+
+            try
+            {
+                using (FADENEntities _Conexion = new FADENEntities())
+                {
+                    List<Cls_Datos> lstDatos = new List<Cls_Datos>();
+
+                    Cls_Datos datos = new Cls_Datos();
+
+                    var qRoles = (from _m in _Conexion.Rol
+                                  where _m.Activo == true
+                                  select new
+                                  {
+                                      IdRol = _m.IdRol,
+                                      Rol1 = _m.Rol1,
+                                      Activo = _m.Activo
+                                  }).ToList();
+
+                    json = Cls_Mensaje.Tojson(qRoles, qRoles.Count, string.Empty, string.Empty, 0);
+
+
+
+                    datos.Nombre = "FECHA FACTURA";
+                    datos.d = qRoles;
+                    lstDatos.Add(datos);
+
+
+
+
+
+                    var qMedico = (from _q in _Conexion.Medicos
+                                   select new
+                                   {
+                                       _q.IdMedico,
+                                       _q.NoMedico,
+                                       _q.NombreCompleto,
+                                       _q.Especialidad
+
+                                   }).ToList();
+
+
+                    json = Cls_Mensaje.Tojson(qRoles, qRoles.Count, string.Empty, string.Empty, 0);
+
+                    datos = new Cls_Datos();
+                    datos.Nombre = "MEDICOS";
+                    datos.d = qMedico;
+                    lstDatos.Add(datos);
+
+
+
+                    json = Cls_Mensaje.Tojson(lstDatos, lstDatos.Count, string.Empty, string.Empty, 0);
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                json = Cls_Mensaje.Tojson(null, 0, "1", ex.Message, 1);
+            }
+
+            return json;
+        }
+
+
+
+
 
     }
 }

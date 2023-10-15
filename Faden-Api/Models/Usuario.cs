@@ -26,8 +26,10 @@ namespace Faden_Api.Models
         public string Usuario1 { get; set; }
         public string Contrasena { get; set; }
         public int IdRol { get; set; }
+        public Nullable<int> IdMedico { get; set; }
         public bool Activo { get; set; }
     
+        public virtual Medicos Medicos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PerfilUsuario> PerfilUsuario { get; set; }
         public virtual Rol Rol { get; set; }
