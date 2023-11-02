@@ -137,7 +137,7 @@ namespace Faden_Api.Controllers.CITA
         [Route("api/Agenda/Guardar")]
         [System.Web.Http.HttpPost]
 
-        public IHttpActionResult Guardar(AgendaMedica d)
+        public IHttpActionResult Guardar(Cls_Agrenda d)
         {
             if (ModelState.IsValid)
             {
@@ -149,7 +149,7 @@ namespace Faden_Api.Controllers.CITA
             }
         }
 
-        private string _Guardar(AgendaMedica d)
+        private string _Guardar(Cls_Agrenda d)
         {
             string json = string.Empty;
             try
@@ -191,6 +191,56 @@ namespace Faden_Api.Controllers.CITA
                         scope.Complete();
 
                         json = Cls_Mensaje.Tojson(null, 1, string.Empty, "Registro Guardado", 0);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                json = Cls_Mensaje.Tojson(null, 0, "1", ex.Message.Replace("\r\n", "<br>"), 1);
+            }
+            return json;
+        }
+
+
+
+        [Route("api/Agenda/Cancelar")]
+        [System.Web.Http.HttpPost]
+
+        public IHttpActionResult Cancelar(int IdAgenda)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok(_Cancelar(IdAgenda));
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        private string _Cancelar(int IdAgenda)
+        {
+            string json = string.Empty;
+            try
+            {
+                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.Serializable }))
+                {
+
+                    using (FADENEntities _conexion = new FADENEntities())
+                    {
+
+                        AgendaMedica row = _conexion.AgendaMedica.Find(IdAgenda);
+          
+
+                        row.Estado = "Cancelada";
+
+                        _conexion.SaveChanges();
+
+
+                        scope.Complete();
+
+                        json = Cls_Mensaje.Tojson(null, 1, string.Empty, "Cita Cancelada", 0);
                     }
                 }
 

@@ -225,6 +225,7 @@
     <Compile Include="Class\Cls_Mensaje.cs" />
     <Compile Include="Class\cat\Cls_Municipio.cs" />
     <Compile Include="Class\Cls_TAcompanante.cs" />
+    <Compile Include="Class\EXP\Cls_Agrenda.cs" />
     <Compile Include="Class\EXP\Cls_AntecedenteQuirurgico.cs" />
     <Compile Include="Class\EXP\Cls_DatosExpediente.cs" />
     <Compile Include="Class\EXP\Cls_EstiloVidaDatos.cs" />

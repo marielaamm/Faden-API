@@ -147,6 +147,10 @@ namespace Faden_Api.Controllers.SIS
                                    {
                                        _q.IdMedico,
                                        _q.NoMedico,
+                                       _q.PNombre,
+                                       _q.SNombre,
+                                       _q.PApellido,
+                                       _q.SApellido,
                                        _q.NombreCompleto,
                                        _q.Especialidad
 
@@ -177,6 +181,52 @@ namespace Faden_Api.Controllers.SIS
         }
 
 
+
+        [Route("api/SIS/Usuario/Get")]
+        [HttpGet]
+        public string Get()
+        {
+            return _Get();
+        }
+
+        private string _Get()
+        {
+            string json = string.Empty;
+
+            try
+            {
+                using (FADENEntities _conexion = new FADENEntities())
+                {
+                    var qRoles = (from _q in _conexion.Usuario
+                                  select new
+                                  {
+                                      _q.IdUsuario,
+                                      _q.IdRol,
+                                      _q.Usuario1,
+                                      _q.Nombre,
+                                      _q.Apellido,
+                                      _q.Contrasena,
+                                      _q.Rol.Rol1,
+                                      _q.IdMedico,
+                                      _q.Activo
+                                  }).ToList();
+
+                    json = Cls_Mensaje.Tojson(qRoles, qRoles.Count, string.Empty, string.Empty, 0);
+
+
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                json = Cls_Mensaje.Tojson(null, 0, "1", ex.Message, 1);
+            }
+
+            return json;
+
+        }
 
 
 
