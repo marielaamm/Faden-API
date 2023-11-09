@@ -222,6 +222,7 @@
     <Compile Include="Class\cat\Cls_SindromePredominante.cs" />
     <Compile Include="Class\cat\Cls_SistemaSoap.cs" />
     <Compile Include="Class\Cls_Datos.cs" />
+    <Compile Include="Class\Cls_ListToDataTableConverter.cs" />
     <Compile Include="Class\Cls_Mensaje.cs" />
     <Compile Include="Class\cat\Cls_Municipio.cs" />
     <Compile Include="Class\Cls_TAcompanante.cs" />

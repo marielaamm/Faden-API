@@ -2,6 +2,8 @@
 using Faden_Api.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -30,8 +32,54 @@ namespace Faden_Api.Controllers.EXP
             {
                 using (FADENEntities _conexion = new FADENEntities())
                 {
+
+                    Cls_Datos DatosReporte = new Cls_Datos();
                     
-                   
+
+                    switch (op)
+                    {
+                        case "1":
+                            MemoryStream stream = new MemoryStream();
+
+
+                            //DsetReporte Dset = new DsetReporte();
+
+                            //List<SP_FacturaImpresa_Result> Query = (from _q in _conexion.SP_FacturaImpresa(_v.IdVenta).AsEnumerable()
+                            //                                        select _q).ToList();
+
+                            //DataTable tbl = Cls_ListToDataTableConverter.ToDataTable(Query);
+                            //tbl.Select().CopyToDataTable(Dset.SP_FacturaImpresa, LoadOption.PreserveChanges);
+
+                            //xrpFacturaContado xrpContado = new xrpFacturaContado();
+                            //xrpContado.Parameters["P_Letra"].Value = Cls_Letras.NumeroALetras(_v.TotalCordoba);
+                            //xrpContado.DataSource = Dset;
+                            //xrpContado.ShowPrintMarginsWarning = false;
+
+                            //xrpContado.ExportToPdf(stream, null);
+                            stream.Seek(0, SeekOrigin.Begin);
+
+                            DatosReporte.d = stream.ToArray();
+                            DatosReporte.Nombre = "";
+
+
+                            break;
+                        case "2":
+                            break;
+                        case "3":
+                            break;
+                        case "4":
+                            break;
+                        case "5":
+                            break;
+                        case "6":
+                            break;
+                        case "7":
+                            break;
+                    }
+
+
+
+                    json = Cls_Mensaje.Tojson(DatosReporte, 1, string.Empty, string.Empty, 0);
                 }
             }
 
