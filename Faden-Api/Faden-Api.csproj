@@ -245,6 +245,7 @@
     <Compile Include="Controllers\EXP\ExamenFisicoSistemaController.cs" />
     <Compile Include="Controllers\EXP\ExpedienteController.cs" />
     <Compile Include="Controllers\EXP\HistoriaFamSocController.cs" />
+    <Compile Include="Controllers\EXP\ImprimirController.cs" />
     <Compile Include="Controllers\EXP\PresuncionController.cs" />
     <Compile Include="Controllers\EXP\TratamientoController.cs" />
     <Compile Include="Controllers\CAT\MedicoController.cs" />
@@ -439,6 +440,7 @@
     <Folder Include="Views\ExamenClinico\" />
     <Folder Include="Views\Expediente\" />
     <Folder Include="Views\FuncionesGenerales\" />
+    <Folder Include="Views\Imprimir\" />
     <Folder Include="Views\Medico\" />
     <Folder Include="Views\Paciente\" />
     <Folder Include="Views\Roles\" />
