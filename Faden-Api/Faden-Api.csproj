@@ -369,7 +369,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reporte\DsetReporte.Designer.cs" />
     <Compile Include="Reporte\Report1.cs">
       <SubType>Component</SubType>
     </Compile>

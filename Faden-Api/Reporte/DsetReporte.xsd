@@ -36,30 +36,26 @@
   <xs:element name="DsetReporte" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DsetReporte" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsetReporte">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="SP_Paciente_Edad" msprop:Generator_RowClassName="SP_Paciente_EdadRow" msprop:Generator_RowEvHandlerName="SP_Paciente_EdadRowChangeEventHandler" msprop:Generator_RowDeletedName="SP_Paciente_EdadRowDeleted" msprop:Generator_RowDeletingName="SP_Paciente_EdadRowDeleting" msprop:Generator_RowEvArgName="SP_Paciente_EdadRowChangeEvent" msprop:Generator_TablePropName="SP_Paciente_Edad" msprop:Generator_RowChangedName="SP_Paciente_EdadRowChanged" msprop:Generator_UserTableName="SP_Paciente_Edad" msprop:Generator_RowChangingName="SP_Paciente_EdadRowChanging" msprop:Generator_TableClassName="SP_Paciente_EdadDataTable" msprop:Generator_TableVarName="tableSP_Paciente_Edad">
+        <xs:element name="SP_Paciente_Edad" msprop:Generator_RowEvHandlerName="SP_Paciente_EdadRowChangeEventHandler" msprop:Generator_RowDeletedName="SP_Paciente_EdadRowDeleted" msprop:Generator_RowDeletingName="SP_Paciente_EdadRowDeleting" msprop:Generator_RowEvArgName="SP_Paciente_EdadRowChangeEvent" msprop:Generator_TablePropName="SP_Paciente_Edad" msprop:Generator_RowChangedName="SP_Paciente_EdadRowChanged" msprop:Generator_UserTableName="SP_Paciente_Edad" msprop:Generator_RowChangingName="SP_Paciente_EdadRowChanging" msprop:Generator_RowClassName="SP_Paciente_EdadRow" msprop:Generator_TableClassName="SP_Paciente_EdadDataTable" msprop:Generator_TableVarName="tableSP_Paciente_Edad">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Nombre" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Nombre" msprop:Generator_ColumnPropNameInTable="NombreColumn" msprop:Generator_ColumnPropNameInRow="Nombre" msprop:Generator_ColumnVarNameInTable="columnNombre" minOccurs="0">
+              <xs:element name="Nombre" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="NombreColumn" msprop:Generator_ColumnPropNameInRow="Nombre" msprop:Generator_UserColumnName="Nombre" msprop:Generator_ColumnVarNameInTable="columnNombre" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="203" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="FechaNacim" msprop:Generator_UserColumnName="FechaNacim" msprop:Generator_ColumnPropNameInTable="FechaNacimColumn" msprop:Generator_ColumnPropNameInRow="FechaNacim" msprop:Generator_ColumnVarNameInTable="columnFechaNacim" type="xs:dateTime" />
-              <xs:element name="Sexo" msprop:Generator_UserColumnName="Sexo" msprop:Generator_ColumnPropNameInTable="SexoColumn" msprop:Generator_ColumnPropNameInRow="Sexo" msprop:Generator_ColumnVarNameInTable="columnSexo">
+              <xs:element name="FechaNacim" msprop:Generator_ColumnPropNameInTable="FechaNacimColumn" msprop:Generator_ColumnPropNameInRow="FechaNacim" msprop:Generator_UserColumnName="FechaNacim" msprop:Generator_ColumnVarNameInTable="columnFechaNacim" type="xs:dateTime" />
+              <xs:element name="Sexo" msprop:Generator_ColumnPropNameInTable="SexoColumn" msprop:Generator_ColumnPropNameInRow="Sexo" msprop:Generator_UserColumnName="Sexo" msprop:Generator_ColumnVarNameInTable="columnSexo">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="1" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Edad" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Edad" msprop:Generator_ColumnPropNameInTable="EdadColumn" msprop:Generator_ColumnPropNameInRow="Edad" msprop:Generator_ColumnVarNameInTable="columnEdad" type="xs:int" minOccurs="0" />
+              <xs:element name="Edad" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="EdadColumn" msprop:Generator_ColumnPropNameInRow="Edad" msprop:Generator_UserColumnName="Edad" msprop:Generator_ColumnVarNameInTable="columnEdad" type="xs:int" minOccurs="0" />
             </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="DataTable1" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_UserTableName="DataTable1">
-          <xs:complexType>
           </xs:complexType>
         </xs:element>
       </xs:choice>
