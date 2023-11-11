@@ -1,5 +1,7 @@
 ﻿using Faden_Api.Class;
 using Faden_Api.Models;
+using Faden_Api.Reporte;
+using Faden_Api.Reporte.DsetReporteTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -34,7 +36,9 @@ namespace Faden_Api.Controllers.EXP
                 {
 
                     Cls_Datos DatosReporte = new Cls_Datos();
-                    
+
+                    DsetReporte Dset = new DsetReporte();
+
 
                     switch (op)
                     {
@@ -42,20 +46,15 @@ namespace Faden_Api.Controllers.EXP
                             MemoryStream stream = new MemoryStream();
 
 
-                            //DsetReporte Dset = new DsetReporte();
+                            SP_Paciente_EdadTableAdapter adpPacienteEdad = new SP_Paciente_EdadTableAdapter();
+                            adpPacienteEdad.Fill(Dset.SP_Paciente_Edad);
 
-                            //List<SP_FacturaImpresa_Result> Query = (from _q in _conexion.SP_FacturaImpresa(_v.IdVenta).AsEnumerable()
-                            //                                        select _q).ToList();
+                            xrpPacienteEdad xrpPacienteEdad = new xrpPacienteEdad();
+                            xrpPacienteEdad.ShowPrintMarginsWarning = false;
+                            xrpPacienteEdad.ExportToPdf(stream, null);
 
-                            //DataTable tbl = Cls_ListToDataTableConverter.ToDataTable(Query);
-                            //tbl.Select().CopyToDataTable(Dset.SP_FacturaImpresa, LoadOption.PreserveChanges);
 
-                            //xrpFacturaContado xrpContado = new xrpFacturaContado();
-                            //xrpContado.Parameters["P_Letra"].Value = Cls_Letras.NumeroALetras(_v.TotalCordoba);
-                            //xrpContado.DataSource = Dset;
-                            //xrpContado.ShowPrintMarginsWarning = false;
 
-                            //xrpContado.ExportToPdf(stream, null);
                             stream.Seek(0, SeekOrigin.Begin);
 
                             DatosReporte.d = stream.ToArray();
