@@ -188,6 +188,7 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.6.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
@@ -233,6 +234,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Security" />
     <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
@@ -531,6 +533,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DsetReporte.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reporte\xrpAtencionEspSex.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpAtencionEspSex.Designer.cs">
+      <DependentUpon>xrpAtencionEspSex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reporte\xrpPacienteEdad.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -556,6 +564,12 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Reporte\DsetReporte.xsc">
+      <DependentUpon>DsetReporte.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reporte\DsetReporte.xss">
+      <DependentUpon>DsetReporte.xsd</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -585,17 +599,11 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Reporte\DsetReporte.xsc">
-      <DependentUpon>DsetReporte.xsd</DependentUpon>
-    </Content>
     <None Include="Reporte\DsetReporte.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsetReporte.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Reporte\DsetReporte.xss">
-      <DependentUpon>DsetReporte.xsd</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -676,6 +684,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Reporte\xrpAtencionEspSex.resx">
+      <DependentUpon>xrpAtencionEspSex.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reporte\xrpPacienteEdad.resx">
       <DependentUpon>xrpPacienteEdad.cs</DependentUpon>
     </EmbeddedResource>

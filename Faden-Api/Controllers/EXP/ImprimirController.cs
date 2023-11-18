@@ -37,20 +37,27 @@ namespace Faden_Api.Controllers.EXP
 
                     Cls_Datos DatosReporte = new Cls_Datos();
 
-                    DsetReporte Dset = new DsetReporte();
+                    DsetReporte DsetReporte = new DsetReporte();
+           
+                    MemoryStream stream = new MemoryStream();
+
+                    DateTime Fecha1 = new DateTime(2023, 11, 01);
+                    DateTime Fecha2 = new DateTime(2023, 11, 30);
+
+
 
 
                     switch (op)
                     {
                         case "1":
 
-                            MemoryStream stream = new MemoryStream();
-
-
                             SP_Paciente_EdadTableAdapter adpPacienteEdad = new SP_Paciente_EdadTableAdapter();
-                            adpPacienteEdad.Fill(Dset.SP_Paciente_Edad);
+                            adpPacienteEdad.Fill(DsetReporte.SP_Paciente_Edad);
+
+  
 
                             xrpPacienteEdad xrpPacienteEdad = new xrpPacienteEdad();
+                            xrpPacienteEdad.DataSource = DsetReporte;
                             xrpPacienteEdad.ShowPrintMarginsWarning = false;
                             xrpPacienteEdad.ExportToPdf(stream, null);
 
@@ -64,6 +71,22 @@ namespace Faden_Api.Controllers.EXP
 
                             break;
                         case "2":
+                            SP_Atencion_Esp_SexTableAdapter adpAtencionEspSex = new SP_Atencion_Esp_SexTableAdapter();
+                            adpAtencionEspSex.Fill(DsetReporte.SP_Atencion_Esp_Sex, Fecha1, Fecha2);
+
+    
+                            xrpAtencionEspSex xrpAtenEspSex = new xrpAtencionEspSex();
+                            xrpAtenEspSex.DataSource = DsetReporte;
+                            xrpAtenEspSex.ShowPrintMarginsWarning = false;
+                            xrpAtenEspSex.ExportToPdf(stream, null);
+
+                            stream.Seek(0, SeekOrigin.Begin);
+
+                            DatosReporte.d = stream.ToArray();
+                            DatosReporte.Nombre = "Atencion por Especialidad y Sexo";
+
+
+
                             break;
                         case "3":
                             break;
