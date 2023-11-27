@@ -51,8 +51,8 @@ namespace Faden_Api.Controllers.EXP
                     {
                         case "1":
 
-                            SP_Paciente_EdadTableAdapter adpPacienteEdad = new SP_Paciente_EdadTableAdapter();
-                            adpPacienteEdad.Fill(DsetReporte.SP_Paciente_Edad);
+                            SP_xrp_PacienteTableAdapter adpPacienteEdad = new SP_xrp_PacienteTableAdapter();
+                            adpPacienteEdad.Fill(DsetReporte.SP_xrp_Paciente);
 
   
 
@@ -89,6 +89,21 @@ namespace Faden_Api.Controllers.EXP
 
                             break;
                         case "3":
+                            SP_xrp_AcompananteTableAdapter adpAcompanante = new SP_xrp_AcompananteTableAdapter();
+                            adpAcompanante.Fill(DsetReporte.SP_xrp_Acompanante);
+
+
+                            xrpAcompanante xrpAcomp = new xrpAcompanante();
+                            xrpAcomp.DataSource = DsetReporte;
+                            xrpAcomp.ShowPrintMarginsWarning = false;
+                            xrpAcomp.ExportToPdf(stream, null);
+
+                            stream.Seek(0, SeekOrigin.Begin);
+
+                            DatosReporte.d = stream.ToArray();
+                            DatosReporte.Nombre = "Reporte Paciente Acompanante";
+
+
                             break;
                         case "4":
                             break;

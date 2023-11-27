@@ -42,7 +42,6 @@
             this.xrPageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.dsetReporte1 = new Faden_Api.Reporte.DsetReporte();
-            this.sP_Paciente_EdadTableAdapter = new Faden_Api.Reporte.DsetReporteTableAdapters.SP_Paciente_EdadTableAdapter();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -167,10 +166,6 @@
             // 
             this.dsetReporte1.DataSetName = "DsetReporte";
             this.dsetReporte1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // sP_Paciente_EdadTableAdapter
-            // 
-            this.sP_Paciente_EdadTableAdapter.ClearBeforeFill = true;
             // 
             // xrTable1
             // 
@@ -380,7 +375,6 @@
             this.ReportFooter});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.dsetReporte1});
-            this.DataAdapter = this.sP_Paciente_EdadTableAdapter;
             this.DataMember = "SP_Atencion_Esp_Sex";
             this.DataSource = this.dsetReporte1;
             this.Margins = new System.Drawing.Printing.Margins(46, 38, 45, 100);
@@ -401,7 +395,6 @@
         private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
         private DsetReporte dsetReporte1;
-        private DsetReporteTableAdapters.SP_Paciente_EdadTableAdapter sP_Paciente_EdadTableAdapter;
         private DevExpress.XtraReports.UI.XRTable xrTable1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;

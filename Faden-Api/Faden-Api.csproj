@@ -533,6 +533,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DsetReporte.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reporte\xrpAcompanante.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpAcompanante.Designer.cs">
+      <DependentUpon>xrpAcompanante.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reporte\xrpAtencionEspSex.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -684,6 +690,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Reporte\xrpAcompanante.resx">
+      <DependentUpon>xrpAcompanante.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reporte\xrpAtencionEspSex.resx">
       <DependentUpon>xrpAtencionEspSex.cs</DependentUpon>
     </EmbeddedResource>
