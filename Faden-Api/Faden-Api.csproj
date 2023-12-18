@@ -545,11 +545,35 @@
     <Compile Include="Reporte\xrpAtencionEspSex.Designer.cs">
       <DependentUpon>xrpAtencionEspSex.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reporte\xrpExamenClinico.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpExamenClinico.Designer.cs">
+      <DependentUpon>xrpExamenClinico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\xrpExpediente.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpExpediente.Designer.cs">
+      <DependentUpon>xrpExpediente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\xrpHistoriaClinica.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpHistoriaClinica.Designer.cs">
+      <DependentUpon>xrpHistoriaClinica.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reporte\xrpPacienteEdad.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reporte\xrpPacienteEdad.Designer.cs">
       <DependentUpon>xrpPacienteEdad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\xrpTratamientoActual.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpTratamientoActual.Designer.cs">
+      <DependentUpon>xrpTratamientoActual.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -696,8 +720,20 @@
     <EmbeddedResource Include="Reporte\xrpAtencionEspSex.resx">
       <DependentUpon>xrpAtencionEspSex.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\xrpExamenClinico.resx">
+      <DependentUpon>xrpExamenClinico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\xrpExpediente.resx">
+      <DependentUpon>xrpExpediente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\xrpHistoriaClinica.resx">
+      <DependentUpon>xrpHistoriaClinica.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reporte\xrpPacienteEdad.resx">
       <DependentUpon>xrpPacienteEdad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\xrpTratamientoActual.resx">
+      <DependentUpon>xrpTratamientoActual.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
