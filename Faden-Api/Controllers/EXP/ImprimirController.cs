@@ -113,7 +113,7 @@ namespace Faden_Api.Controllers.EXP
 
 
                             SP_AcompananteTableAdapter adpAcomp = new SP_AcompananteTableAdapter();
-                            adpAcomp.Fill(DsetReporte.SP_Acompanante ,"0000000000");
+                            adpAcomp.Fill(DsetReporte.SP_Acompanante, "0000000000");
                             xrpExpediente.xrpAcompanante.ReportSource = new xrpExpAcompanante();
                             xrpExpediente.xrpAcompanante.ReportSource.DataSource = DsetReporte;
 
@@ -141,15 +141,6 @@ namespace Faden_Api.Controllers.EXP
 
 
 
-
-
-
-
-
-
-
-
-
                             xrpExpediente.ShowPrintMarginsWarning = false;
                             xrpExpediente.ExportToPdf(stream, null);
 
@@ -157,7 +148,6 @@ namespace Faden_Api.Controllers.EXP
 
                             DatosReporte.d = stream.ToArray();
                             DatosReporte.Nombre = "Expediente";
-
                             break;
                         case "5":
                             break;
