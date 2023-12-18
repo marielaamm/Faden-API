@@ -140,6 +140,57 @@ namespace Faden_Api.Controllers.EXP
                             xrpExpediente.xrpExamenClinico.ReportSource.DataSource = DsetReporte;
 
 
+                            SP_XRP_AntecedentePatologicoTableAdapter adpAntPatolo = new SP_XRP_AntecedentePatologicoTableAdapter();
+                            adpAntPatolo.Fill(DsetReporte.SP_XRP_AntecedentePatologico, "0000000000");
+                            xrpExpediente.xrpAntecendentePatologico.ReportSource = new xrpAntecedentePatologico();
+                            xrpExpediente.xrpAntecendentePatologico.ReportSource.DataSource = DsetReporte;
+
+
+                            SP_XRP_AntecedenteQuirurgicoTableAdapter adpAntQui = new SP_XRP_AntecedenteQuirurgicoTableAdapter();
+                            adpAntQui.Fill(DsetReporte.SP_XRP_AntecedenteQuirurgico, "0000000000");
+                            xrpExpediente.xrpAntecendenteQuirurgico.ReportSource = new xrpAntecedenteQuirurgico();
+                            xrpExpediente.xrpAntecendenteQuirurgico.ReportSource.DataSource = DsetReporte;
+
+
+
+                            SP_XRP_AntecedenteFamiliarTableAdapter adpAntFamiliar = new SP_XRP_AntecedenteFamiliarTableAdapter();
+                            adpAntFamiliar.Fill(DsetReporte.SP_XRP_AntecedenteFamiliar, "0000000000");
+                            xrpExpediente.xrpAntecedenteFamiliar.ReportSource = new xrpAntecedenteFamiliar();
+                            xrpExpediente.xrpAntecedenteFamiliar.ReportSource.DataSource = DsetReporte;
+
+
+                            SP_XRP_EstiloVidaTableAdapter adpEstiloVida = new SP_XRP_EstiloVidaTableAdapter();
+                            adpEstiloVida.Fill(DsetReporte.SP_XRP_EstiloVida, "0000000000");
+                            xrpExpediente.xrpEstiloVida.ReportSource = new xrpEstiloVida();
+                            xrpExpediente.xrpEstiloVida.ReportSource.DataSource = DsetReporte;
+
+
+                            SP_XRP_EstiloVidaEjercicioTableAdapter adpEstiloVidaEjerci = new SP_XRP_EstiloVidaEjercicioTableAdapter();
+                            adpEstiloVidaEjerci.Fill(DsetReporte.SP_XRP_EstiloVidaEjercicio, "0000000000");
+                            xrpExpediente.xrpEstiloVidaEjercicio.ReportSource = new xrpEstiloVidaEjercicio();
+                            xrpExpediente.xrpEstiloVidaEjercicio.ReportSource.DataSource = DsetReporte;
+
+
+                            SP_XRP_EstiloVidaAlimentacionTableAdapter adpEstiloVidaAlimen = new SP_XRP_EstiloVidaAlimentacionTableAdapter();
+                            adpEstiloVidaAlimen.Fill(DsetReporte.SP_XRP_EstiloVidaAlimentacion, "0000000000");
+                            xrpExpediente.xrpEstiloVidaAlimentacion.ReportSource = new xrpEstiloVidaAlimentacion();
+                            xrpExpediente.xrpEstiloVidaAlimentacion.ReportSource.DataSource = DsetReporte;
+
+
+                            SP_XRP_ExamenFisicoSistemaTableAdapter adpExamenFisico = new SP_XRP_ExamenFisicoSistemaTableAdapter();
+                            adpExamenFisico.Fill(DsetReporte.SP_XRP_ExamenFisicoSistema, "0000000000");
+                            xrpExpediente.xrpExamenFisicoSistema.ReportSource = new xrpExamenFisicoSistema();
+                            xrpExpediente.xrpExamenFisicoSistema.ReportSource.DataSource = DsetReporte;
+
+
+                            SP_XRP_AnalisisPresuncionTableAdapter adpExPresun = new SP_XRP_AnalisisPresuncionTableAdapter();
+                            adpExPresun.Fill(DsetReporte.SP_XRP_AnalisisPresuncion, "0000000000");
+                            xrpExpediente.xrpAnalisisPresuncion.ReportSource = new xrpAnalisisPresuncion();
+                            xrpExpediente.xrpAnalisisPresuncion.ReportSource.DataSource = DsetReporte;
+
+
+
+
 
                             xrpExpediente.ShowPrintMarginsWarning = false;
                             xrpExpediente.ExportToPdf(stream, null);

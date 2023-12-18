@@ -84,6 +84,7 @@
             this.xrLabel1,
             this.xrLabel31,
             this.xrLabel2});
+            this.GroupHeader1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
             this.GroupHeader1.HeightF = 185.4167F;
             this.GroupHeader1.KeepTogether = true;
             this.GroupHeader1.Name = "GroupHeader1";
@@ -110,7 +111,7 @@
             this.xrLabel80.StylePriority.UseFont = false;
             this.xrLabel80.StylePriority.UseTextAlignment = false;
             this.xrLabel80.Text = "Historia Medica y Clinica";
-            this.xrLabel80.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.xrLabel80.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrLabel25
             // 

@@ -56,7 +56,7 @@
             this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
             this.P_NoExpediente = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
+            this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             ((System.ComponentModel.ISupportInitialize)(this.dsetReporte1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
@@ -250,7 +250,7 @@
             this.xrLine5.BorderWidth = 1F;
             this.xrLine5.ForeColor = System.Drawing.Color.Purple;
             this.xrLine5.LineWidth = 2F;
-            this.xrLine5.LocationFloat = new DevExpress.Utils.PointFloat(2.444397F, 9.999996F);
+            this.xrLine5.LocationFloat = new DevExpress.Utils.PointFloat(2.444288F, 0F);
             this.xrLine5.Name = "xrLine5";
             this.xrLine5.SizeF = new System.Drawing.SizeF(807.5556F, 8.416656F);
             this.xrLine5.StylePriority.UseBorderWidth = false;
@@ -259,7 +259,7 @@
             // xrLabel80
             // 
             this.xrLabel80.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel80.LocationFloat = new DevExpress.Utils.PointFloat(2.444397F, 20.27774F);
+            this.xrLabel80.LocationFloat = new DevExpress.Utils.PointFloat(2.444288F, 9.999996F);
             this.xrLabel80.Multiline = true;
             this.xrLabel80.Name = "xrLabel80";
             this.xrLabel80.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -267,11 +267,11 @@
             this.xrLabel80.StylePriority.UseFont = false;
             this.xrLabel80.StylePriority.UseTextAlignment = false;
             this.xrLabel80.Text = "Acompañantes";
-            this.xrLabel80.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.xrLabel80.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrTable3
             // 
-            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 53.47222F);
+            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 43.19447F);
             this.xrTable3.Name = "xrTable3";
             this.xrTable3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable3.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -402,14 +402,15 @@
             this.P_NoExpediente.Name = "P_NoExpediente";
             this.P_NoExpediente.Visible = false;
             // 
-            // PageHeader
+            // GroupHeader1
             // 
-            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLine5,
             this.xrTable3,
             this.xrLabel80});
-            this.PageHeader.HeightF = 78.47222F;
-            this.PageHeader.Name = "PageHeader";
+            this.GroupHeader1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
+            this.GroupHeader1.HeightF = 68.19447F;
+            this.GroupHeader1.Name = "GroupHeader1";
             // 
             // xrpExpAcompanante
             // 
@@ -417,7 +418,7 @@
             this.Detail,
             this.TopMargin,
             this.BottomMargin,
-            this.PageHeader});
+            this.GroupHeader1});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.dsetReporte1});
             this.DataMember = "SP_Acompanante";
@@ -464,6 +465,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell14;
         private DevExpress.XtraReports.UI.XRLine xrLine5;
         private DevExpress.XtraReports.Parameters.Parameter P_NoExpediente;
-        private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
+        private DevExpress.XtraReports.UI.GroupHeaderBand GroupHeader1;
     }
 }

@@ -403,7 +403,7 @@
     <Compile Include="Class\EXP\Cls_EstiloVidaDatos.cs" />
     <Compile Include="Class\EXP\cls_TratamientoHistorico.cs" />
     <Compile Include="Class\EXP\Cls_ValoracionNeuroPsicologica.cs" />
-    <Compile Include="Class\EXP\EstiloVidaController.cs" />
+    <Compile Include="Controllers\EXP\EstiloVidaController.cs" />
     <Compile Include="Class\EXP\HistoriaFamSoc.cs" />
     <Compile Include="Controllers\CAT\CiudadController.cs" />
     <Compile Include="Controllers\CAT\ConsensoController.cs" />
@@ -539,17 +539,65 @@
     <Compile Include="Reporte\xrpAcompanante.Designer.cs">
       <DependentUpon>xrpAcompanante.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reporte\xrpAnalisisPresuncion.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpAnalisisPresuncion.Designer.cs">
+      <DependentUpon>xrpAnalisisPresuncion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\xrpAntecedenteFamiliar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpAntecedenteFamiliar.Designer.cs">
+      <DependentUpon>xrpAntecedenteFamiliar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\xrpAntecedentePatologico.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpAntecedentePatologico.Designer.cs">
+      <DependentUpon>xrpAntecedentePatologico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\xrpAntecedenteQuirurgico.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpAntecedenteQuirurgico.Designer.cs">
+      <DependentUpon>xrpAntecedenteQuirurgico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reporte\xrpAtencionEspSex.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reporte\xrpAtencionEspSex.Designer.cs">
       <DependentUpon>xrpAtencionEspSex.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reporte\xrpEstiloVida.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpEstiloVida.Designer.cs">
+      <DependentUpon>xrpEstiloVida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\xrpEstiloVidaAlimentacion.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpEstiloVidaAlimentacion.Designer.cs">
+      <DependentUpon>xrpEstiloVidaAlimentacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\xrpEstiloVidaEjercicio.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpEstiloVidaEjercicio.Designer.cs">
+      <DependentUpon>xrpEstiloVidaEjercicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reporte\xrpExamenClinico.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reporte\xrpExamenClinico.Designer.cs">
       <DependentUpon>xrpExamenClinico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\xrpExamenFisicoSistema.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpExamenFisicoSistema.Designer.cs">
+      <DependentUpon>xrpExamenFisicoSistema.cs</DependentUpon>
     </Compile>
     <Compile Include="Reporte\xrpExpAcompanante.cs">
       <SubType>Component</SubType>
@@ -723,11 +771,35 @@
     <EmbeddedResource Include="Reporte\xrpAcompanante.resx">
       <DependentUpon>xrpAcompanante.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\xrpAnalisisPresuncion.resx">
+      <DependentUpon>xrpAnalisisPresuncion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\xrpAntecedenteFamiliar.resx">
+      <DependentUpon>xrpAntecedenteFamiliar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\xrpAntecedentePatologico.resx">
+      <DependentUpon>xrpAntecedentePatologico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\xrpAntecedenteQuirurgico.resx">
+      <DependentUpon>xrpAntecedenteQuirurgico.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reporte\xrpAtencionEspSex.resx">
       <DependentUpon>xrpAtencionEspSex.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\xrpEstiloVida.resx">
+      <DependentUpon>xrpEstiloVida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\xrpEstiloVidaAlimentacion.resx">
+      <DependentUpon>xrpEstiloVidaAlimentacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\xrpEstiloVidaEjercicio.resx">
+      <DependentUpon>xrpEstiloVidaEjercicio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reporte\xrpExamenClinico.resx">
       <DependentUpon>xrpExamenClinico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\xrpExamenFisicoSistema.resx">
+      <DependentUpon>xrpExamenFisicoSistema.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\xrpExpAcompanante.resx">
       <DependentUpon>xrpExpAcompanante.cs</DependentUpon>

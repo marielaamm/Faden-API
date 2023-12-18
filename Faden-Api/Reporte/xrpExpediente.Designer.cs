@@ -121,9 +121,27 @@
             this.xrpHistoriaClinica = new DevExpress.XtraReports.UI.XRSubreport();
             this.SubBand3 = new DevExpress.XtraReports.UI.SubBand();
             this.xrpTratamientoActual = new DevExpress.XtraReports.UI.XRSubreport();
-            this.dsetReporte1 = new Faden_Api.Reporte.DsetReporte();
             this.SubBand4 = new DevExpress.XtraReports.UI.SubBand();
             this.xrpExamenClinico = new DevExpress.XtraReports.UI.XRSubreport();
+            this.SubBand5 = new DevExpress.XtraReports.UI.SubBand();
+            this.xrpAntecendentePatologico = new DevExpress.XtraReports.UI.XRSubreport();
+            this.SubBand6 = new DevExpress.XtraReports.UI.SubBand();
+            this.xrpAntecendenteQuirurgico = new DevExpress.XtraReports.UI.XRSubreport();
+            this.SubBand7 = new DevExpress.XtraReports.UI.SubBand();
+            this.xrpAntecedenteFamiliar = new DevExpress.XtraReports.UI.XRSubreport();
+            this.SubBand8 = new DevExpress.XtraReports.UI.SubBand();
+            this.xrpEstiloVida = new DevExpress.XtraReports.UI.XRSubreport();
+            this.xrLine5 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLabel80 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrpEstiloVidaAlimentacion = new DevExpress.XtraReports.UI.XRSubreport();
+            this.xrpEstiloVidaEjercicio = new DevExpress.XtraReports.UI.XRSubreport();
+            this.SubBand9 = new DevExpress.XtraReports.UI.SubBand();
+            this.xrpExamenFisicoSistema = new DevExpress.XtraReports.UI.XRSubreport();
+            this.SubBand10 = new DevExpress.XtraReports.UI.SubBand();
+            this.xrpAnalisisPresuncion = new DevExpress.XtraReports.UI.XRSubreport();
+            this.dsetReporte1 = new Faden_Api.Reporte.DsetReporte();
+            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
+            this.xrLabel81 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dsetReporte1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -243,7 +261,13 @@
             this.SubBand1,
             this.SubBand2,
             this.SubBand3,
-            this.SubBand4});
+            this.SubBand4,
+            this.SubBand5,
+            this.SubBand6,
+            this.SubBand7,
+            this.SubBand8,
+            this.SubBand9,
+            this.SubBand10});
             this.GroupHeader1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // xrLabel79
@@ -1400,11 +1424,6 @@
             this.xrpTratamientoActual.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("P_NoExpediente", null, "SP_Expediente.NoExpediente"));
             this.xrpTratamientoActual.SizeF = new System.Drawing.SizeF(801.0001F, 23F);
             // 
-            // dsetReporte1
-            // 
-            this.dsetReporte1.DataSetName = "DsetReporte";
-            this.dsetReporte1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // SubBand4
             // 
             this.SubBand4.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -1419,13 +1438,171 @@
             this.xrpExamenClinico.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("P_NoExpediente", null, "SP_Expediente.NoExpediente"));
             this.xrpExamenClinico.SizeF = new System.Drawing.SizeF(801.0001F, 23F);
             // 
+            // SubBand5
+            // 
+            this.SubBand5.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrpAntecendentePatologico});
+            this.SubBand5.HeightF = 23F;
+            this.SubBand5.Name = "SubBand5";
+            // 
+            // xrpAntecendentePatologico
+            // 
+            this.xrpAntecendentePatologico.LocationFloat = new DevExpress.Utils.PointFloat(9.999932F, 0F);
+            this.xrpAntecendentePatologico.Name = "xrpAntecendentePatologico";
+            this.xrpAntecendentePatologico.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("P_NoExpediente", null, "SP_Expediente.NoExpediente"));
+            this.xrpAntecendentePatologico.SizeF = new System.Drawing.SizeF(801.0001F, 23F);
+            // 
+            // SubBand6
+            // 
+            this.SubBand6.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrpAntecendenteQuirurgico});
+            this.SubBand6.HeightF = 23F;
+            this.SubBand6.Name = "SubBand6";
+            // 
+            // xrpAntecendenteQuirurgico
+            // 
+            this.xrpAntecendenteQuirurgico.LocationFloat = new DevExpress.Utils.PointFloat(9.999932F, 0F);
+            this.xrpAntecendenteQuirurgico.Name = "xrpAntecendenteQuirurgico";
+            this.xrpAntecendenteQuirurgico.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("P_NoExpediente", null, "SP_Expediente.NoExpediente"));
+            this.xrpAntecendenteQuirurgico.SizeF = new System.Drawing.SizeF(801.0001F, 23F);
+            // 
+            // SubBand7
+            // 
+            this.SubBand7.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrpAntecedenteFamiliar});
+            this.SubBand7.HeightF = 23F;
+            this.SubBand7.Name = "SubBand7";
+            // 
+            // xrpAntecedenteFamiliar
+            // 
+            this.xrpAntecedenteFamiliar.LocationFloat = new DevExpress.Utils.PointFloat(9.999932F, 0F);
+            this.xrpAntecedenteFamiliar.Name = "xrpAntecedenteFamiliar";
+            this.xrpAntecedenteFamiliar.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("P_NoExpediente", null, "SP_Expediente.NoExpediente"));
+            this.xrpAntecedenteFamiliar.SizeF = new System.Drawing.SizeF(801.0001F, 23F);
+            // 
+            // SubBand8
+            // 
+            this.SubBand8.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrpEstiloVida,
+            this.xrLine5,
+            this.xrLabel80,
+            this.xrpEstiloVidaAlimentacion,
+            this.xrpEstiloVidaEjercicio});
+            this.SubBand8.HeightF = 75.8055F;
+            this.SubBand8.Name = "SubBand8";
+            // 
+            // xrpEstiloVida
+            // 
+            this.xrpEstiloVida.LocationFloat = new DevExpress.Utils.PointFloat(10.00014F, 29.8055F);
+            this.xrpEstiloVida.Name = "xrpEstiloVida";
+            this.xrpEstiloVida.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("P_NoExpediente", null, "SP_Expediente.NoExpediente"));
+            this.xrpEstiloVida.SizeF = new System.Drawing.SizeF(800.9999F, 22.99999F);
+            // 
+            // xrLine5
+            // 
+            this.xrLine5.BorderWidth = 1F;
+            this.xrLine5.ForeColor = System.Drawing.Color.Purple;
+            this.xrLine5.LineWidth = 2F;
+            this.xrLine5.LocationFloat = new DevExpress.Utils.PointFloat(1.444414F, 0F);
+            this.xrLine5.Name = "xrLine5";
+            this.xrLine5.SizeF = new System.Drawing.SizeF(807.5556F, 8.416656F);
+            this.xrLine5.StylePriority.UseBorderWidth = false;
+            this.xrLine5.StylePriority.UseForeColor = false;
+            // 
+            // xrLabel80
+            // 
+            this.xrLabel80.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel80.LocationFloat = new DevExpress.Utils.PointFloat(1.444414F, 10.27773F);
+            this.xrLabel80.Multiline = true;
+            this.xrLabel80.Name = "xrLabel80";
+            this.xrLabel80.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel80.SizeF = new System.Drawing.SizeF(807.5557F, 19.52778F);
+            this.xrLabel80.StylePriority.UseFont = false;
+            this.xrLabel80.StylePriority.UseTextAlignment = false;
+            this.xrLabel80.Text = "PRÁCTICA DE VIDA SALUDABLE";
+            this.xrLabel80.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // xrpEstiloVidaAlimentacion
+            // 
+            this.xrpEstiloVidaAlimentacion.LocationFloat = new DevExpress.Utils.PointFloat(410.4999F, 52.8055F);
+            this.xrpEstiloVidaAlimentacion.Name = "xrpEstiloVidaAlimentacion";
+            this.xrpEstiloVidaAlimentacion.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("P_NoExpediente", null, "SP_Expediente.NoExpediente"));
+            this.xrpEstiloVidaAlimentacion.SizeF = new System.Drawing.SizeF(400.5F, 23F);
+            // 
+            // xrpEstiloVidaEjercicio
+            // 
+            this.xrpEstiloVidaEjercicio.LocationFloat = new DevExpress.Utils.PointFloat(9.999932F, 52.8055F);
+            this.xrpEstiloVidaEjercicio.Name = "xrpEstiloVidaEjercicio";
+            this.xrpEstiloVidaEjercicio.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("P_NoExpediente", null, "SP_Expediente.NoExpediente"));
+            this.xrpEstiloVidaEjercicio.SizeF = new System.Drawing.SizeF(400.5F, 23F);
+            // 
+            // SubBand9
+            // 
+            this.SubBand9.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrpExamenFisicoSistema});
+            this.SubBand9.HeightF = 23F;
+            this.SubBand9.Name = "SubBand9";
+            // 
+            // xrpExamenFisicoSistema
+            // 
+            this.xrpExamenFisicoSistema.LocationFloat = new DevExpress.Utils.PointFloat(9.999932F, 0F);
+            this.xrpExamenFisicoSistema.Name = "xrpExamenFisicoSistema";
+            this.xrpExamenFisicoSistema.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("P_NoExpediente", null, "SP_Expediente.NoExpediente"));
+            this.xrpExamenFisicoSistema.SizeF = new System.Drawing.SizeF(801.0001F, 23F);
+            // 
+            // SubBand10
+            // 
+            this.SubBand10.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrpAnalisisPresuncion});
+            this.SubBand10.HeightF = 23F;
+            this.SubBand10.Name = "SubBand10";
+            // 
+            // xrpAnalisisPresuncion
+            // 
+            this.xrpAnalisisPresuncion.LocationFloat = new DevExpress.Utils.PointFloat(9.999932F, 0F);
+            this.xrpAnalisisPresuncion.Name = "xrpAnalisisPresuncion";
+            this.xrpAnalisisPresuncion.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("P_NoExpediente", null, "SP_Expediente.NoExpediente"));
+            this.xrpAnalisisPresuncion.SizeF = new System.Drawing.SizeF(801.0001F, 23F);
+            // 
+            // dsetReporte1
+            // 
+            this.dsetReporte1.DataSetName = "DsetReporte";
+            this.dsetReporte1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // PageHeader
+            // 
+            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel81});
+            this.PageHeader.HeightF = 42.99995F;
+            this.PageHeader.Name = "PageHeader";
+            // 
+            // xrLabel81
+            // 
+            this.xrLabel81.BorderColor = System.Drawing.Color.Green;
+            this.xrLabel81.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
+            this.xrLabel81.BorderWidth = 2F;
+            this.xrLabel81.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold);
+            this.xrLabel81.LocationFloat = new DevExpress.Utils.PointFloat(1.444414F, 10.27773F);
+            this.xrLabel81.Multiline = true;
+            this.xrLabel81.Name = "xrLabel81";
+            this.xrLabel81.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel81.SizeF = new System.Drawing.SizeF(817.3333F, 32.72223F);
+            this.xrLabel81.StylePriority.UseBorderColor = false;
+            this.xrLabel81.StylePriority.UseBorders = false;
+            this.xrLabel81.StylePriority.UseBorderWidth = false;
+            this.xrLabel81.StylePriority.UseFont = false;
+            this.xrLabel81.StylePriority.UseTextAlignment = false;
+            this.xrLabel81.Text = "EXPEDIENTE";
+            this.xrLabel81.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
             // xrpExpediente
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,
             this.TopMargin,
             this.BottomMargin,
-            this.GroupHeader1});
+            this.GroupHeader1,
+            this.PageHeader});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.dsetReporte1});
             this.DataMember = "SP_Expediente";
@@ -1535,5 +1712,23 @@
         public DevExpress.XtraReports.UI.XRSubreport xrpTratamientoActual;
         private DevExpress.XtraReports.UI.SubBand SubBand4;
         public DevExpress.XtraReports.UI.XRSubreport xrpExamenClinico;
+        private DevExpress.XtraReports.UI.SubBand SubBand5;
+        public DevExpress.XtraReports.UI.XRSubreport xrpAntecendentePatologico;
+        private DevExpress.XtraReports.UI.SubBand SubBand6;
+        public DevExpress.XtraReports.UI.XRSubreport xrpAntecendenteQuirurgico;
+        private DevExpress.XtraReports.UI.SubBand SubBand7;
+        public DevExpress.XtraReports.UI.XRSubreport xrpAntecedenteFamiliar;
+        private DevExpress.XtraReports.UI.SubBand SubBand8;
+        public DevExpress.XtraReports.UI.XRSubreport xrpEstiloVidaEjercicio;
+        public DevExpress.XtraReports.UI.XRSubreport xrpEstiloVidaAlimentacion;
+        private DevExpress.XtraReports.UI.XRLine xrLine5;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel80;
+        public DevExpress.XtraReports.UI.XRSubreport xrpEstiloVida;
+        private DevExpress.XtraReports.UI.SubBand SubBand9;
+        public DevExpress.XtraReports.UI.XRSubreport xrpExamenFisicoSistema;
+        private DevExpress.XtraReports.UI.SubBand SubBand10;
+        public DevExpress.XtraReports.UI.XRSubreport xrpAnalisisPresuncion;
+        private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel81;
     }
 }
