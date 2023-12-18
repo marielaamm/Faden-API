@@ -551,6 +551,12 @@
     <Compile Include="Reporte\xrpExamenClinico.Designer.cs">
       <DependentUpon>xrpExamenClinico.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reporte\xrpExpAcompanante.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpExpAcompanante.Designer.cs">
+      <DependentUpon>xrpExpAcompanante.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reporte\xrpExpediente.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -722,6 +728,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\xrpExamenClinico.resx">
       <DependentUpon>xrpExamenClinico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\xrpExpAcompanante.resx">
+      <DependentUpon>xrpExpAcompanante.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\xrpExpediente.resx">
       <DependentUpon>xrpExpediente.cs</DependentUpon>

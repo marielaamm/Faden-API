@@ -420,7 +420,7 @@
             this.PageHeader});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.dsetReporte1});
-            this.DataMember = "SP_XRP_Acompanante";
+            this.DataMember = "SP_Acompanante";
             this.DataSource = this.dsetReporte1;
             this.FilterString = "[NoExpediente] = ?P_NoExpediente";
             this.Margins = new System.Drawing.Printing.Margins(4, 29, 28, 8);

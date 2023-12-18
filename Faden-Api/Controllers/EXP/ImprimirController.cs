@@ -89,8 +89,8 @@ namespace Faden_Api.Controllers.EXP
 
                             break;
                         case "3":
-                            SP_xrp_AcompananteTableAdapter adpAcompanante = new SP_xrp_AcompananteTableAdapter();
-                            adpAcompanante.Fill(DsetReporte.SP_xrp_Acompanante);
+                            SP_XRP_AcompananteTableAdapter adpAcompanante = new SP_XRP_AcompananteTableAdapter();
+                            adpAcompanante.Fill(DsetReporte.SP_XRP_Acompanante);
 
 
                             xrpAcompanante xrpAcomp = new xrpAcompanante();
@@ -106,6 +106,58 @@ namespace Faden_Api.Controllers.EXP
 
                             break;
                         case "4":
+                            xrpExpediente xrpExpediente = new xrpExpediente();
+                            SP_ExpedienteTableAdapter adpExpediente = new SP_ExpedienteTableAdapter();
+                            adpExpediente.Fill(DsetReporte.SP_Expediente, "0000000000");
+                            xrpExpediente.DataSource = DsetReporte;
+
+
+                            SP_AcompananteTableAdapter adpAcomp = new SP_AcompananteTableAdapter();
+                            adpAcomp.Fill(DsetReporte.SP_Acompanante ,"0000000000");
+                            xrpExpediente.xrpAcompanante.ReportSource = new xrpExpAcompanante();
+                            xrpExpediente.xrpAcompanante.ReportSource.DataSource = DsetReporte;
+
+
+
+                            SP_XRP_HistoriaClinicaTableAdapter adpHistoriaCli = new SP_XRP_HistoriaClinicaTableAdapter();
+                            adpHistoriaCli.Fill(DsetReporte.SP_XRP_HistoriaClinica, "0000000000");
+                            xrpExpediente.xrpHistoriaClinica.ReportSource = new xrpHistoriaClinica();
+                            xrpExpediente.xrpHistoriaClinica.ReportSource.DataSource = DsetReporte;
+
+
+                            SP_XRP_TratamientoActualTableAdapter adpTratamientoActual = new SP_XRP_TratamientoActualTableAdapter();
+                            adpTratamientoActual.Fill(DsetReporte.SP_XRP_TratamientoActual, "0000000000");
+                            xrpExpediente.xrpTratamientoActual.ReportSource = new xrpTratamientoActual();
+                            xrpExpediente.xrpTratamientoActual.ReportSource.DataSource = DsetReporte;
+
+
+
+
+
+                            SP_XRP_ExamenClinicoTableAdapter adpExamenClinico = new SP_XRP_ExamenClinicoTableAdapter();
+                            adpExamenClinico.Fill(DsetReporte.SP_XRP_ExamenClinico, "0000000000");
+                            xrpExpediente.xrpExamenClinico.ReportSource = new xrpExamenClinico();
+                            xrpExpediente.xrpExamenClinico.ReportSource.DataSource = DsetReporte;
+
+
+
+
+
+
+
+
+
+
+
+
+                            xrpExpediente.ShowPrintMarginsWarning = false;
+                            xrpExpediente.ExportToPdf(stream, null);
+
+                            stream.Seek(0, SeekOrigin.Begin);
+
+                            DatosReporte.d = stream.ToArray();
+                            DatosReporte.Nombre = "Expediente";
+
                             break;
                         case "5":
                             break;

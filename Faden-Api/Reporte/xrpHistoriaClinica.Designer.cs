@@ -33,9 +33,9 @@
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.dsetReporte1 = new Faden_Api.Reporte.DsetReporte();
             this.P_NoExpediente = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
-            this.xrLabel80 = new DevExpress.XtraReports.UI.XRLabel();
+            this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLine5 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLabel80 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel25 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel31 = new DevExpress.XtraReports.UI.XRLabel();
@@ -75,17 +75,29 @@
             this.P_NoExpediente.Name = "P_NoExpediente";
             this.P_NoExpediente.Visible = false;
             // 
-            // PageHeader
+            // GroupHeader1
             // 
-            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel2,
-            this.xrLabel31,
-            this.xrLabel1,
-            this.xrLabel25,
+            this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLine5,
             this.xrLabel80,
-            this.xrLine5});
-            this.PageHeader.HeightF = 184.0278F;
-            this.PageHeader.Name = "PageHeader";
+            this.xrLabel25,
+            this.xrLabel1,
+            this.xrLabel31,
+            this.xrLabel2});
+            this.GroupHeader1.HeightF = 185.4167F;
+            this.GroupHeader1.KeepTogether = true;
+            this.GroupHeader1.Name = "GroupHeader1";
+            // 
+            // xrLine5
+            // 
+            this.xrLine5.BorderWidth = 1F;
+            this.xrLine5.ForeColor = System.Drawing.Color.Purple;
+            this.xrLine5.LineWidth = 2F;
+            this.xrLine5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 9.999996F);
+            this.xrLine5.Name = "xrLine5";
+            this.xrLine5.SizeF = new System.Drawing.SizeF(807.5556F, 8.416656F);
+            this.xrLine5.StylePriority.UseBorderWidth = false;
+            this.xrLine5.StylePriority.UseForeColor = false;
             // 
             // xrLabel80
             // 
@@ -99,17 +111,6 @@
             this.xrLabel80.StylePriority.UseTextAlignment = false;
             this.xrLabel80.Text = "Historia Medica y Clinica";
             this.xrLabel80.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            // 
-            // xrLine5
-            // 
-            this.xrLine5.BorderWidth = 1F;
-            this.xrLine5.ForeColor = System.Drawing.Color.Purple;
-            this.xrLine5.LineWidth = 2F;
-            this.xrLine5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 9.999996F);
-            this.xrLine5.Name = "xrLine5";
-            this.xrLine5.SizeF = new System.Drawing.SizeF(807.5556F, 8.416656F);
-            this.xrLine5.StylePriority.UseBorderWidth = false;
-            this.xrLine5.StylePriority.UseForeColor = false;
             // 
             // xrLabel25
             // 
@@ -189,7 +190,7 @@
             this.Detail,
             this.TopMargin,
             this.BottomMargin,
-            this.PageHeader});
+            this.GroupHeader1});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.dsetReporte1});
             this.DataMember = "SP_XRP_HistoriaClinica";
@@ -211,12 +212,12 @@
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
         private DsetReporte dsetReporte1;
         private DevExpress.XtraReports.Parameters.Parameter P_NoExpediente;
-        private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel80;
+        private DevExpress.XtraReports.UI.GroupHeaderBand GroupHeader1;
         private DevExpress.XtraReports.UI.XRLine xrLine5;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel1;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel80;
         private DevExpress.XtraReports.UI.XRLabel xrLabel25;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel31;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
     }
 }
