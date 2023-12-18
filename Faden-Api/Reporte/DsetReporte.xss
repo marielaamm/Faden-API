@@ -8,7 +8,7 @@
   <Shapes>
     <Shape ID="DesignTable:SP_Atencion_Esp_Sex" ZOrder="4" X="673" Y="399" Height="172" Width="266" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
     <Shape ID="DesignTable:SP_xrp_Paciente" ZOrder="8" X="958" Y="87" Height="248" Width="238" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="197" />
-    <Shape ID="DesignTable:SP_xrp_Acompanante" ZOrder="7" X="649" Y="123" Height="191" Width="269" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="140" />
+    <Shape ID="DesignTable:SP_xrp_Acompanante" ZOrder="7" X="648" Y="112" Height="193" Width="269" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="142" />
     <Shape ID="DesignTable:SP_Expediente" ZOrder="3" X="1244" Y="76" Height="305" Width="229" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
     <Shape ID="DesignTable:SP_XRP_ExamenClinico" ZOrder="6" X="1277" Y="393" Height="153" Width="278" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
     <Shape ID="DesignTable:SP_XRP_HistoriaClinica" ZOrder="5" X="964" Y="391" Height="134" Width="277" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
