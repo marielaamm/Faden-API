@@ -43,7 +43,7 @@ namespace Faden_Api.SIS
                                         User = _q.Usuario1,
                                         Nombre = _q.Nombre,
                                         Pwd = _q.Contrasena,
-                                        Rol = string.Empty,
+                                        Rol = _q.Rol.Rol1,
                                         IdMedico = _q.IdMedico == null ? -1 : _q.IdMedico,
                                         FechaLogin = string.Format("{0:yyyy-MM-dd hh:mm:ss}", DateTime.Now),
                                         Desconectar = false
@@ -73,7 +73,7 @@ namespace Faden_Api.SIS
 
 
                     lstDatos.AddRange(v_FechaServidor(user, qUsuario[0].Desconectar));
-
+                    lstDatos.Add(v_Rol(user, _Conexion));
 
 
                     json = Cls_Mensaje.Tojson(lstDatos, lstDatos.Count, string.Empty, string.Empty, 0);
@@ -111,6 +111,8 @@ namespace Faden_Api.SIS
  
                     lstDatos.AddRange(v_FechaServidor(user, false));
 
+                    lstDatos.Add(v_Rol(user, _Conexion));
+
 
                     json = Cls_Mensaje.Tojson(lstDatos, lstDatos.Count, string.Empty, string.Empty, 0);
                 }
@@ -142,5 +144,40 @@ namespace Faden_Api.SIS
 
             return new Cls_Datos[] { datos, datos2 };
         }
+
+
+        private Cls_Datos v_Rol(string user, FADENEntities _Conexion)
+        {
+
+            Usuario u = _Conexion.Usuario.FirstOrDefault(w => w.Usuario1 == user);
+
+
+            var qAcceso = (from _m in _Conexion.Acceso
+                           where _m.IdRol == u.IdRol
+                           select new
+                           {
+                               _m.IdAcceso,
+                               _m.IdRol,
+                               _m.Seleccionar,
+                               _m.EsMenu,
+                               _m.Modulo,
+                               _m.ModuloNombre,
+                               _m.Id,
+                               _m.Link,
+                           }).ToList();
+
+            Cls_Datos datos = new Cls_Datos();
+            datos.Nombre = "ACCESO";
+            datos.d = qAcceso;
+
+
+
+
+            return datos;
+        }
+
+
+
+
     }
 }

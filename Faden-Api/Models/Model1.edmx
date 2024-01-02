@@ -5,6 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="FADENModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Acceso">
+          <Key>
+            <PropertyRef Name="IdAcceso" />
+          </Key>
+          <Property Name="IdAcceso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRol" Type="int" Nullable="false" />
+          <Property Name="Seleccionar" Type="bit" Nullable="false" />
+          <Property Name="EsMenu" Type="bit" Nullable="false" />
+          <Property Name="Modulo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ModuloNombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MenuPadre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Clase" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="Acompanante">
           <Key>
             <PropertyRef Name="IdAcpte" />
@@ -335,6 +350,18 @@
           <Property Name="FuncionAutonomica" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="IdPaciente" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Acceso_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Acceso" Type="Self.Acceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="Acceso">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Acompanante_Paciente">
           <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
           <End Role="Acompanante" Type="Self.Acompanante" Multiplicity="*" />
@@ -636,6 +663,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="FADENModelStoreContainer">
+          <EntitySet Name="Acceso" EntityType="Self.Acceso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Acompanante" EntityType="Self.Acompanante" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AgendaMedica" EntityType="Self.AgendaMedica" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnalisisPresuncion" EntityType="Self.AnalisisPresuncion" Schema="dbo" store:Type="Tables" />
@@ -662,6 +690,10 @@
           <EntitySet Name="TratamientoHistorico" EntityType="Self.TratamientoHistorico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ValoracionNeuroPsico" EntityType="Self.ValoracionNeuroPsico" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Acceso_Rol" Association="Self.FK_Acceso_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Acceso" EntitySet="Acceso" />
+          </AssociationSet>
           <AssociationSet Name="FK_Acompanante_Paciente" Association="Self.FK_Acompanante_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="Acompanante" EntitySet="Acompanante" />
@@ -1074,6 +1106,7 @@
           <Property Name="Rol1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Usuario" Relationship="FADENModel.FK_Usuario_Rol" FromRole="Rol" ToRole="Usuario" />
+          <NavigationProperty Name="Acceso" Relationship="FADENModel.FK_Acceso_Rol" FromRole="Rol" ToRole="Acceso" />
         </EntityType>
         <EntityType Name="SindromePredominante">
           <Key>
@@ -1522,6 +1555,11 @@
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
+          <EntitySet Name="Acceso" EntityType="FADENModel.Acceso" />
+          <AssociationSet Name="FK_Acceso_Rol" Association="FADENModel.FK_Acceso_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Acceso" EntitySet="Acceso" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Usuario">
           <Key>
@@ -1571,6 +1609,34 @@
               <PropertyRef Name="IdRol" />
             </Principal>
             <Dependent Role="Usuario">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Acceso">
+          <Key>
+            <PropertyRef Name="IdAcceso" />
+          </Key>
+          <Property Name="IdAcceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRol" Type="Int32" Nullable="false" />
+          <Property Name="Seleccionar" Type="Boolean" Nullable="false" />
+          <Property Name="EsMenu" Type="Boolean" Nullable="false" />
+          <Property Name="Modulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModuloNombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MenuPadre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Clase" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Rol" Relationship="FADENModel.FK_Acceso_Rol" FromRole="Acceso" ToRole="Rol" />
+        </EntityType>
+        <Association Name="FK_Acceso_Rol">
+          <End Type="FADENModel.Rol" Role="Rol" Multiplicity="1" />
+          <End Type="FADENModel.Acceso" Role="Acceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="Acceso">
               <PropertyRef Name="IdRol" />
             </Dependent>
           </ReferentialConstraint>
@@ -1934,6 +2000,22 @@
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Acceso">
+            <EntityTypeMapping TypeName="FADENModel.Acceso">
+              <MappingFragment StoreEntitySet="Acceso">
+                <ScalarProperty Name="Clase" ColumnName="Clase" />
+                <ScalarProperty Name="MenuPadre" ColumnName="MenuPadre" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ModuloNombre" ColumnName="ModuloNombre" />
+                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+                <ScalarProperty Name="EsMenu" ColumnName="EsMenu" />
+                <ScalarProperty Name="Seleccionar" ColumnName="Seleccionar" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="IdAcceso" ColumnName="IdAcceso" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

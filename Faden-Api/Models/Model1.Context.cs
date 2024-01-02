@@ -51,5 +51,6 @@ namespace Faden_Api.Models
         public virtual DbSet<TratamientoHistorico> TratamientoHistorico { get; set; }
         public virtual DbSet<ValoracionNeuroPsico> ValoracionNeuroPsico { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Acceso> Acceso { get; set; }
     }
 }

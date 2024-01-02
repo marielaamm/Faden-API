@@ -434,6 +434,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Acceso.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Acompanante.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -649,12 +652,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="Reporte\DsetReporte.xsc">
-      <DependentUpon>DsetReporte.xsd</DependentUpon>
-    </Content>
-    <Content Include="Reporte\DsetReporte.xss">
-      <DependentUpon>DsetReporte.xsd</DependentUpon>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -683,11 +680,17 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Reporte\DsetReporte.xsc">
+      <DependentUpon>DsetReporte.xsd</DependentUpon>
+    </Content>
     <None Include="Reporte\DsetReporte.xsd">
-      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DsetReporte.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
+    <Content Include="Reporte\DsetReporte.xss">
+      <DependentUpon>DsetReporte.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
