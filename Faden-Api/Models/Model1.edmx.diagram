@@ -24,8 +24,6 @@
         <EntityTypeShape EntityType="FADENModel.HistoriaFamSoc" Width="1.5" PointX="5.25" PointY="49.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FADENModel.Medicos" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FADENModel.Paciente" Width="1.5" PointX="3" PointY="28.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FADENModel.PerfilUsuario" Width="1.5" PointX="12.25" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="FADENModel.Rol" Width="1.5" PointX="7.75" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="FADENModel.SindromePredominante" Width="1.5" PointX="5.25" PointY="52.375" IsExpanded="true" />
         <EntityTypeShape EntityType="FADENModel.SistemaSoap" Width="1.5" PointX="5.25" PointY="54.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FADENModel.TratamientoHistorico" Width="1.5" PointX="5.25" PointY="59.375" IsExpanded="true" />
@@ -52,12 +50,14 @@
         <AssociationConnector Association="FADENModel.FK_SistemaSoap_Paciente" ManuallyRouted="false" />
         <AssociationConnector Association="FADENModel.FK_TratamientoHistorico_Paciente" ManuallyRouted="false" />
         <AssociationConnector Association="FADENModel.FK_ValoracionNeuroPsico_Paciente" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="FADENModel.Usuario" Width="1.5" PointX="10" PointY="3.25" />
+        <EntityTypeShape EntityType="FADENModel.Acceso" Width="1.5" PointX="10.375" PointY="6.625" />
+        <EntityTypeShape EntityType="FADENModel.PerfilUsuario" Width="1.5" PointX="7.875" PointY="6.625" />
+        <EntityTypeShape EntityType="FADENModel.Rol" Width="1.5" PointX="14.125" PointY="6.75" />
+        <AssociationConnector Association="FADENModel.FK_Acceso_Rol" />
+        <EntityTypeShape EntityType="FADENModel.Usuario" Width="1.5" PointX="10.25" PointY="3" />
         <AssociationConnector Association="FADENModel.FK_Usuario_Medicos" />
         <AssociationConnector Association="FADENModel.FK_PerfilUsuario_Usuario" />
         <AssociationConnector Association="FADENModel.FK_Usuario_Rol" />
-        <EntityTypeShape EntityType="FADENModel.Acceso" Width="1.5" PointX="10" PointY="7.375" />
-        <AssociationConnector Association="FADENModel.FK_Acceso_Rol" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

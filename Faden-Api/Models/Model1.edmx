@@ -1088,26 +1088,6 @@
           <NavigationProperty Name="TratamientoHistorico" Relationship="Self.FK_TratamientoHistorico_Paciente" FromRole="Paciente" ToRole="TratamientoHistorico" />
           <NavigationProperty Name="ValoracionNeuroPsico" Relationship="Self.FK_ValoracionNeuroPsico_Paciente" FromRole="Paciente" ToRole="ValoracionNeuroPsico" />
         </EntityType>
-        <EntityType Name="PerfilUsuario">
-          <Key>
-            <PropertyRef Name="IdPerfil" />
-          </Key>
-          <Property Name="IdPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
-          <Property Name="Acceso" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="FADENModel.FK_PerfilUsuario_Usuario" FromRole="PerfilUsuario" ToRole="Usuario" />
-        </EntityType>
-        <EntityType Name="Rol">
-          <Key>
-            <PropertyRef Name="IdRol" />
-          </Key>
-          <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Rol1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="FADENModel.FK_Usuario_Rol" FromRole="Rol" ToRole="Usuario" />
-          <NavigationProperty Name="Acceso" Relationship="FADENModel.FK_Acceso_Rol" FromRole="Rol" ToRole="Acceso" />
-        </EntityType>
         <EntityType Name="SindromePredominante">
           <Key>
             <PropertyRef Name="IdSindrome" />
@@ -1448,8 +1428,6 @@
           <EntitySet Name="HistoriaFamSoc" EntityType="Self.HistoriaFamSoc" />
           <EntitySet Name="Medicos" EntityType="Self.Medicos" />
           <EntitySet Name="Paciente" EntityType="Self.Paciente" />
-          <EntitySet Name="PerfilUsuario" EntityType="Self.PerfilUsuario" />
-          <EntitySet Name="Rol" EntityType="Self.Rol" />
           <EntitySet Name="SindromePredominante" EntityType="Self.SindromePredominante" />
           <EntitySet Name="SistemaSoap" EntityType="Self.SistemaSoap" />
           <EntitySet Name="TratamientoHistorico" EntityType="Self.TratamientoHistorico" />
@@ -1542,6 +1520,13 @@
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="ValoracionNeuroPsico" EntitySet="ValoracionNeuroPsico" />
           </AssociationSet>
+          <EntitySet Name="Acceso" EntityType="FADENModel.Acceso" />
+          <EntitySet Name="PerfilUsuario" EntityType="FADENModel.PerfilUsuario" />
+          <EntitySet Name="Rol" EntityType="FADENModel.Rol" />
+          <AssociationSet Name="FK_Acceso_Rol" Association="FADENModel.FK_Acceso_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Acceso" EntitySet="Acceso" />
+          </AssociationSet>
           <EntitySet Name="Usuario" EntityType="FADENModel.Usuario" />
           <AssociationSet Name="FK_Usuario_Medicos" Association="FADENModel.FK_Usuario_Medicos">
             <End Role="Medicos" EntitySet="Medicos" />
@@ -1555,12 +1540,55 @@
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <EntitySet Name="Acceso" EntityType="FADENModel.Acceso" />
-          <AssociationSet Name="FK_Acceso_Rol" Association="FADENModel.FK_Acceso_Rol">
-            <End Role="Rol" EntitySet="Rol" />
-            <End Role="Acceso" EntitySet="Acceso" />
-          </AssociationSet>
           </EntityContainer>
+        <EntityType Name="Acceso">
+          <Key>
+            <PropertyRef Name="IdAcceso" />
+          </Key>
+          <Property Name="IdAcceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRol" Type="Int32" Nullable="false" />
+          <Property Name="Seleccionar" Type="Boolean" Nullable="false" />
+          <Property Name="EsMenu" Type="Boolean" Nullable="false" />
+          <Property Name="Modulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModuloNombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MenuPadre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Clase" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Rol" Relationship="FADENModel.FK_Acceso_Rol" FromRole="Acceso" ToRole="Rol" />
+        </EntityType>
+        <EntityType Name="PerfilUsuario">
+          <Key>
+            <PropertyRef Name="IdPerfil" />
+          </Key>
+          <Property Name="IdPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="Acceso" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="FADENModel.FK_PerfilUsuario_Usuario" FromRole="PerfilUsuario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="IdRol" />
+          </Key>
+          <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rol1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Acceso" Relationship="FADENModel.FK_Acceso_Rol" FromRole="Rol" ToRole="Acceso" />
+          <NavigationProperty Name="Usuario" Relationship="FADENModel.FK_Usuario_Rol" FromRole="Rol" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_Acceso_Rol">
+          <End Type="FADENModel.Rol" Role="Rol" Multiplicity="1" />
+          <End Type="FADENModel.Acceso" Role="Acceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="Acceso">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="IdUsuario" />
@@ -1609,34 +1637,6 @@
               <PropertyRef Name="IdRol" />
             </Principal>
             <Dependent Role="Usuario">
-              <PropertyRef Name="IdRol" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Acceso">
-          <Key>
-            <PropertyRef Name="IdAcceso" />
-          </Key>
-          <Property Name="IdAcceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdRol" Type="Int32" Nullable="false" />
-          <Property Name="Seleccionar" Type="Boolean" Nullable="false" />
-          <Property Name="EsMenu" Type="Boolean" Nullable="false" />
-          <Property Name="Modulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ModuloNombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Link" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="MenuPadre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Clase" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Rol" Relationship="FADENModel.FK_Acceso_Rol" FromRole="Acceso" ToRole="Rol" />
-        </EntityType>
-        <Association Name="FK_Acceso_Rol">
-          <End Type="FADENModel.Rol" Role="Rol" Multiplicity="1" />
-          <End Type="FADENModel.Acceso" Role="Acceso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rol">
-              <PropertyRef Name="IdRol" />
-            </Principal>
-            <Dependent Role="Acceso">
               <PropertyRef Name="IdRol" />
             </Dependent>
           </ReferentialConstraint>
@@ -1914,25 +1914,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PerfilUsuario">
-            <EntityTypeMapping TypeName="FADENModel.PerfilUsuario">
-              <MappingFragment StoreEntitySet="PerfilUsuario">
-                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="Acceso" ColumnName="Acceso" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Rol">
-            <EntityTypeMapping TypeName="FADENModel.Rol">
-              <MappingFragment StoreEntitySet="Rol">
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
-                <ScalarProperty Name="Rol1" ColumnName="Rol" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SindromePredominante">
             <EntityTypeMapping TypeName="FADENModel.SindromePredominante">
               <MappingFragment StoreEntitySet="SindromePredominante">
@@ -1989,20 +1970,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="FADENModel.Usuario">
-              <MappingFragment StoreEntitySet="Usuario">
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="IdMedico" ColumnName="IdMedico" />
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
-                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
-                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
-                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Acceso">
             <EntityTypeMapping TypeName="FADENModel.Acceso">
               <MappingFragment StoreEntitySet="Acceso">
@@ -2016,6 +1983,39 @@
                 <ScalarProperty Name="Seleccionar" ColumnName="Seleccionar" />
                 <ScalarProperty Name="IdRol" ColumnName="IdRol" />
                 <ScalarProperty Name="IdAcceso" ColumnName="IdAcceso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PerfilUsuario">
+            <EntityTypeMapping TypeName="FADENModel.PerfilUsuario">
+              <MappingFragment StoreEntitySet="PerfilUsuario">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Acceso" ColumnName="Acceso" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="FADENModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Rol1" ColumnName="Rol" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="FADENModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="IdMedico" ColumnName="IdMedico" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
