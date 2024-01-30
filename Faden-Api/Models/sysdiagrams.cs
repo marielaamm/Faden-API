@@ -12,18 +12,12 @@ namespace Faden_Api.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AgendaMedica
+    public partial class sysdiagrams
     {
-        public int IdAgenda { get; set; }
-        public int IdPaciente { get; set; }
-        public int IdMedico { get; set; }
-        public System.DateTime Fecha { get; set; }
-        public string HoraInicio { get; set; }
-        public string HoraFin { get; set; }
-        public string Observaciones { get; set; }
-        public string Estado { get; set; }
-    
-        public virtual Paciente Paciente { get; set; }
-        public virtual Medicos Medicos { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

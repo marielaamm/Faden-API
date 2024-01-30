@@ -25,6 +25,7 @@ namespace Faden_Api.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Acceso> Acceso { get; set; }
         public virtual DbSet<Acompanante> Acompanante { get; set; }
         public virtual DbSet<AgendaMedica> AgendaMedica { get; set; }
         public virtual DbSet<AnalisisPresuncion> AnalisisPresuncion { get; set; }
@@ -36,6 +37,7 @@ namespace Faden_Api.Models
         public virtual DbSet<Consenso> Consenso { get; set; }
         public virtual DbSet<Departamento> Departamento { get; set; }
         public virtual DbSet<Escolaridad> Escolaridad { get; set; }
+        public virtual DbSet<Paciente> Paciente { get; set; }
         public virtual DbSet<EstiloVida> EstiloVida { get; set; }
         public virtual DbSet<EstiloVidaAlimentacion> EstiloVidaAlimentacion { get; set; }
         public virtual DbSet<EstiloVidaEjercicio> EstiloVidaEjercicio { get; set; }
@@ -43,14 +45,13 @@ namespace Faden_Api.Models
         public virtual DbSet<ExamenFisicoSistema> ExamenFisicoSistema { get; set; }
         public virtual DbSet<HistoriaFamSoc> HistoriaFamSoc { get; set; }
         public virtual DbSet<Medicos> Medicos { get; set; }
-        public virtual DbSet<Paciente> Paciente { get; set; }
         public virtual DbSet<SindromePredominante> SindromePredominante { get; set; }
         public virtual DbSet<SistemaSoap> SistemaSoap { get; set; }
         public virtual DbSet<TratamientoHistorico> TratamientoHistorico { get; set; }
         public virtual DbSet<ValoracionNeuroPsico> ValoracionNeuroPsico { get; set; }
-        public virtual DbSet<Acceso> Acceso { get; set; }
         public virtual DbSet<PerfilUsuario> PerfilUsuario { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }
