@@ -78,7 +78,7 @@ namespace Faden_Api.Controllers.SIS
                                 a = new Acceso();
                                 esNuevo = true;
                             }
-                            a.IdRol = d.IdRol;
+                            a.IdRol = _C.IdRol;
                             a.Seleccionar = p.Seleccionar;
                             a.EsMenu = p.EsMenu;
                             a.Modulo = p.Modulo;

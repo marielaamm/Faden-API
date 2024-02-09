@@ -23,7 +23,7 @@ namespace Faden_Api.Models
         public string Observaciones { get; set; }
         public string Estado { get; set; }
     
-        public virtual Paciente Paciente { get; set; }
         public virtual Medicos Medicos { get; set; }
+        public virtual Paciente Paciente { get; set; }
     }
 }
