@@ -2,6 +2,8 @@
 using Faden_Api.Class.cat;
 using Faden_Api.Class.EXP;
 using Faden_Api.Models;
+using Faden_Api.Reporte.DsetReporteTableAdapters;
+using Faden_Api.Reporte;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using HttpGetAttribute = System.Web.Http.HttpGetAttribute;
 using RouteAttribute = System.Web.Http.RouteAttribute;
+using System.IO;
+
 namespace Faden_Api.Controllers.CITA
 {
     public class AgendaMedicaController : ApiController
@@ -187,10 +191,43 @@ namespace Faden_Api.Controllers.CITA
 
                         _conexion.SaveChanges();
 
+                        Cls_Datos DatosReporte = new Cls_Datos();
+
+                        DsetReporte DsetReporte = new DsetReporte();
+
+                        System.Data.DataSet Dset = new System.Data.DataSet();
+                        System.Data.DataTable tbl = new System.Data.DataTable();
+
+                        MemoryStream stream = new MemoryStream();
+
+
+                        xrpCitaMedica xrpCita = new xrpCitaMedica();
+                        SP_XRP_CitaMedicaTableAdapter adpCita = new SP_XRP_CitaMedicaTableAdapter();
+                        tbl = DsetReporte.SP_XRP_CitaMedica.Clone();
+                        adpCita.Connection.ConnectionString = _conexion.Database.Connection.ConnectionString;
+                        adpCita.Fill(DsetReporte.SP_XRP_CitaMedica, row.IdAgenda);
+
+                        tbl = DsetReporte.SP_XRP_CitaMedica.Copy();
+                        Dset.Tables.Add(tbl);
+
+                        xrpCita.DataSource = Dset;
+
+
+
+                        xrpCita.ShowPrintMarginsWarning = false;
+                        xrpCita.ExportToPdf(stream, null);
+
+                        stream.Seek(0, SeekOrigin.Begin);
+
+                        DatosReporte.d = stream.ToArray();
+                        DatosReporte.Nombre = "CitaMedica";
+
+
+
 
                         scope.Complete();
 
-                        json = Cls_Mensaje.Tojson(null, 1, string.Empty, "Registro Guardado", 0);
+                        json = Cls_Mensaje.Tojson(DatosReporte, 1, string.Empty, "Registro Guardado", 0);
                     }
                 }
 

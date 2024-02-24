@@ -572,6 +572,12 @@
     <Compile Include="Reporte\xrpAtencionEspSex.Designer.cs">
       <DependentUpon>xrpAtencionEspSex.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reporte\xrpCitaMedica.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpCitaMedica.Designer.cs">
+      <DependentUpon>xrpCitaMedica.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reporte\xrpEstiloVida.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -788,6 +794,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\xrpAtencionEspSex.resx">
       <DependentUpon>xrpAtencionEspSex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\xrpCitaMedica.resx">
+      <DependentUpon>xrpCitaMedica.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\xrpEstiloVida.resx">
       <DependentUpon>xrpEstiloVida.cs</DependentUpon>
