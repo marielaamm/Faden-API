@@ -204,14 +204,14 @@ namespace Faden_Api.Controllers.CITA
 
 
 
-        [Route("api/Agenda/Cancelar")]
+        [Route("api/Agenda/CambiarEstado")]
         [System.Web.Http.HttpPost]
 
-        public IHttpActionResult Cancelar(int IdAgenda)
+        public IHttpActionResult CambiarEstado(int IdAgenda, string s)
         {
             if (ModelState.IsValid)
             {
-                return Ok(_Cancelar(IdAgenda));
+                return Ok(_CambiarEstado(IdAgenda, s));
             }
             else
             {
@@ -219,7 +219,7 @@ namespace Faden_Api.Controllers.CITA
             }
         }
 
-        private string _Cancelar(int IdAgenda)
+        private string _CambiarEstado(int IdAgenda, string s)
         {
             string json = string.Empty;
             try
@@ -233,14 +233,14 @@ namespace Faden_Api.Controllers.CITA
                         AgendaMedica row = _conexion.AgendaMedica.Find(IdAgenda);
           
 
-                        row.Estado = "Cancelada";
+                        row.Estado = s;
 
                         _conexion.SaveChanges();
 
 
                         scope.Complete();
 
-                        json = Cls_Mensaje.Tojson(null, 1, string.Empty, "Cita Cancelada", 0);
+                        json = Cls_Mensaje.Tojson(null, 1, string.Empty, "Cita " + s, 0);
                     }
                 }
 
