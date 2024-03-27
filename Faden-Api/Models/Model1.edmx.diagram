@@ -4,35 +4,35 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4cddc3a0a5eb43f7aaf1a95f6b7f968b" Name="Diagram1" ZoomLevel="33">
+      <Diagram DiagramId="4cddc3a0a5eb43f7aaf1a95f6b7f968b" Name="Diagram1" ZoomLevel="10">
         <EntityTypeShape EntityType="FADENModel.Acceso" Width="1.5" PointX="10" PointY="12.75" />
-        <EntityTypeShape EntityType="FADENModel.Acompanante" Width="1.5" PointX="5.25" PointY="10.625" />
+        <EntityTypeShape EntityType="FADENModel.Acompanante" Width="1.5" PointX="5.25" PointY="15.5" />
         <EntityTypeShape EntityType="FADENModel.AgendaMedica" Width="1.5" PointX="8.25" PointY="33.75" />
-        <EntityTypeShape EntityType="FADENModel.AnalisisPresuncion" Width="1.5" PointX="5.25" PointY="49" />
-        <EntityTypeShape EntityType="FADENModel.AntecedenteFamiliar" Width="1.5" PointX="5.25" PointY="64.75" />
-        <EntityTypeShape EntityType="FADENModel.AntecedentenNeuroPsiquiatrico" Width="1.5" PointX="5.25" PointY="31.5" />
-        <EntityTypeShape EntityType="FADENModel.AntecedentePatologico" Width="1.5" PointX="5.25" PointY="14.5" />
-        <EntityTypeShape EntityType="FADENModel.AntecendeteQuirurgico" Width="1.5" PointX="5.25" PointY="25.625" />
+        <EntityTypeShape EntityType="FADENModel.AnalisisPresuncion" Width="1.5" PointX="5.25" PointY="23.125" />
+        <EntityTypeShape EntityType="FADENModel.AntecedenteFamiliar" Width="1.5" PointX="5.25" PointY="7.375" />
+        <EntityTypeShape EntityType="FADENModel.AntecedentenNeuroPsiquiatrico" Width="1.5" PointX="5.25" PointY="55.75" />
+        <EntityTypeShape EntityType="FADENModel.AntecedentePatologico" Width="1.5" PointX="5.25" PointY="59.125" />
+        <EntityTypeShape EntityType="FADENModel.AntecendeteQuirurgico" Width="1.5" PointX="5.25" PointY="25.875" />
         <EntityTypeShape EntityType="FADENModel.Ciudad" Width="1.5" PointX="3.75" PointY="3.875" />
-        <EntityTypeShape EntityType="FADENModel.Consenso" Width="1.5" PointX="5.25" PointY="38.5" />
+        <EntityTypeShape EntityType="FADENModel.Consenso" Width="1.5" PointX="5.25" PointY="28.75" />
         <EntityTypeShape EntityType="FADENModel.Departamento" Width="1.5" PointX="1.5" PointY="4" />
         <EntityTypeShape EntityType="FADENModel.Escolaridad" Width="1.5" PointX="0.75" PointY="34.25" />
-        <EntityTypeShape EntityType="FADENModel.EstiloVida" Width="1.5" PointX="5.25" PointY="57.375" />
-        <EntityTypeShape EntityType="FADENModel.EstiloVidaAlimentacion" Width="1.5" PointX="5.25" PointY="17.25" />
-        <EntityTypeShape EntityType="FADENModel.EstiloVidaEjercicio" Width="1.5" PointX="5.25" PointY="51.75" />
-        <EntityTypeShape EntityType="FADENModel.ExamenClinico" Width="1.5" PointX="5.25" PointY="28.625" />
-        <EntityTypeShape EntityType="FADENModel.ExamenFisicoSistema" Width="1.5" PointX="5.25" PointY="22.75" />
-        <EntityTypeShape EntityType="FADENModel.HistoriaFamSoc" Width="1.5" PointX="5.25" PointY="54.625" />
+        <EntityTypeShape EntityType="FADENModel.EstiloVida" Width="1.5" PointX="5.25" PointY="48.75" />
+        <EntityTypeShape EntityType="FADENModel.EstiloVidaAlimentacion" Width="1.5" PointX="5.25" PointY="10.125" />
+        <EntityTypeShape EntityType="FADENModel.EstiloVidaEjercicio" Width="1.5" PointX="5.25" PointY="45.875" />
+        <EntityTypeShape EntityType="FADENModel.ExamenClinico" Width="1.5" PointX="5.25" PointY="61.75" />
+        <EntityTypeShape EntityType="FADENModel.ExamenFisicoSistema" Width="1.5" PointX="5.25" PointY="38.5" />
+        <EntityTypeShape EntityType="FADENModel.HistoriaFamSoc" Width="1.5" PointX="5.25" PointY="64.75" />
         <EntityTypeShape EntityType="FADENModel.Medicos" Width="1.5" PointX="6" PointY="0.75" />
         <EntityTypeShape EntityType="FADENModel.Paciente" Width="1.5" PointX="3" PointY="29.875" />
         <EntityTypeShape EntityType="FADENModel.PerfilUsuario" Width="1.5" PointX="12.25" PointY="5.125" />
         <EntityTypeShape EntityType="FADENModel.Rol" Width="1.5" PointX="7.75" PointY="9.375" />
-        <EntityTypeShape EntityType="FADENModel.SindromePredominante" Width="1.5" PointX="5.25" PointY="20.25" />
-        <EntityTypeShape EntityType="FADENModel.SistemaSoap" Width="1.5" PointX="5.25" PointY="44.5" />
+        <EntityTypeShape EntityType="FADENModel.SindromePredominante" Width="1.5" PointX="5.25" PointY="13" />
+        <EntityTypeShape EntityType="FADENModel.SistemaSoap" Width="1.5" PointX="5.25" PointY="41.375" />
         <EntityTypeShape EntityType="FADENModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="7.5" />
-        <EntityTypeShape EntityType="FADENModel.TratamientoHistorico" Width="1.5" PointX="5.25" PointY="7.375" />
+        <EntityTypeShape EntityType="FADENModel.TratamientoHistorico" Width="1.5" PointX="5.25" PointY="52.5" />
         <EntityTypeShape EntityType="FADENModel.Usuario" Width="1.5" PointX="10" PointY="4.5" />
-        <EntityTypeShape EntityType="FADENModel.ValoracionNeuroPsico" Width="1.5" PointX="5.25" PointY="61" />
+        <EntityTypeShape EntityType="FADENModel.ValoracionNeuroPsico" Width="1.5" PointX="5.25" PointY="19.375" />
         <AssociationConnector Association="FADENModel.FK_Acceso_Rol" />
         <AssociationConnector Association="FADENModel.FK_Acompanante_Paciente" />
         <AssociationConnector Association="FADENModel.FK_AgendaMedica_Medicos" />
