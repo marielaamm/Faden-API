@@ -193,8 +193,6 @@ namespace Faden_Api.Controllers.EXP
 
     
                             xrpAtencionEspSex xrpAtenEspSex = new xrpAtencionEspSex();
-                            xrpAtenEspSex.Parameters["FechaInicio"].Value = Fecha1;
-                            xrpAtenEspSex.Parameters["FechaFinal"].Value = Fecha1;
                             xrpAtenEspSex.DataSource = DsetReporte;
                             xrpAtenEspSex.ShowPrintMarginsWarning = false;
                             xrpAtenEspSex.ExportToPdf(stream, null);
