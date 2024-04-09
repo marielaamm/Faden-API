@@ -86,6 +86,7 @@ namespace Faden_Api.Controllers.CAT
                             _conexion.SaveChanges();
 
                             NoExpediente = _conexion.Paciente.Max(m => m.NoExpediente);
+                            p.IdPaciente = _p.IdPaciente;
 
                             if (NoExpediente != string.Empty)
                             {
@@ -117,7 +118,8 @@ namespace Faden_Api.Controllers.CAT
                                 _conexion.SaveChanges();
 
                             }
-                                                
+
+
 
                         }
                         else
@@ -185,12 +187,32 @@ namespace Faden_Api.Controllers.CAT
 
                             }
 
+                            
+
                         }
+
+
+                        var LstAcompanante = (from _q in _conexion.Acompanante
+                                              where _q.IdPaciente == p.IdPaciente
+                                              select new
+                                              {
+                                                  NombreCompleto = _q.NombreCompleto,
+                                                  Telefono = _q.Telefono,
+                                                  Direccion = _q.Direccion,
+                                                  Correo = _q.Correo,
+                                                  EsAcpte = _q.EsAcpte,
+                                                  EsCuidador = _q.EsCuidador,
+                                                  EsPrimario = _q.EsPrimario,
+                                                  EsSecundario = _q.EsSecundario,
+                                                  IdPaciente = _q.IdPaciente,
+                                                  IdAcpte = _q.IdAcpte
+                                              }
+                                        ).ToList();
 
 
                         scope.Complete();
 
-                        json = Cls_Mensaje.Tojson(p, 1, string.Empty, "Registro Guardado", 0);
+                        json = Cls_Mensaje.Tojson(new object[] {p, LstAcompanante }, 1, string.Empty, "Registro Guardado", 0);
                     }
                 }
 
