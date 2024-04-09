@@ -170,8 +170,8 @@ namespace Faden_Api.Controllers.EXP
                             break;
 
                         case "3":
-                            SP_xrp_AcompananteTableAdapter adpAcompanante = new SP_xrp_AcompananteTableAdapter();
-                            adpAcompanante.Fill(DsetReporte.SP_xrp_Acompanante);
+                            SP_XRP_AcompananteTableAdapter adpAcompanante = new SP_XRP_AcompananteTableAdapter();
+                            adpAcompanante.Fill(DsetReporte.SP_XRP_Acompanante);
 
 
                             xrpAcompanante xrpAcomp = new xrpAcompanante();

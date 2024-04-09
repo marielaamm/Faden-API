@@ -78,7 +78,7 @@ namespace Faden_Api.Class.EXP
 
                         foreach (var det in d.Ejercicios)
                         {
-                            EstiloVidaEjercicio ej = _conexion.EstiloVidaEjercicio.Find(det.IdEjercicio);
+                            EstiloVidaEjercicio ej = _conexion.EstiloVidaEjercicio.FirstOrDefault( f=> f.IdElemento == det.IdElemento && f.IdPaciente == det.IdPaciente);
 
                             EsNuevo = false;
                             if (ej == null)
@@ -106,7 +106,7 @@ namespace Faden_Api.Class.EXP
                         foreach (var det in d.Alimentacion)
                         {
 
-                            EstiloVidaAlimentacion ea = _conexion.EstiloVidaAlimentacion.Find(det.IdAlimentacion);
+                            EstiloVidaAlimentacion ea = _conexion.EstiloVidaAlimentacion.FirstOrDefault(f => f.IdElemento == det.IdElemento && f.IdPaciente == det.IdPaciente);
 
                             EsNuevo = false;
                             if (ea == null)

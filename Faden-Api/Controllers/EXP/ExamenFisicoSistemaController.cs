@@ -44,7 +44,7 @@ namespace Faden_Api.Controllers.EXP
 
                         foreach(ExamenFisicoSistema d in datos)
                         {
-                            ExamenFisicoSistema _d = _conexion.ExamenFisicoSistema.Find(d.IdExFisicoSistema);
+                            ExamenFisicoSistema _d = _conexion.ExamenFisicoSistema.FirstOrDefault( f => f.IdElemento == d.IdElemento && f.IdPaciente == d.IdPaciente);
 
                             if (d.Observaciones == null) d.Observaciones = string.Empty;
 

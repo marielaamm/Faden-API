@@ -47,7 +47,7 @@
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.dsetReporte1 = new Faden_Api.Reporte.DsetReporte();
             this.sP_Atencion_Esp_SexTableAdapter = new Faden_Api.Reporte.DsetReporteTableAdapters.SP_Atencion_Esp_SexTableAdapter();
-            this.sP_xrp_AcompananteTableAdapter = new Faden_Api.Reporte.DsetReporteTableAdapters.SP_xrp_AcompananteTableAdapter();
+            this.sP_xrp_AcompananteTableAdapter = new Faden_Api.Reporte.DsetReporteTableAdapters.SP_XRP_AcompananteTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsetReporte1)).BeginInit();
@@ -267,6 +267,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell7;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
-        private DsetReporteTableAdapters.SP_xrp_AcompananteTableAdapter sP_xrp_AcompananteTableAdapter;
+        private DsetReporteTableAdapters.SP_XRP_AcompananteTableAdapter sP_xrp_AcompananteTableAdapter;
     }
 }
