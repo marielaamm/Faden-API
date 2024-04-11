@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="18a94b14863e41f4983854451d3fe5fd" Name="Diagram1" ZoomLevel="10">
+      <Diagram DiagramId="18a94b14863e41f4983854451d3fe5fd" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="FADENModel.Acceso" Width="1.5" PointX="10" PointY="12.75" />
         <EntityTypeShape EntityType="FADENModel.Acompanante" Width="1.5" PointX="5.25" PointY="19.25" />
         <EntityTypeShape EntityType="FADENModel.AgendaMedica" Width="1.5" PointX="8.25" PointY="33.75" />
@@ -25,7 +25,6 @@
         <EntityTypeShape EntityType="FADENModel.HistoriaFamSoc" Width="1.5" PointX="5.25" PointY="58.125" />
         <EntityTypeShape EntityType="FADENModel.Medicos" Width="1.5" PointX="6" PointY="0.75" />
         <EntityTypeShape EntityType="FADENModel.Paciente" Width="1.5" PointX="3" PointY="29.875" />
-        <EntityTypeShape EntityType="FADENModel.PerfilUsuario" Width="1.5" PointX="12.25" PointY="5.125" />
         <EntityTypeShape EntityType="FADENModel.Rol" Width="1.5" PointX="7.75" PointY="9.375" />
         <EntityTypeShape EntityType="FADENModel.SindromePredominante" Width="1.5" PointX="5.25" PointY="41.375" />
         <EntityTypeShape EntityType="FADENModel.SistemaSoap" Width="1.5" PointX="5.25" PointY="53.625" />
@@ -56,7 +55,6 @@
         <AssociationConnector Association="FADENModel.FK_SistemaSoap_Paciente" />
         <AssociationConnector Association="FADENModel.FK_TratamientoHistorico_Paciente" />
         <AssociationConnector Association="FADENModel.FK_ValoracionNeuroPsico_Paciente" />
-        <AssociationConnector Association="FADENModel.FK_PerfilUsuario_Usuario" />
         <AssociationConnector Association="FADENModel.FK_Usuario_Rol" />
       </Diagram>
     </edmx:Diagrams>

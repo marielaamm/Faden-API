@@ -268,15 +268,6 @@
           <Property Name="Pensionado" Type="bit" Nullable="false" />
           <Property Name="Estado" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
-        <EntityType Name="PerfilUsuario">
-          <Key>
-            <PropertyRef Name="IdPerfil" />
-          </Key>
-          <Property Name="IdPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdUsuario" Type="int" Nullable="false" />
-          <Property Name="Acceso" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="Activo" Type="bit" Nullable="false" />
-        </EntityType>
         <EntityType Name="Rol">
           <Key>
             <PropertyRef Name="IdRol" />
@@ -578,18 +569,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PerfilUsuario_Usuario">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="PerfilUsuario" Type="Self.PerfilUsuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="PerfilUsuario">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SindromePredominante_Paciente">
           <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
           <End Role="SindromePredominante" Type="Self.SindromePredominante" Multiplicity="*" />
@@ -732,7 +711,6 @@
           <EntitySet Name="HistoriaFamSoc" EntityType="Self.HistoriaFamSoc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Medicos" EntityType="Self.Medicos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PerfilUsuario" EntityType="Self.PerfilUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SindromePredominante" EntityType="Self.SindromePredominante" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SistemaSoap" EntityType="Self.SistemaSoap" Schema="dbo" store:Type="Tables" />
@@ -815,10 +793,6 @@
             <End Role="Escolaridad" EntitySet="Escolaridad" />
             <End Role="Paciente" EntitySet="Paciente" />
           </AssociationSet>
-          <AssociationSet Name="FK_PerfilUsuario_Usuario" Association="Self.FK_PerfilUsuario_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="PerfilUsuario" EntitySet="PerfilUsuario" />
-          </AssociationSet>
           <AssociationSet Name="FK_SindromePredominante_Paciente" Association="Self.FK_SindromePredominante_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="SindromePredominante" EntitySet="SindromePredominante" />
@@ -869,7 +843,6 @@
           <EntitySet Name="HistoriaFamSoc" EntityType="FADENModel.HistoriaFamSoc" />
           <EntitySet Name="Medicos" EntityType="FADENModel.Medicos" />
           <EntitySet Name="Paciente" EntityType="FADENModel.Paciente" />
-          <EntitySet Name="PerfilUsuario" EntityType="FADENModel.PerfilUsuario" />
           <EntitySet Name="Rol" EntityType="FADENModel.Rol" />
           <EntitySet Name="SindromePredominante" EntityType="FADENModel.SindromePredominante" />
           <EntitySet Name="SistemaSoap" EntityType="FADENModel.SistemaSoap" />
@@ -971,10 +944,6 @@
           <AssociationSet Name="FK_ValoracionNeuroPsico_Paciente" Association="FADENModel.FK_ValoracionNeuroPsico_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="ValoracionNeuroPsico" EntitySet="ValoracionNeuroPsico" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PerfilUsuario_Usuario" Association="FADENModel.FK_PerfilUsuario_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="PerfilUsuario" EntitySet="PerfilUsuario" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Rol" Association="FADENModel.FK_Usuario_Rol">
             <End Role="Rol" EntitySet="Rol" />
@@ -1335,16 +1304,6 @@
           <NavigationProperty Name="TratamientoHistorico" Relationship="FADENModel.FK_TratamientoHistorico_Paciente" FromRole="Paciente" ToRole="TratamientoHistorico" />
           <NavigationProperty Name="ValoracionNeuroPsico" Relationship="FADENModel.FK_ValoracionNeuroPsico_Paciente" FromRole="Paciente" ToRole="ValoracionNeuroPsico" />
         </EntityType>
-        <EntityType Name="PerfilUsuario">
-          <Key>
-            <PropertyRef Name="IdPerfil" />
-          </Key>
-          <Property Name="IdPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
-          <Property Name="Acceso" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="FADENModel.FK_PerfilUsuario_Usuario" FromRole="PerfilUsuario" ToRole="Usuario" />
-        </EntityType>
         <EntityType Name="Rol">
           <Key>
             <PropertyRef Name="IdRol" />
@@ -1409,7 +1368,6 @@
           <Property Name="IdMedico" Type="Int32" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Medicos" Relationship="FADENModel.FK_Usuario_Medicos" FromRole="Usuario" ToRole="Medicos" />
-          <NavigationProperty Name="PerfilUsuario" Relationship="FADENModel.FK_PerfilUsuario_Usuario" FromRole="Usuario" ToRole="PerfilUsuario" />
           <NavigationProperty Name="Rol" Relationship="FADENModel.FK_Usuario_Rol" FromRole="Usuario" ToRole="Rol" />
         </EntityType>
         <EntityType Name="ValoracionNeuroPsico">
@@ -1712,18 +1670,6 @@
             </Principal>
             <Dependent Role="ValoracionNeuroPsico">
               <PropertyRef Name="IdPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PerfilUsuario_Usuario">
-          <End Type="FADENModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="FADENModel.PerfilUsuario" Role="PerfilUsuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="PerfilUsuario">
-              <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2192,16 +2138,6 @@
                 <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
                 <ScalarProperty Name="NoExpediente" ColumnName="NoExpediente" />
                 <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PerfilUsuario">
-            <EntityTypeMapping TypeName="FADENModel.PerfilUsuario">
-              <MappingFragment StoreEntitySet="PerfilUsuario">
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="Acceso" ColumnName="Acceso" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
