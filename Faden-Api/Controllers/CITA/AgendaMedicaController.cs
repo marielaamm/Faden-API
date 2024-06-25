@@ -43,7 +43,8 @@ namespace Faden_Api.Controllers.CITA
 
 
                     var qAgenda = (from _q in _conexion.AgendaMedica
-                                    // where _q.Fecha.Date >= Fecha1.Date && _q.Fecha.Date <= Fecha2.Date
+                                     where _q.Fecha.Date >= Fecha1.Date && _q.Fecha.Date <= Fecha2.Date
+                                     orderby _q.Fecha.Date descending
                                      select new
                                      {
                                          _q.IdAgenda,
