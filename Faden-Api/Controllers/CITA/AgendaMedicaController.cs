@@ -16,6 +16,7 @@ using System.Web.Mvc;
 using HttpGetAttribute = System.Web.Http.HttpGetAttribute;
 using RouteAttribute = System.Web.Http.RouteAttribute;
 using System.IO;
+using System.Data.Entity;
 
 namespace Faden_Api.Controllers.CITA
 {
@@ -40,11 +41,11 @@ namespace Faden_Api.Controllers.CITA
             {
                 using (FADENEntities _conexion = new FADENEntities())
                 {
-
-
+                    
+                 
                     var qAgenda = (from _q in _conexion.AgendaMedica
-                                     where _q.Fecha.Date >= Fecha1.Date && _q.Fecha.Date <= Fecha2.Date
-                                     orderby _q.Fecha.Date descending
+                                     where _q.Fecha  >= DbFunctions.TruncateTime(Fecha1) && _q.Fecha <= DbFunctions.TruncateTime(Fecha2)
+                                   orderby _q.Fecha descending
                                      select new
                                      {
                                          _q.IdAgenda,
