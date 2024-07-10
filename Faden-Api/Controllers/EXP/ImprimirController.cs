@@ -170,9 +170,12 @@ namespace Faden_Api.Controllers.EXP
                             break;
 
                         case "3":
-                            SP_XRP_AcompananteTableAdapter adpAcompanante = new SP_XRP_AcompananteTableAdapter();
-                            adpAcompanante.Fill(DsetReporte.SP_XRP_Acompanante);
 
+
+                            SP_AcompananteTableAdapter adpAcompanante = new SP_AcompananteTableAdapter();
+                            adpAcompanante.Fill(DsetReporte.SP_Acompanante, "0000000000");
+
+                 
 
                             xrpAcompanante xrpAcomp = new xrpAcompanante();
                             xrpAcomp.DataSource = DsetReporte;
@@ -252,7 +255,8 @@ namespace Faden_Api.Controllers.EXP
                                      select new
                                      {
                                          _q.NoExpediente,
-                                         NombreCompleto = string.Concat(_q.PNombre, " ", _q.SNombre, " ", _q.PApellido, " ", _q.SApellido)
+                                         NombreCompleto = string.Concat(_q.PNombre, " ", _q.SNombre, " ", _q.PApellido, " ", _q.SApellido),
+                                         Key = string.Concat(_q.NoExpediente, " - ",_q.PNombre, " ", _q.SNombre, " ", _q.PApellido, " ", _q.SApellido)
                                      }).ToList();
 
 
