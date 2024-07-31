@@ -24,8 +24,6 @@ namespace Faden_Api.Reporte {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class DsetReporte : global::System.Data.DataSet {
         
-        private SP_AcompananteDataTable tableSP_Acompanante;
-        
         private SP_Atencion_Esp_SexDataTable tableSP_Atencion_Esp_Sex;
         
         private SP_ExpedienteDataTable tableSP_Expediente;
@@ -58,6 +56,8 @@ namespace Faden_Api.Reporte {
         
         private SP_XRP_AcompananteDataTable tableSP_XRP_Acompanante;
         
+        private SP_AcompananteDataTable tableSP_Acompanante;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -86,9 +86,6 @@ namespace Faden_Api.Reporte {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["SP_Acompanante"] != null)) {
-                    base.Tables.Add(new SP_AcompananteDataTable(ds.Tables["SP_Acompanante"]));
-                }
                 if ((ds.Tables["SP_Atencion_Esp_Sex"] != null)) {
                     base.Tables.Add(new SP_Atencion_Esp_SexDataTable(ds.Tables["SP_Atencion_Esp_Sex"]));
                 }
@@ -137,6 +134,9 @@ namespace Faden_Api.Reporte {
                 if ((ds.Tables["SP_XRP_Acompanante"] != null)) {
                     base.Tables.Add(new SP_XRP_AcompananteDataTable(ds.Tables["SP_XRP_Acompanante"]));
                 }
+                if ((ds.Tables["SP_Acompanante"] != null)) {
+                    base.Tables.Add(new SP_AcompananteDataTable(ds.Tables["SP_Acompanante"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -153,16 +153,6 @@ namespace Faden_Api.Reporte {
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
             base.Tables.CollectionChanged += schemaChangedHandler;
             this.Relations.CollectionChanged += schemaChangedHandler;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SP_AcompananteDataTable SP_Acompanante {
-            get {
-                return this.tableSP_Acompanante;
-            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -327,6 +317,16 @@ namespace Faden_Api.Reporte {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SP_AcompananteDataTable SP_Acompanante {
+            get {
+                return this.tableSP_Acompanante;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -392,9 +392,6 @@ namespace Faden_Api.Reporte {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["SP_Acompanante"] != null)) {
-                    base.Tables.Add(new SP_AcompananteDataTable(ds.Tables["SP_Acompanante"]));
-                }
                 if ((ds.Tables["SP_Atencion_Esp_Sex"] != null)) {
                     base.Tables.Add(new SP_Atencion_Esp_SexDataTable(ds.Tables["SP_Atencion_Esp_Sex"]));
                 }
@@ -443,6 +440,9 @@ namespace Faden_Api.Reporte {
                 if ((ds.Tables["SP_XRP_Acompanante"] != null)) {
                     base.Tables.Add(new SP_XRP_AcompananteDataTable(ds.Tables["SP_XRP_Acompanante"]));
                 }
+                if ((ds.Tables["SP_Acompanante"] != null)) {
+                    base.Tables.Add(new SP_AcompananteDataTable(ds.Tables["SP_Acompanante"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -476,12 +476,6 @@ namespace Faden_Api.Reporte {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableSP_Acompanante = ((SP_AcompananteDataTable)(base.Tables["SP_Acompanante"]));
-            if ((initTable == true)) {
-                if ((this.tableSP_Acompanante != null)) {
-                    this.tableSP_Acompanante.InitVars();
-                }
-            }
             this.tableSP_Atencion_Esp_Sex = ((SP_Atencion_Esp_SexDataTable)(base.Tables["SP_Atencion_Esp_Sex"]));
             if ((initTable == true)) {
                 if ((this.tableSP_Atencion_Esp_Sex != null)) {
@@ -578,6 +572,12 @@ namespace Faden_Api.Reporte {
                     this.tableSP_XRP_Acompanante.InitVars();
                 }
             }
+            this.tableSP_Acompanante = ((SP_AcompananteDataTable)(base.Tables["SP_Acompanante"]));
+            if ((initTable == true)) {
+                if ((this.tableSP_Acompanante != null)) {
+                    this.tableSP_Acompanante.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -588,8 +588,6 @@ namespace Faden_Api.Reporte {
             this.Namespace = "http://tempuri.org/DsetReporte.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableSP_Acompanante = new SP_AcompananteDataTable();
-            base.Tables.Add(this.tableSP_Acompanante);
             this.tableSP_Atencion_Esp_Sex = new SP_Atencion_Esp_SexDataTable();
             base.Tables.Add(this.tableSP_Atencion_Esp_Sex);
             this.tableSP_Expediente = new SP_ExpedienteDataTable();
@@ -622,12 +620,8 @@ namespace Faden_Api.Reporte {
             base.Tables.Add(this.tableSP_XRP_TratamientoActual);
             this.tableSP_XRP_Acompanante = new SP_XRP_AcompananteDataTable();
             base.Tables.Add(this.tableSP_XRP_Acompanante);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeSP_Acompanante() {
-            return false;
+            this.tableSP_Acompanante = new SP_AcompananteDataTable();
+            base.Tables.Add(this.tableSP_Acompanante);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -728,6 +722,12 @@ namespace Faden_Api.Reporte {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeSP_Acompanante() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -782,9 +782,6 @@ namespace Faden_Api.Reporte {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void SP_AcompananteRowChangeEventHandler(object sender, SP_AcompananteRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void SP_Atencion_Esp_SexRowChangeEventHandler(object sender, SP_Atencion_Esp_SexRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -832,369 +829,8 @@ namespace Faden_Api.Reporte {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void SP_XRP_AcompananteRowChangeEventHandler(object sender, SP_XRP_AcompananteRowChangeEvent e);
         
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SP_AcompananteDataTable : global::System.Data.TypedTableBase<SP_AcompananteRow> {
-            
-            private global::System.Data.DataColumn columnNoExpediente;
-            
-            private global::System.Data.DataColumn columnAp_NombreCompleto;
-            
-            private global::System.Data.DataColumn columnAp_Telefono;
-            
-            private global::System.Data.DataColumn columnAp_Correo;
-            
-            private global::System.Data.DataColumn columnEsAcpte;
-            
-            private global::System.Data.DataColumn columnEsCuidador;
-            
-            private global::System.Data.DataColumn columnEsPrimario;
-            
-            private global::System.Data.DataColumn columnEsSecundario;
-            
-            private global::System.Data.DataColumn columnAp_Direccion;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SP_AcompananteDataTable() {
-                this.TableName = "SP_Acompanante";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal SP_AcompananteDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected SP_AcompananteDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NoExpedienteColumn {
-                get {
-                    return this.columnNoExpediente;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Ap_NombreCompletoColumn {
-                get {
-                    return this.columnAp_NombreCompleto;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Ap_TelefonoColumn {
-                get {
-                    return this.columnAp_Telefono;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Ap_CorreoColumn {
-                get {
-                    return this.columnAp_Correo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn EsAcpteColumn {
-                get {
-                    return this.columnEsAcpte;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn EsCuidadorColumn {
-                get {
-                    return this.columnEsCuidador;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn EsPrimarioColumn {
-                get {
-                    return this.columnEsPrimario;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn EsSecundarioColumn {
-                get {
-                    return this.columnEsSecundario;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Ap_DireccionColumn {
-                get {
-                    return this.columnAp_Direccion;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SP_AcompananteRow this[int index] {
-                get {
-                    return ((SP_AcompananteRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event SP_AcompananteRowChangeEventHandler SP_AcompananteRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event SP_AcompananteRowChangeEventHandler SP_AcompananteRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event SP_AcompananteRowChangeEventHandler SP_AcompananteRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event SP_AcompananteRowChangeEventHandler SP_AcompananteRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddSP_AcompananteRow(SP_AcompananteRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SP_AcompananteRow AddSP_AcompananteRow(string NoExpediente, string Ap_NombreCompleto, string Ap_Telefono, string Ap_Correo, bool EsAcpte, bool EsCuidador, bool EsPrimario, bool EsSecundario, string Ap_Direccion) {
-                SP_AcompananteRow rowSP_AcompananteRow = ((SP_AcompananteRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        NoExpediente,
-                        Ap_NombreCompleto,
-                        Ap_Telefono,
-                        Ap_Correo,
-                        EsAcpte,
-                        EsCuidador,
-                        EsPrimario,
-                        EsSecundario,
-                        Ap_Direccion};
-                rowSP_AcompananteRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSP_AcompananteRow);
-                return rowSP_AcompananteRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                SP_AcompananteDataTable cln = ((SP_AcompananteDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new SP_AcompananteDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal void InitVars() {
-                this.columnNoExpediente = base.Columns["NoExpediente"];
-                this.columnAp_NombreCompleto = base.Columns["Ap_NombreCompleto"];
-                this.columnAp_Telefono = base.Columns["Ap_Telefono"];
-                this.columnAp_Correo = base.Columns["Ap_Correo"];
-                this.columnEsAcpte = base.Columns["EsAcpte"];
-                this.columnEsCuidador = base.Columns["EsCuidador"];
-                this.columnEsPrimario = base.Columns["EsPrimario"];
-                this.columnEsSecundario = base.Columns["EsSecundario"];
-                this.columnAp_Direccion = base.Columns["Ap_Direccion"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            private void InitClass() {
-                this.columnNoExpediente = new global::System.Data.DataColumn("NoExpediente", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNoExpediente);
-                this.columnAp_NombreCompleto = new global::System.Data.DataColumn("Ap_NombreCompleto", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAp_NombreCompleto);
-                this.columnAp_Telefono = new global::System.Data.DataColumn("Ap_Telefono", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAp_Telefono);
-                this.columnAp_Correo = new global::System.Data.DataColumn("Ap_Correo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAp_Correo);
-                this.columnEsAcpte = new global::System.Data.DataColumn("EsAcpte", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEsAcpte);
-                this.columnEsCuidador = new global::System.Data.DataColumn("EsCuidador", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEsCuidador);
-                this.columnEsPrimario = new global::System.Data.DataColumn("EsPrimario", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEsPrimario);
-                this.columnEsSecundario = new global::System.Data.DataColumn("EsSecundario", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEsSecundario);
-                this.columnAp_Direccion = new global::System.Data.DataColumn("Ap_Direccion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAp_Direccion);
-                this.columnNoExpediente.MaxLength = 50;
-                this.columnAp_NombreCompleto.MaxLength = 50;
-                this.columnAp_Telefono.MaxLength = 20;
-                this.columnAp_Correo.MaxLength = 100;
-                this.columnAp_Direccion.MaxLength = 500;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SP_AcompananteRow NewSP_AcompananteRow() {
-                return ((SP_AcompananteRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SP_AcompananteRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(SP_AcompananteRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.SP_AcompananteRowChanged != null)) {
-                    this.SP_AcompananteRowChanged(this, new SP_AcompananteRowChangeEvent(((SP_AcompananteRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.SP_AcompananteRowChanging != null)) {
-                    this.SP_AcompananteRowChanging(this, new SP_AcompananteRowChangeEvent(((SP_AcompananteRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.SP_AcompananteRowDeleted != null)) {
-                    this.SP_AcompananteRowDeleted(this, new SP_AcompananteRowChangeEvent(((SP_AcompananteRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.SP_AcompananteRowDeleting != null)) {
-                    this.SP_AcompananteRowDeleting(this, new SP_AcompananteRowChangeEvent(((SP_AcompananteRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveSP_AcompananteRow(SP_AcompananteRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DsetReporte ds = new DsetReporte();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SP_AcompananteDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void SP_AcompananteRowChangeEventHandler(object sender, SP_AcompananteRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -6738,270 +6374,391 @@ namespace Faden_Api.Reporte {
         }
         
         /// <summary>
-        ///Represents strongly named DataRow class.
+        ///Represents the strongly named DataTable class.
         ///</summary>
-        public partial class SP_AcompananteRow : global::System.Data.DataRow {
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SP_AcompananteDataTable : global::System.Data.TypedTableBase<SP_AcompananteRow> {
             
-            private SP_AcompananteDataTable tableSP_Acompanante;
+            private global::System.Data.DataColumn columnNoExpediente;
+            
+            private global::System.Data.DataColumn columnNomPaciente;
+            
+            private global::System.Data.DataColumn columnAp_NombreCompleto;
+            
+            private global::System.Data.DataColumn columnAp_Telefono;
+            
+            private global::System.Data.DataColumn columnAp_Correo;
+            
+            private global::System.Data.DataColumn columnEsAcpte;
+            
+            private global::System.Data.DataColumn columnEsCuidador;
+            
+            private global::System.Data.DataColumn columnEsPrimario;
+            
+            private global::System.Data.DataColumn columnEsSecundario;
+            
+            private global::System.Data.DataColumn columnAp_Direccion;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal SP_AcompananteRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableSP_Acompanante = ((SP_AcompananteDataTable)(this.Table));
+            public SP_AcompananteDataTable() {
+                this.TableName = "SP_Acompanante";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string NoExpediente {
+            internal SP_AcompananteDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected SP_AcompananteDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NoExpedienteColumn {
                 get {
-                    try {
-                        return ((string)(this[this.tableSP_Acompanante.NoExpedienteColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NoExpediente\' de la tabla \'SP_Acompanante\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSP_Acompanante.NoExpedienteColumn] = value;
+                    return this.columnNoExpediente;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Ap_NombreCompleto {
+            public global::System.Data.DataColumn NomPacienteColumn {
                 get {
-                    try {
-                        return ((string)(this[this.tableSP_Acompanante.Ap_NombreCompletoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Ap_NombreCompleto\' de la tabla \'SP_Acompanante\' es DBNull" +
-                                ".", e);
-                    }
-                }
-                set {
-                    this[this.tableSP_Acompanante.Ap_NombreCompletoColumn] = value;
+                    return this.columnNomPaciente;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Ap_Telefono {
+            public global::System.Data.DataColumn Ap_NombreCompletoColumn {
                 get {
-                    try {
-                        return ((string)(this[this.tableSP_Acompanante.Ap_TelefonoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Ap_Telefono\' de la tabla \'SP_Acompanante\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSP_Acompanante.Ap_TelefonoColumn] = value;
+                    return this.columnAp_NombreCompleto;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Ap_Correo {
+            public global::System.Data.DataColumn Ap_TelefonoColumn {
                 get {
-                    try {
-                        return ((string)(this[this.tableSP_Acompanante.Ap_CorreoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Ap_Correo\' de la tabla \'SP_Acompanante\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSP_Acompanante.Ap_CorreoColumn] = value;
+                    return this.columnAp_Telefono;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool EsAcpte {
+            public global::System.Data.DataColumn Ap_CorreoColumn {
                 get {
-                    try {
-                        return ((bool)(this[this.tableSP_Acompanante.EsAcpteColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'EsAcpte\' de la tabla \'SP_Acompanante\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSP_Acompanante.EsAcpteColumn] = value;
+                    return this.columnAp_Correo;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool EsCuidador {
+            public global::System.Data.DataColumn EsAcpteColumn {
                 get {
-                    try {
-                        return ((bool)(this[this.tableSP_Acompanante.EsCuidadorColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'EsCuidador\' de la tabla \'SP_Acompanante\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSP_Acompanante.EsCuidadorColumn] = value;
+                    return this.columnEsAcpte;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool EsPrimario {
+            public global::System.Data.DataColumn EsCuidadorColumn {
                 get {
-                    try {
-                        return ((bool)(this[this.tableSP_Acompanante.EsPrimarioColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'EsPrimario\' de la tabla \'SP_Acompanante\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSP_Acompanante.EsPrimarioColumn] = value;
+                    return this.columnEsCuidador;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool EsSecundario {
+            public global::System.Data.DataColumn EsPrimarioColumn {
                 get {
-                    try {
-                        return ((bool)(this[this.tableSP_Acompanante.EsSecundarioColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'EsSecundario\' de la tabla \'SP_Acompanante\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSP_Acompanante.EsSecundarioColumn] = value;
+                    return this.columnEsPrimario;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Ap_Direccion {
+            public global::System.Data.DataColumn EsSecundarioColumn {
                 get {
+                    return this.columnEsSecundario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn Ap_DireccionColumn {
+                get {
+                    return this.columnAp_Direccion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SP_AcompananteRow this[int index] {
+                get {
+                    return ((SP_AcompananteRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SP_AcompananteRowChangeEventHandler SP_AcompananteRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SP_AcompananteRowChangeEventHandler SP_AcompananteRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SP_AcompananteRowChangeEventHandler SP_AcompananteRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SP_AcompananteRowChangeEventHandler SP_AcompananteRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddSP_AcompananteRow(SP_AcompananteRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SP_AcompananteRow AddSP_AcompananteRow(string NoExpediente, string NomPaciente, string Ap_NombreCompleto, string Ap_Telefono, string Ap_Correo, bool EsAcpte, bool EsCuidador, bool EsPrimario, bool EsSecundario, string Ap_Direccion) {
+                SP_AcompananteRow rowSP_AcompananteRow = ((SP_AcompananteRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        NoExpediente,
+                        NomPaciente,
+                        Ap_NombreCompleto,
+                        Ap_Telefono,
+                        Ap_Correo,
+                        EsAcpte,
+                        EsCuidador,
+                        EsPrimario,
+                        EsSecundario,
+                        Ap_Direccion};
+                rowSP_AcompananteRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSP_AcompananteRow);
+                return rowSP_AcompananteRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SP_AcompananteDataTable cln = ((SP_AcompananteDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SP_AcompananteDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnNoExpediente = base.Columns["NoExpediente"];
+                this.columnNomPaciente = base.Columns["NomPaciente"];
+                this.columnAp_NombreCompleto = base.Columns["Ap_NombreCompleto"];
+                this.columnAp_Telefono = base.Columns["Ap_Telefono"];
+                this.columnAp_Correo = base.Columns["Ap_Correo"];
+                this.columnEsAcpte = base.Columns["EsAcpte"];
+                this.columnEsCuidador = base.Columns["EsCuidador"];
+                this.columnEsPrimario = base.Columns["EsPrimario"];
+                this.columnEsSecundario = base.Columns["EsSecundario"];
+                this.columnAp_Direccion = base.Columns["Ap_Direccion"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnNoExpediente = new global::System.Data.DataColumn("NoExpediente", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNoExpediente);
+                this.columnNomPaciente = new global::System.Data.DataColumn("NomPaciente", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNomPaciente);
+                this.columnAp_NombreCompleto = new global::System.Data.DataColumn("Ap_NombreCompleto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAp_NombreCompleto);
+                this.columnAp_Telefono = new global::System.Data.DataColumn("Ap_Telefono", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAp_Telefono);
+                this.columnAp_Correo = new global::System.Data.DataColumn("Ap_Correo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAp_Correo);
+                this.columnEsAcpte = new global::System.Data.DataColumn("EsAcpte", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEsAcpte);
+                this.columnEsCuidador = new global::System.Data.DataColumn("EsCuidador", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEsCuidador);
+                this.columnEsPrimario = new global::System.Data.DataColumn("EsPrimario", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEsPrimario);
+                this.columnEsSecundario = new global::System.Data.DataColumn("EsSecundario", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEsSecundario);
+                this.columnAp_Direccion = new global::System.Data.DataColumn("Ap_Direccion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAp_Direccion);
+                this.columnNoExpediente.AllowDBNull = false;
+                this.columnNoExpediente.MaxLength = 50;
+                this.columnNomPaciente.ReadOnly = true;
+                this.columnNomPaciente.MaxLength = 203;
+                this.columnAp_NombreCompleto.AllowDBNull = false;
+                this.columnAp_NombreCompleto.MaxLength = 50;
+                this.columnAp_Telefono.AllowDBNull = false;
+                this.columnAp_Telefono.MaxLength = 20;
+                this.columnAp_Correo.AllowDBNull = false;
+                this.columnAp_Correo.MaxLength = 100;
+                this.columnEsAcpte.AllowDBNull = false;
+                this.columnEsCuidador.AllowDBNull = false;
+                this.columnEsPrimario.AllowDBNull = false;
+                this.columnEsSecundario.AllowDBNull = false;
+                this.columnAp_Direccion.AllowDBNull = false;
+                this.columnAp_Direccion.MaxLength = 500;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SP_AcompananteRow NewSP_AcompananteRow() {
+                return ((SP_AcompananteRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SP_AcompananteRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SP_AcompananteRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SP_AcompananteRowChanged != null)) {
+                    this.SP_AcompananteRowChanged(this, new SP_AcompananteRowChangeEvent(((SP_AcompananteRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SP_AcompananteRowChanging != null)) {
+                    this.SP_AcompananteRowChanging(this, new SP_AcompananteRowChangeEvent(((SP_AcompananteRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SP_AcompananteRowDeleted != null)) {
+                    this.SP_AcompananteRowDeleted(this, new SP_AcompananteRowChangeEvent(((SP_AcompananteRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SP_AcompananteRowDeleting != null)) {
+                    this.SP_AcompananteRowDeleting(this, new SP_AcompananteRowChangeEvent(((SP_AcompananteRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveSP_AcompananteRow(SP_AcompananteRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DsetReporte ds = new DsetReporte();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SP_AcompananteDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
                     try {
-                        return ((string)(this[this.tableSP_Acompanante.Ap_DireccionColumn]));
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Ap_Direccion\' de la tabla \'SP_Acompanante\' es DBNull.", e);
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
                     }
                 }
-                set {
-                    this[this.tableSP_Acompanante.Ap_DireccionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsNoExpedienteNull() {
-                return this.IsNull(this.tableSP_Acompanante.NoExpedienteColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetNoExpedienteNull() {
-                this[this.tableSP_Acompanante.NoExpedienteColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsAp_NombreCompletoNull() {
-                return this.IsNull(this.tableSP_Acompanante.Ap_NombreCompletoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetAp_NombreCompletoNull() {
-                this[this.tableSP_Acompanante.Ap_NombreCompletoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsAp_TelefonoNull() {
-                return this.IsNull(this.tableSP_Acompanante.Ap_TelefonoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetAp_TelefonoNull() {
-                this[this.tableSP_Acompanante.Ap_TelefonoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsAp_CorreoNull() {
-                return this.IsNull(this.tableSP_Acompanante.Ap_CorreoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetAp_CorreoNull() {
-                this[this.tableSP_Acompanante.Ap_CorreoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsEsAcpteNull() {
-                return this.IsNull(this.tableSP_Acompanante.EsAcpteColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetEsAcpteNull() {
-                this[this.tableSP_Acompanante.EsAcpteColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsEsCuidadorNull() {
-                return this.IsNull(this.tableSP_Acompanante.EsCuidadorColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetEsCuidadorNull() {
-                this[this.tableSP_Acompanante.EsCuidadorColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsEsPrimarioNull() {
-                return this.IsNull(this.tableSP_Acompanante.EsPrimarioColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetEsPrimarioNull() {
-                this[this.tableSP_Acompanante.EsPrimarioColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsEsSecundarioNull() {
-                return this.IsNull(this.tableSP_Acompanante.EsSecundarioColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetEsSecundarioNull() {
-                this[this.tableSP_Acompanante.EsSecundarioColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsAp_DireccionNull() {
-                return this.IsNull(this.tableSP_Acompanante.Ap_DireccionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetAp_DireccionNull() {
-                this[this.tableSP_Acompanante.Ap_DireccionColumn] = global::System.Convert.DBNull;
+                xs.Add(dsSchema);
+                return type;
             }
         }
         
@@ -10591,36 +10348,144 @@ namespace Faden_Api.Reporte {
         }
         
         /// <summary>
-        ///Row event argument class
+        ///Represents strongly named DataRow class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class SP_AcompananteRowChangeEvent : global::System.EventArgs {
+        public partial class SP_AcompananteRow : global::System.Data.DataRow {
             
-            private SP_AcompananteRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
+            private SP_AcompananteDataTable tableSP_Acompanante;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SP_AcompananteRowChangeEvent(SP_AcompananteRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
+            internal SP_AcompananteRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSP_Acompanante = ((SP_AcompananteDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SP_AcompananteRow Row {
+            public string NoExpediente {
                 get {
-                    return this.eventRow;
+                    return ((string)(this[this.tableSP_Acompanante.NoExpedienteColumn]));
+                }
+                set {
+                    this[this.tableSP_Acompanante.NoExpedienteColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataRowAction Action {
+            public string NomPaciente {
                 get {
-                    return this.eventAction;
+                    try {
+                        return ((string)(this[this.tableSP_Acompanante.NomPacienteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NomPaciente\' de la tabla \'SP_Acompanante\' es DBNull.", e);
+                    }
                 }
+                set {
+                    this[this.tableSP_Acompanante.NomPacienteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Ap_NombreCompleto {
+                get {
+                    return ((string)(this[this.tableSP_Acompanante.Ap_NombreCompletoColumn]));
+                }
+                set {
+                    this[this.tableSP_Acompanante.Ap_NombreCompletoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Ap_Telefono {
+                get {
+                    return ((string)(this[this.tableSP_Acompanante.Ap_TelefonoColumn]));
+                }
+                set {
+                    this[this.tableSP_Acompanante.Ap_TelefonoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Ap_Correo {
+                get {
+                    return ((string)(this[this.tableSP_Acompanante.Ap_CorreoColumn]));
+                }
+                set {
+                    this[this.tableSP_Acompanante.Ap_CorreoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool EsAcpte {
+                get {
+                    return ((bool)(this[this.tableSP_Acompanante.EsAcpteColumn]));
+                }
+                set {
+                    this[this.tableSP_Acompanante.EsAcpteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool EsCuidador {
+                get {
+                    return ((bool)(this[this.tableSP_Acompanante.EsCuidadorColumn]));
+                }
+                set {
+                    this[this.tableSP_Acompanante.EsCuidadorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool EsPrimario {
+                get {
+                    return ((bool)(this[this.tableSP_Acompanante.EsPrimarioColumn]));
+                }
+                set {
+                    this[this.tableSP_Acompanante.EsPrimarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool EsSecundario {
+                get {
+                    return ((bool)(this[this.tableSP_Acompanante.EsSecundarioColumn]));
+                }
+                set {
+                    this[this.tableSP_Acompanante.EsSecundarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Ap_Direccion {
+                get {
+                    return ((string)(this[this.tableSP_Acompanante.Ap_DireccionColumn]));
+                }
+                set {
+                    this[this.tableSP_Acompanante.Ap_DireccionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsNomPacienteNull() {
+                return this.IsNull(this.tableSP_Acompanante.NomPacienteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetNomPacienteNull() {
+                this[this.tableSP_Acompanante.NomPacienteColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -11167,199 +11032,44 @@ namespace Faden_Api.Reporte {
                 }
             }
         }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class SP_AcompananteRowChangeEvent : global::System.EventArgs {
+            
+            private SP_AcompananteRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SP_AcompananteRowChangeEvent(SP_AcompananteRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SP_AcompananteRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
     }
 }
 namespace Faden_Api.Reporte.DsetReporteTableAdapters {
     
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class SP_AcompananteTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public SP_AcompananteTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "SP_Acompanante";
-            tableMapping.ColumnMappings.Add("NoExpediente", "NoExpediente");
-            tableMapping.ColumnMappings.Add("Ap_NombreCompleto", "Ap_NombreCompleto");
-            tableMapping.ColumnMappings.Add("Ap_Telefono", "Ap_Telefono");
-            tableMapping.ColumnMappings.Add("Ap_Correo", "Ap_Correo");
-            tableMapping.ColumnMappings.Add("EsAcpte", "EsAcpte");
-            tableMapping.ColumnMappings.Add("EsCuidador", "EsCuidador");
-            tableMapping.ColumnMappings.Add("EsPrimario", "EsPrimario");
-            tableMapping.ColumnMappings.Add("EsSecundario", "EsSecundario");
-            tableMapping.ColumnMappings.Add("Ap_Direccion", "Ap_Direccion");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FADENConnectionString"].ConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.SP_Acompanante";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_NoExpediente", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DsetReporte.SP_AcompananteDataTable dataTable, string P_NoExpediente) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((P_NoExpediente == null)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(P_NoExpediente));
-            }
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DsetReporte.SP_AcompananteDataTable GetData(string P_NoExpediente) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((P_NoExpediente == null)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(P_NoExpediente));
-            }
-            DsetReporte.SP_AcompananteDataTable dataTable = new DsetReporte.SP_AcompananteDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
     
     /// <summary>
     ///Represents the connection and commands used to retrieve and save data.
@@ -14341,6 +14051,196 @@ namespace Faden_Api.Reporte.DsetReporteTableAdapters {
         public virtual DsetReporte.SP_XRP_AcompananteDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             DsetReporte.SP_XRP_AcompananteDataTable dataTable = new DsetReporte.SP_XRP_AcompananteDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SP_AcompananteTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public SP_AcompananteTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SP_Acompanante";
+            tableMapping.ColumnMappings.Add("NoExpediente", "NoExpediente");
+            tableMapping.ColumnMappings.Add("NomPaciente", "NomPaciente");
+            tableMapping.ColumnMappings.Add("Ap_NombreCompleto", "Ap_NombreCompleto");
+            tableMapping.ColumnMappings.Add("Ap_Telefono", "Ap_Telefono");
+            tableMapping.ColumnMappings.Add("Ap_Correo", "Ap_Correo");
+            tableMapping.ColumnMappings.Add("EsAcpte", "EsAcpte");
+            tableMapping.ColumnMappings.Add("EsCuidador", "EsCuidador");
+            tableMapping.ColumnMappings.Add("EsPrimario", "EsPrimario");
+            tableMapping.ColumnMappings.Add("EsSecundario", "EsSecundario");
+            tableMapping.ColumnMappings.Add("Ap_Direccion", "Ap_Direccion");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["FADENConnectionString"].ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.SP_Acompanante";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_NoExpediente", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(DsetReporte.SP_AcompananteDataTable dataTable, string P_NoExpediente) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((P_NoExpediente == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(P_NoExpediente));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual DsetReporte.SP_AcompananteDataTable GetData(string P_NoExpediente) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((P_NoExpediente == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(P_NoExpediente));
+            }
+            DsetReporte.SP_AcompananteDataTable dataTable = new DsetReporte.SP_AcompananteDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

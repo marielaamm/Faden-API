@@ -1142,7 +1142,7 @@
             <PropertyRef Name="IdDepto" />
           </Key>
           <Property Name="IdDepto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Ciudad" Relationship="FADENModel.FK_Ciudad_Departamento" FromRole="Departamento" ToRole="Ciudad" />
         </EntityType>
