@@ -40,6 +40,7 @@ namespace Faden_Api.Controllers.CAT
                     using (FADENEntities _conexion = new FADENEntities())
                     {
                         SistemaSoap _s = _conexion.SistemaSoap.Find(s.IdSoap);
+                        Usuario _U = _conexion.Usuario.FirstOrDefault(f => f.Usuario1 == s.Usuario);
                         bool esNuevo = false;
                         
                         if (_s == null)
@@ -61,6 +62,7 @@ namespace Faden_Api.Controllers.CAT
                         _s.Avaluo = s.Avaluo;
                         _s.Planes = s.Planes;
                         _s.IdPaciente = s.IdPaciente;
+                        _s.IdUsuario = _U.IdUsuario;
 
 
 

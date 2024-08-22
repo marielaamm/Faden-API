@@ -49,10 +49,10 @@ namespace Faden_Api.Models
         public virtual DbSet<Paciente> Paciente { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<SindromePredominante> SindromePredominante { get; set; }
-        public virtual DbSet<SistemaSoap> SistemaSoap { get; set; }
         public virtual DbSet<TratamientoHistorico> TratamientoHistorico { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<ValoracionNeuroPsico> ValoracionNeuroPsico { get; set; }
+        public virtual DbSet<SistemaSoap> SistemaSoap { get; set; }
     
         public virtual ObjectResult<SP_Acompanante_Result> SP_Acompanante(string p_NoExpediente)
         {

@@ -136,7 +136,7 @@
             <PropertyRef Name="IdDepto" />
           </Key>
           <Property Name="IdDepto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Codigo" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Escolaridad">
@@ -301,6 +301,7 @@
           <Property Name="Avaluo" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Planes" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IdPaciente" Type="int" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TratamientoHistorico">
           <Key>
@@ -593,6 +594,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SistemaSoap_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="SistemaSoap" Type="Self.SistemaSoap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="SistemaSoap">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TratamientoHistorico_Paciente">
           <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
           <End Role="TratamientoHistorico" Type="Self.TratamientoHistorico" Multiplicity="*" />
@@ -801,6 +814,10 @@
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="SistemaSoap" EntitySet="SistemaSoap" />
           </AssociationSet>
+          <AssociationSet Name="FK_SistemaSoap_Usuario" Association="Self.FK_SistemaSoap_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SistemaSoap" EntitySet="SistemaSoap" />
+          </AssociationSet>
           <AssociationSet Name="FK_TratamientoHistorico_Paciente" Association="Self.FK_TratamientoHistorico_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="TratamientoHistorico" EntitySet="TratamientoHistorico" />
@@ -845,7 +862,6 @@
           <EntitySet Name="Paciente" EntityType="FADENModel.Paciente" />
           <EntitySet Name="Rol" EntityType="FADENModel.Rol" />
           <EntitySet Name="SindromePredominante" EntityType="FADENModel.SindromePredominante" />
-          <EntitySet Name="SistemaSoap" EntityType="FADENModel.SistemaSoap" />
           <EntitySet Name="TratamientoHistorico" EntityType="FADENModel.TratamientoHistorico" />
           <EntitySet Name="Usuario" EntityType="FADENModel.Usuario" />
           <EntitySet Name="ValoracionNeuroPsico" EntityType="FADENModel.ValoracionNeuroPsico" />
@@ -933,10 +949,6 @@
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="SindromePredominante" EntitySet="SindromePredominante" />
           </AssociationSet>
-          <AssociationSet Name="FK_SistemaSoap_Paciente" Association="FADENModel.FK_SistemaSoap_Paciente">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="SistemaSoap" EntitySet="SistemaSoap" />
-          </AssociationSet>
           <AssociationSet Name="FK_TratamientoHistorico_Paciente" Association="FADENModel.FK_TratamientoHistorico_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
             <End Role="TratamientoHistorico" EntitySet="TratamientoHistorico" />
@@ -950,54 +962,63 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
           <FunctionImport Name="SP_Acompanante" ReturnType="Collection(FADENModel.SP_Acompanante_Result)">
-            <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
+          <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Atencion_Esp_Sex" ReturnType="Collection(FADENModel.SP_Atencion_Esp_Sex_Result)">
             <Parameter Name="P_Fecha1" Mode="In" Type="DateTime" />
             <Parameter Name="P_Fecha2" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SP_Expediente" ReturnType="Collection(FADENModel.SP_Expediente_Result)">
-            <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
+          <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Paciente_Edad" ReturnType="Collection(FADENModel.SP_Paciente_Edad_Result)" />
           <FunctionImport Name="SP_XRP_Acompanante" ReturnType="Collection(FADENModel.SP_XRP_Acompanante_Result)" />
           <FunctionImport Name="SP_XRP_AnalisisPresuncion" ReturnType="Collection(FADENModel.SP_XRP_AnalisisPresuncion_Result)">
-            <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
+          <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_XRP_AntecedenteFamiliar" ReturnType="Collection(FADENModel.SP_XRP_AntecedenteFamiliar_Result)">
-            <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
+          <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_XRP_AntecedentePatologico" ReturnType="Collection(FADENModel.SP_XRP_AntecedentePatologico_Result)">
-            <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
+          <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_XRP_AntecedenteQuirurgico" ReturnType="Collection(FADENModel.SP_XRP_AntecedenteQuirurgico_Result)">
-            <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
+          <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_XRP_CitaMedica" ReturnType="Collection(FADENModel.SP_XRP_CitaMedica_Result)">
-            <Parameter Name="P_IdAgenda" Mode="In" Type="Int32" />
+          <Parameter Name="P_IdAgenda" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_XRP_EstiloVida" ReturnType="Collection(FADENModel.SP_XRP_EstiloVida_Result)">
-            <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
+          <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_XRP_EstiloVidaAlimentacion" ReturnType="Collection(FADENModel.SP_XRP_EstiloVidaAlimentacion_Result)">
-            <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
+          <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_XRP_EstiloVidaEjercicio" ReturnType="Collection(FADENModel.SP_XRP_EstiloVidaEjercicio_Result)">
-            <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
+          <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_XRP_ExamenClinico" ReturnType="Collection(FADENModel.SP_XRP_ExamenClinico_Result)">
-            <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
+          <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_XRP_ExamenFisicoSistema" ReturnType="Collection(FADENModel.SP_XRP_ExamenFisicoSistema_Result)">
-            <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
+          <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_XRP_HistoriaClinica" ReturnType="Collection(FADENModel.SP_XRP_HistoriaClinica_Result)">
-            <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
+          <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_xrp_Paciente" ReturnType="Collection(FADENModel.SP_xrp_Paciente_Result)" />
           <FunctionImport Name="SP_XRP_TratamientoActual" ReturnType="Collection(FADENModel.SP_XRP_TratamientoActual_Result)">
-            <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
+          <Parameter Name="P_NoExpediente" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="SistemaSoap" EntityType="FADENModel.SistemaSoap" />
+          <AssociationSet Name="FK_SistemaSoap_Paciente" Association="FADENModel.FK_SistemaSoap_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="SistemaSoap" EntitySet="SistemaSoap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SistemaSoap_Usuario" Association="FADENModel.FK_SistemaSoap_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SistemaSoap" EntitySet="SistemaSoap" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Acceso">
           <Key>
@@ -1300,9 +1321,9 @@
           <NavigationProperty Name="ExamenFisicoSistema" Relationship="FADENModel.FK_ExamenFisicoSistema_Paciente" FromRole="Paciente" ToRole="ExamenFisicoSistema" />
           <NavigationProperty Name="HistoriaFamSoc" Relationship="FADENModel.FK_HistoriaFamSoc_Paciente" FromRole="Paciente" ToRole="HistoriaFamSoc" />
           <NavigationProperty Name="SindromePredominante" Relationship="FADENModel.FK_SindromePredominante_Paciente" FromRole="Paciente" ToRole="SindromePredominante" />
-          <NavigationProperty Name="SistemaSoap" Relationship="FADENModel.FK_SistemaSoap_Paciente" FromRole="Paciente" ToRole="SistemaSoap" />
           <NavigationProperty Name="TratamientoHistorico" Relationship="FADENModel.FK_TratamientoHistorico_Paciente" FromRole="Paciente" ToRole="TratamientoHistorico" />
           <NavigationProperty Name="ValoracionNeuroPsico" Relationship="FADENModel.FK_ValoracionNeuroPsico_Paciente" FromRole="Paciente" ToRole="ValoracionNeuroPsico" />
+          <NavigationProperty Name="SistemaSoap" Relationship="FADENModel.FK_SistemaSoap_Paciente" FromRole="Paciente" ToRole="SistemaSoap" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
@@ -1322,25 +1343,6 @@
           <Property Name="TipoSindrome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IdPaciente" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_SindromePredominante_Paciente" FromRole="SindromePredominante" ToRole="Paciente" />
-        </EntityType>
-        <EntityType Name="SistemaSoap">
-          <Key>
-            <PropertyRef Name="IdSoap" />
-          </Key>
-          <Property Name="IdSoap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="TipoAcompanante" Type="Int32" Nullable="false" />
-          <Property Name="NombreAcompanante" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="PropositoVisita" Type="Int32" Nullable="false" />
-          <Property Name="Subjetivo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Objetivo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Avaluo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Planes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_SistemaSoap_Paciente" FromRole="SistemaSoap" ToRole="Paciente" />
         </EntityType>
         <EntityType Name="TratamientoHistorico">
           <Key>
@@ -1369,6 +1371,7 @@
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Medicos" Relationship="FADENModel.FK_Usuario_Medicos" FromRole="Usuario" ToRole="Medicos" />
           <NavigationProperty Name="Rol" Relationship="FADENModel.FK_Usuario_Rol" FromRole="Usuario" ToRole="Rol" />
+          <NavigationProperty Name="SistemaSoap" Relationship="FADENModel.FK_SistemaSoap_Usuario" FromRole="Usuario" ToRole="SistemaSoap" />
         </EntityType>
         <EntityType Name="ValoracionNeuroPsico">
           <Key>
@@ -1637,18 +1640,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SistemaSoap_Paciente">
-          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
-          <End Type="FADENModel.SistemaSoap" Role="SistemaSoap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="IdPaciente" />
-            </Principal>
-            <Dependent Role="SistemaSoap">
-              <PropertyRef Name="IdPaciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TratamientoHistorico_Paciente">
           <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
           <End Type="FADENModel.TratamientoHistorico" Role="TratamientoHistorico" Multiplicity="*" />
@@ -1852,6 +1843,51 @@
           <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="203" />
           <Property Type="String" Name="Especialidad" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <EntityType Name="SistemaSoap">
+          <Key>
+            <PropertyRef Name="IdSoap" />
+          </Key>
+          <Property Name="IdSoap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="TipoAcompanante" Type="Int32" Nullable="false" />
+          <Property Name="NombreAcompanante" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PropositoVisita" Type="Int32" Nullable="false" />
+          <Property Name="Subjetivo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Objetivo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Avaluo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Planes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdPaciente" Type="Int32" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="FADENModel.FK_SistemaSoap_Paciente" FromRole="SistemaSoap" ToRole="Paciente" />
+          <NavigationProperty Name="Usuario" Relationship="FADENModel.FK_SistemaSoap_Usuario" FromRole="SistemaSoap" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_SistemaSoap_Paciente">
+          <End Type="FADENModel.Paciente" Role="Paciente" Multiplicity="1" />
+          <End Type="FADENModel.SistemaSoap" Role="SistemaSoap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdPaciente" />
+            </Principal>
+            <Dependent Role="SistemaSoap">
+              <PropertyRef Name="IdPaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SistemaSoap_Usuario">
+          <End Type="FADENModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="FADENModel.SistemaSoap" Role="SistemaSoap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="SistemaSoap">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2159,25 +2195,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SistemaSoap">
-            <EntityTypeMapping TypeName="FADENModel.SistemaSoap">
-              <MappingFragment StoreEntitySet="SistemaSoap">
-                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
-                <ScalarProperty Name="Planes" ColumnName="Planes" />
-                <ScalarProperty Name="Avaluo" ColumnName="Avaluo" />
-                <ScalarProperty Name="Objetivo" ColumnName="Objetivo" />
-                <ScalarProperty Name="Subjetivo" ColumnName="Subjetivo" />
-                <ScalarProperty Name="PropositoVisita" ColumnName="PropositoVisita" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="NombreAcompanante" ColumnName="NombreAcompanante" />
-                <ScalarProperty Name="TipoAcompanante" ColumnName="TipoAcompanante" />
-                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="IdSoap" ColumnName="IdSoap" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TratamientoHistorico">
             <EntityTypeMapping TypeName="FADENModel.TratamientoHistorico">
               <MappingFragment StoreEntitySet="TratamientoHistorico">
@@ -2459,6 +2476,26 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="SistemaSoap">
+            <EntityTypeMapping TypeName="FADENModel.SistemaSoap">
+              <MappingFragment StoreEntitySet="SistemaSoap">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdPaciente" ColumnName="IdPaciente" />
+                <ScalarProperty Name="Planes" ColumnName="Planes" />
+                <ScalarProperty Name="Avaluo" ColumnName="Avaluo" />
+                <ScalarProperty Name="Objetivo" ColumnName="Objetivo" />
+                <ScalarProperty Name="Subjetivo" ColumnName="Subjetivo" />
+                <ScalarProperty Name="PropositoVisita" ColumnName="PropositoVisita" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="NombreAcompanante" ColumnName="NombreAcompanante" />
+                <ScalarProperty Name="TipoAcompanante" ColumnName="TipoAcompanante" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IdSoap" ColumnName="IdSoap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

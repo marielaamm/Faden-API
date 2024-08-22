@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
@@ -139,18 +138,14 @@
             this.xrpExamenFisicoSistema = new DevExpress.XtraReports.UI.XRSubreport();
             this.SubBand10 = new DevExpress.XtraReports.UI.SubBand();
             this.xrpAnalisisPresuncion = new DevExpress.XtraReports.UI.XRSubreport();
+            this.SubBand11 = new DevExpress.XtraReports.UI.SubBand();
+            this.xrpSOAP = new DevExpress.XtraReports.UI.XRSubreport();
             this.dsetReporte1 = new Faden_Api.Reporte.DsetReporte();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrLabel81 = new DevExpress.XtraReports.UI.XRLabel();
+            this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             ((System.ComponentModel.ISupportInitialize)(this.dsetReporte1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-            // 
-            // Detail
-            // 
-            this.Detail.HeightF = 8.055623F;
-            this.Detail.Name = "Detail";
-            this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // TopMargin
             // 
@@ -267,7 +262,8 @@
             this.SubBand7,
             this.SubBand8,
             this.SubBand9,
-            this.SubBand10});
+            this.SubBand10,
+            this.SubBand11});
             this.GroupHeader1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // xrLabel79
@@ -1456,6 +1452,7 @@
             // 
             this.SubBand6.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrpAntecendenteQuirurgico});
+            this.SubBand6.Expanded = false;
             this.SubBand6.HeightF = 23F;
             this.SubBand6.Name = "SubBand6";
             // 
@@ -1470,6 +1467,7 @@
             // 
             this.SubBand7.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrpAntecedenteFamiliar});
+            this.SubBand7.Expanded = false;
             this.SubBand7.HeightF = 23F;
             this.SubBand7.Name = "SubBand7";
             // 
@@ -1488,6 +1486,7 @@
             this.xrLabel80,
             this.xrpEstiloVidaAlimentacion,
             this.xrpEstiloVidaEjercicio});
+            this.SubBand8.Expanded = false;
             this.SubBand8.HeightF = 75.8055F;
             this.SubBand8.Name = "SubBand8";
             // 
@@ -1540,6 +1539,7 @@
             // 
             this.SubBand9.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrpExamenFisicoSistema});
+            this.SubBand9.Expanded = false;
             this.SubBand9.HeightF = 23F;
             this.SubBand9.Name = "SubBand9";
             // 
@@ -1563,6 +1563,21 @@
             this.xrpAnalisisPresuncion.Name = "xrpAnalisisPresuncion";
             this.xrpAnalisisPresuncion.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("P_NoExpediente", null, "SP_Expediente.NoExpediente"));
             this.xrpAnalisisPresuncion.SizeF = new System.Drawing.SizeF(801.0001F, 23F);
+            // 
+            // SubBand11
+            // 
+            this.SubBand11.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrpSOAP});
+            this.SubBand11.HeightF = 25F;
+            this.SubBand11.KeepTogether = true;
+            this.SubBand11.Name = "SubBand11";
+            // 
+            // xrpSOAP
+            // 
+            this.xrpSOAP.LocationFloat = new DevExpress.Utils.PointFloat(10.00014F, 0F);
+            this.xrpSOAP.Name = "xrpSOAP";
+            this.xrpSOAP.ParameterBindings.Add(new DevExpress.XtraReports.UI.ParameterBinding("P_NoExpediente", null, "SP_Expediente.NoExpediente"));
+            this.xrpSOAP.SizeF = new System.Drawing.SizeF(801.0001F, 23F);
             // 
             // dsetReporte1
             // 
@@ -1595,6 +1610,14 @@
             this.xrLabel81.Text = "EXPEDIENTE";
             this.xrLabel81.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
+            // Detail
+            // 
+            this.Detail.Expanded = false;
+            this.Detail.HeightF = 8.055623F;
+            this.Detail.Name = "Detail";
+            this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
             // xrpExpediente
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1615,8 +1638,6 @@
         }
 
         #endregion
-
-        private DevExpress.XtraReports.UI.DetailBand Detail;
         private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
         private DevExpress.XtraReports.UI.GroupHeaderBand GroupHeader1;
@@ -1730,5 +1751,8 @@
         public DevExpress.XtraReports.UI.XRSubreport xrpAnalisisPresuncion;
         private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
         private DevExpress.XtraReports.UI.XRLabel xrLabel81;
+        private DevExpress.XtraReports.UI.SubBand SubBand11;
+        private DevExpress.XtraReports.UI.DetailBand Detail;
+        public DevExpress.XtraReports.UI.XRSubreport xrpSOAP;
     }
 }

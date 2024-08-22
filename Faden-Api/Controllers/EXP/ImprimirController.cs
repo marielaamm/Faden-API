@@ -136,6 +136,14 @@ namespace Faden_Api.Controllers.EXP
 
 
 
+                            SP_XRP_SOAPTableAdapter adpSoap = new SP_XRP_SOAPTableAdapter();
+                            adpSoap.Fill(DsetReporte.SP_XRP_SOAP, NoExpediente);
+                            xrpExpediente.xrpSOAP.ReportSource = new xrpSOAP();
+                            xrpExpediente.xrpSOAP.ReportSource.DataSource = DsetReporte;
+
+
+
+
 
 
                             xrpExpediente.ShowPrintMarginsWarning = false;

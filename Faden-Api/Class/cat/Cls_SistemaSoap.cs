@@ -20,6 +20,6 @@ namespace Faden_Api.Class.cat
         public string Avaluo = string.Empty;
         public string Planes = string.Empty;
         public int IdPaciente = 0;
-
+        public string Usuario = string.Empty;
     }
 }

@@ -27,7 +27,9 @@ namespace Faden_Api.Models
         public string Avaluo { get; set; }
         public string Planes { get; set; }
         public int IdPaciente { get; set; }
+        public int IdUsuario { get; set; }
     
         public virtual Paciente Paciente { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

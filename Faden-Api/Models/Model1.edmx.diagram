@@ -27,7 +27,6 @@
         <EntityTypeShape EntityType="FADENModel.Paciente" Width="1.5" PointX="3" PointY="29.875" />
         <EntityTypeShape EntityType="FADENModel.Rol" Width="1.5" PointX="7.75" PointY="9.375" />
         <EntityTypeShape EntityType="FADENModel.SindromePredominante" Width="1.5" PointX="5.25" PointY="41.375" />
-        <EntityTypeShape EntityType="FADENModel.SistemaSoap" Width="1.5" PointX="5.25" PointY="53.625" />
         <EntityTypeShape EntityType="FADENModel.TratamientoHistorico" Width="1.5" PointX="5.25" PointY="47.625" />
         <EntityTypeShape EntityType="FADENModel.Usuario" Width="1.5" PointX="10" PointY="4.5" />
         <EntityTypeShape EntityType="FADENModel.ValoracionNeuroPsico" Width="1.5" PointX="5.25" PointY="43.875" />
@@ -52,10 +51,12 @@
         <AssociationConnector Association="FADENModel.FK_HistoriaFamSoc_Paciente" />
         <AssociationConnector Association="FADENModel.FK_Usuario_Medicos" />
         <AssociationConnector Association="FADENModel.FK_SindromePredominante_Paciente" />
-        <AssociationConnector Association="FADENModel.FK_SistemaSoap_Paciente" />
         <AssociationConnector Association="FADENModel.FK_TratamientoHistorico_Paciente" />
         <AssociationConnector Association="FADENModel.FK_ValoracionNeuroPsico_Paciente" />
         <AssociationConnector Association="FADENModel.FK_Usuario_Rol" />
+        <EntityTypeShape EntityType="FADENModel.SistemaSoap" Width="1.5" PointX="12.25" PointY="20.5" />
+        <AssociationConnector Association="FADENModel.FK_SistemaSoap_Paciente" />
+        <AssociationConnector Association="FADENModel.FK_SistemaSoap_Usuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

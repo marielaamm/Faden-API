@@ -683,6 +683,12 @@
     <Compile Include="Reporte\xrpPacienteEdad.Designer.cs">
       <DependentUpon>xrpPacienteEdad.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reporte\xrpSOAP.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\xrpSOAP.Designer.cs">
+      <DependentUpon>xrpSOAP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reporte\xrpTratamientoActual.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -875,6 +881,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\xrpPacienteEdad.resx">
       <DependentUpon>xrpPacienteEdad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\xrpSOAP.resx">
+      <DependentUpon>xrpSOAP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\xrpTratamientoActual.resx">
       <DependentUpon>xrpTratamientoActual.cs</DependentUpon>

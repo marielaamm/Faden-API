@@ -32,9 +32,9 @@ namespace Faden_Api.Models
             this.ExamenFisicoSistema = new HashSet<ExamenFisicoSistema>();
             this.HistoriaFamSoc = new HashSet<HistoriaFamSoc>();
             this.SindromePredominante = new HashSet<SindromePredominante>();
-            this.SistemaSoap = new HashSet<SistemaSoap>();
             this.TratamientoHistorico = new HashSet<TratamientoHistorico>();
             this.ValoracionNeuroPsico = new HashSet<ValoracionNeuroPsico>();
+            this.SistemaSoap = new HashSet<SistemaSoap>();
         }
     
         public int IdPaciente { get; set; }
@@ -101,10 +101,10 @@ namespace Faden_Api.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SindromePredominante> SindromePredominante { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SistemaSoap> SistemaSoap { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TratamientoHistorico> TratamientoHistorico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ValoracionNeuroPsico> ValoracionNeuroPsico { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SistemaSoap> SistemaSoap { get; set; }
     }
 }
