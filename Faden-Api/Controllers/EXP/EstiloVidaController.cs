@@ -75,61 +75,69 @@ namespace Faden_Api.Class.EXP
                         if (EsNuevo) _conexion.EstiloVida.Add(e);
                         _conexion.SaveChanges();
 
-
-                        foreach (var det in d.Ejercicios)
+                        if(d.Ejercicios != null)
                         {
-                            EstiloVidaEjercicio ej = _conexion.EstiloVidaEjercicio.FirstOrDefault( f=> f.IdElemento == det.IdElemento && f.IdPaciente == det.IdPaciente);
-
-                            EsNuevo = false;
-                            if (ej == null)
+                            foreach (var det in d.Ejercicios)
                             {
-                                ej = new EstiloVidaEjercicio();
-                                EsNuevo = true;
+                                EstiloVidaEjercicio ej = _conexion.EstiloVidaEjercicio.FirstOrDefault(f => f.IdElemento == det.IdElemento && f.IdPaciente == det.IdPaciente);
+
+                                EsNuevo = false;
+                                if (ej == null)
+                                {
+                                    ej = new EstiloVidaEjercicio();
+                                    EsNuevo = true;
+                                }
+
+                                if (det.IdElemento == null) det.IdElemento = string.Empty;
+                                if (det.Frecuencia == null) det.Frecuencia = string.Empty;
+
+
+
+                                ej.IdElemento = det.IdElemento;
+                                ej.Frecuencia = det.Frecuencia;
+                                ej.Activo = det.Activo;
+                                ej.IdPaciente = det.IdPaciente;
+
+                                if (EsNuevo) _conexion.EstiloVidaEjercicio.Add(ej);
+                                _conexion.SaveChanges();
+
                             }
-
-                            if (det.IdElemento == null) det.IdElemento = string.Empty;
-                            if (det.Frecuencia == null) det.Frecuencia = string.Empty;
-              
-
-
-                            ej.IdElemento = det.IdElemento;
-                            ej.Frecuencia = det.Frecuencia;
-                            ej.Activo = det.Activo;
-                            ej.IdPaciente = det.IdPaciente;
-
-                            if (EsNuevo) _conexion.EstiloVidaEjercicio.Add(ej);
-                            _conexion.SaveChanges();
 
                         }
 
 
-                        foreach (var det in d.Alimentacion)
+                        if(d.Alimentacion  != null)
                         {
-
-                            EstiloVidaAlimentacion ea = _conexion.EstiloVidaAlimentacion.FirstOrDefault(f => f.IdElemento == det.IdElemento && f.IdPaciente == det.IdPaciente);
-
-                            EsNuevo = false;
-                            if (ea == null)
+                            foreach (var det in d.Alimentacion)
                             {
-                                ea = new EstiloVidaAlimentacion();
-                                EsNuevo = true;
+
+                                EstiloVidaAlimentacion ea = _conexion.EstiloVidaAlimentacion.FirstOrDefault(f => f.IdElemento == det.IdElemento && f.IdPaciente == det.IdPaciente);
+
+                                EsNuevo = false;
+                                if (ea == null)
+                                {
+                                    ea = new EstiloVidaAlimentacion();
+                                    EsNuevo = true;
+                                }
+                                if (det.IdElemento == null) det.IdElemento = string.Empty;
+                                if (det.Porcion == null) det.Porcion = string.Empty;
+                                if (det.Frecuencia == null) det.Frecuencia = string.Empty;
+
+                                ea.IdElemento = det.IdElemento;
+                                ea.Porcion = det.Porcion;
+                                ea.Frecuencia = det.Frecuencia;
+                                ea.IdPaciente = det.IdPaciente;
+
+                                if (EsNuevo) _conexion.EstiloVidaAlimentacion.Add(ea);
+                                _conexion.SaveChanges();
                             }
-                            if (det.IdElemento == null) det.IdElemento = string.Empty;
-                            if (det.Porcion == null) det.Porcion = string.Empty;
-                            if (det.Frecuencia == null) det.Frecuencia = string.Empty;
 
-                            ea.IdElemento = det.IdElemento;
-                            ea.Porcion = det.Porcion;
-                            ea.Frecuencia = det.Frecuencia;
-                            ea.IdPaciente = det.IdPaciente;
-
-                            if (EsNuevo) _conexion.EstiloVidaAlimentacion.Add(ea);
-                            _conexion.SaveChanges();
                         }
 
 
 
-                      
+
+
 
                         scope.Complete();
 
