@@ -41,7 +41,7 @@ namespace Faden_Api.Controllers.EXP
                 {
                     using (FADENEntities _conexion = new FADENEntities())
                     {
-                        ValoracionNeuroPsico _v = _conexion.ValoracionNeuroPsico.Find(v.IdValoracion);
+                        ValoracionNeuroPsico _v = _conexion.ValoracionNeuroPsico.FirstOrDefault( f => f.IdPaciente == v.IdPaciente);
                         bool esNuevo = false;
 
                         if (_v == null)
